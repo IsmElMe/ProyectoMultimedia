@@ -5,7 +5,13 @@ public class Pelicula extends Multimedia {
     private String actorPrincipal;
     private String actrizPrinciapl;
 
-    public Pelicula(String titulo, String autor, String formato, String anio, int duracion, String actorPrincipal, String actrizPrinciapl) {
+    public Pelicula(){
+        duracion = 0;
+        actorPrincipal = "";
+        actrizPrinciapl = "";
+    }
+
+    public Pelicula(String titulo, String autor, Formato formato, int anio, int duracion, String actorPrincipal, String actrizPrinciapl) {
         super(titulo, autor, formato, anio);
         setDuracion(duracion);
         setActorPrincipal(actorPrincipal);
