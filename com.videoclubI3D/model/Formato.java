@@ -1,4 +1,5 @@
 package model;
 
-public class Formato {
+public enum Formato {
+    CD, DVD, BLU_RAY, ARCHIVO
 }
