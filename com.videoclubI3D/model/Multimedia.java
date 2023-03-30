@@ -15,6 +15,14 @@ public abstract class Multimedia {
         numMultimedias++;
     }
 
+    public Multimedia(String titulo, String autor, Formato formato, int anio){
+        this();
+        setTitulo(titulo);
+        setAutor(autor);
+        setFormato(formato);
+        setAnio(anio);
+    }
+
     public String getTitulo() {
         return titulo;
     }
@@ -49,5 +57,13 @@ public abstract class Multimedia {
 
     public static int getNumMultimedias() {
         return numMultimedias;
+    }
+
+    @Override
+    public String toString() {
+        return "Titulo: " + getTitulo() +
+                "\nAutor: " + getAutor() +
+                "\nFormato: " + getFormato() +
+                "\nAnio: " + getAnio();
     }
 }
