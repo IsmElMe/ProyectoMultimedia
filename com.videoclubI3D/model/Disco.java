@@ -1,4 +1,4 @@
 package model;
 
-public class Disco {
+public class Disco extends Multimedia {
 }

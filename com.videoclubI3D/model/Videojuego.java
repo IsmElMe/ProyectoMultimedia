@@ -1,4 +1,4 @@
 package model;
 
-public class Videojuego {
+public class Videojuego extends Multimedia {
 }
