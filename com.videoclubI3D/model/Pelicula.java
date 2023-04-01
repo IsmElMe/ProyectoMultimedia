@@ -6,6 +6,7 @@ public class Pelicula extends Multimedia {
     private String actrizPrinciapl;
 
     public Pelicula(){
+        super();
         duracion = 0;
         actorPrincipal = "";
         actrizPrinciapl = "";
