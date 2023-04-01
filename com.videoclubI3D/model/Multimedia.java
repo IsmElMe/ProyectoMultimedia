@@ -15,6 +15,14 @@ public abstract class Multimedia {
         numMultimedias++;
     }
 
+    public Multimedia(String titulo, String autor, Formato formato, int anio){
+        this();
+        setTitulo(titulo);
+        setAutor(autor);
+        setFormato(formato);
+        setAnio(anio);
+    }
+
     public String getTitulo() {
         return titulo;
     }
@@ -44,10 +52,27 @@ public abstract class Multimedia {
     }
 
     public void setAnio(int anio) {
-        this.anio = anio;
+        if (anio > 1940) {
+            this.anio = anio;
+        }else throw new RuntimeException("No se pueden introducir multimedias antriores a 1940");
     }
 
     public static int getNumMultimedias() {
         return numMultimedias;
+    }
+
+    @Override
+    public String toString() {
+        return "Titulo: " + getTitulo() +
+                "\nAutor: " + getAutor() +
+                "\nFormato: " + getFormato() +
+                "\nAnio: " + getAnio();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Multimedia){
+            return titulo.equals(((Multimedia)obj).titulo) && autor.equals(((Multimedia)obj).autor);
+        }else return false;
     }
 }
