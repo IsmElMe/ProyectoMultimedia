@@ -45,15 +45,27 @@ public class Socio {
         return NIF;
     }
 
+    private boolean comprobarNif(String nif) {
+        int dniNum = Integer.parseInt(nif.substring(0, 8)) % 23;
+        String letra = "TRWAGMYFPDXBNJZSQVHLCKE";
+
+        return nif.equals(nif.substring(0, 8) + letra.charAt(dniNum));
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Socio)
+            return NIF.equals(((Socio) obj).NIF);
+
+        return false;
+    }
+
     @Override
     public String toString() {
-        DateTimeFormatter fechaFormateada = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-
         return "Socio n#" + numSocio +
                 "\n \tNIF: " + NIF +
                 "\n \tNombre: " + nombre +
-                "\n \tFecha nacimiento: " + fechaNacimiento.format(fechaFormateada) +
+                "\n \tFecha nacimiento: " + fechaNacimiento.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) +
                 "\n \tPoblación: " + poblacion;
     }
-
 }
