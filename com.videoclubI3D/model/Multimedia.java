@@ -52,7 +52,9 @@ public abstract class Multimedia {
     }
 
     public void setAnio(int anio) {
-        this.anio = anio;
+        if (anio > 1940) {
+            this.anio = anio;
+        }else throw new RuntimeException("No se pueden introducir multimedias antriores a 1940");
     }
 
     public static int getNumMultimedias() {
@@ -65,5 +67,12 @@ public abstract class Multimedia {
                 "\nAutor: " + getAutor() +
                 "\nFormato: " + getFormato() +
                 "\nAnio: " + getAnio();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Multimedia){
+            return titulo.equals(((Multimedia)obj).titulo) && autor.equals(((Multimedia)obj).autor);
+        }else return false;
     }
 }
