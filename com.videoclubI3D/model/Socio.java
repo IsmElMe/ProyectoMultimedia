@@ -2,12 +2,14 @@ package model;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public class Socio {
     private static int numSocio;
     private final String NIF;
     private String nombre, poblacion;
     private LocalDate fechaNacimiento;
+    private ArrayList<Multimedia> multimediasAlquiladas;
 
     public Socio(LocalDate fechaNacimiento, String nombre, String poblacion, String NIF) {
         numSocio++;
@@ -15,6 +17,10 @@ public class Socio {
         this.nombre = nombre;
         this.poblacion = poblacion;
         this.NIF = NIF;
+    }
+
+    public static int getNumSocio() {
+        return numSocio;
     }
 
     public LocalDate getFechaNacimiento() {
@@ -43,6 +49,14 @@ public class Socio {
 
     public String getNIF() {
         return NIF;
+    }
+
+    public ArrayList<Multimedia> getMultimediasAlquiladas() {
+        return multimediasAlquiladas;
+    }
+
+    public void setMultimediasAlquiladas(ArrayList<Multimedia> multimediasAlquiladas) {
+        this.multimediasAlquiladas = multimediasAlquiladas;
     }
 
     private boolean comprobarNif(String nif) {
