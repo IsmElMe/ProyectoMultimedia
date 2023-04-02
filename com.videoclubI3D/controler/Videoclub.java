@@ -22,6 +22,7 @@ public class Videoclub {
                 4 Listar
                 0 Salir""");
         opcion = sc.nextInt();
+        sc.nextLine();
 
         switch(opcion){
             case 1:
@@ -197,11 +198,15 @@ public class Videoclub {
         int opcion = sc.nextInt();
         System.out.println("Introduce el titulo");
         String titulo = sc.nextLine();
+        ArrayList<Multimedia> multimediaSocio = socio.getMultimediasAlquiladas();
 
         for (Multimedia multimedia: multimedias){
-            if (multimedia.getTitulo().toLowerCase().equals(titulo.toLowerCase())){
-
-            }
+            if (multimedia.getTitulo().equalsIgnoreCase(titulo)) {
+                multimediaSocio.add(multimedia);
+            } else
+                System.out.println("No existe un mu");
         }
+
+        socio.setMultimediasAlquiladas(multimediaSocio);
     }
 }
