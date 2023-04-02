@@ -81,7 +81,7 @@ public abstract class Multimedia {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof Multimedia){
+        if (obj instanceof Multimedia) {
             return titulo.equals(((Multimedia)obj).titulo) && autor.equals(((Multimedia)obj).autor);
         }else return false;
     }
