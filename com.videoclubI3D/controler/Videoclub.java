@@ -13,13 +13,50 @@ public class Videoclub {
         ArrayList<Socio> socios = new ArrayList<>();
         ArrayList<Multimedia> multimedias = new ArrayList<>();
 
+        int opcion;
+        System.out.println("""
+                1 Altas
+                2 Alquilar multimedia a socio
+                3 Devolver multimedia de socio
+                4 Listar
+                0 Salir""");
+        opcion = sc.nextInt();
+
+        switch(opcion){
+            case 1:
+                altas(sc, socios, multimedias);
+                break;
+
+            case 2:
+                /*
+                * Solo pueden ser socios los mayores de edad.
+                *
+                * Un socio podrá alquilar tantos objetos multimedia como desee mientras no tenga recargos pendientes de pagar
+                *
+                * Los elementos multimedia se alquilan a los socios durante un periodo máximo de 3 días.
+                *
+                * El alquiler tendrá un precio base de 4 €.
+                *
+                * El alquiler se ve rebajado 1 € si la película es anterior al año 2012, si el disco tiene una duración
+                * menor a 30 minutos o si el videojuego es anterior al año 2010. Se verá aumentado si la película
+                * es de este mismo año en el caso de las películas y los videojuegos.
+                *
+                * Finalmente, cuando el socio devuelve el objeto multimedia se debe comprobar que está dentro del plazo de alquiler de
+                * 3 días. Por cada día que pase del mencionado periodo, el socio deberá pagar un recargo de 2 €.
+                * */
+
+                break;
+        }
+    }
+
+    public static void altas(Scanner sc, ArrayList<Socio> socios, ArrayList<Multimedia> multimedias){
         int opcionAltas = 0;
         System.out.println("""
                 Altas:
                 1 Alta de Socio
-                2 Alta de película
-                3 Alta de videojuego
-                4 Alta de disco
+                2 Alta de Película
+                3 Alta de Videojuego
+                4 Alta de Disco
                 0 Salir
                 """);
         opcionAltas = sc.nextInt();
@@ -33,6 +70,14 @@ public class Videoclub {
                 break;
             case 3:
                 altaVideojuego(multimedias, sc);
+                break;
+
+            case 4:
+                //método alta disco
+                break;
+
+            case 0:
+                System.out.println("Has salido de altas");
                 break;
         }
     }
@@ -92,7 +137,7 @@ public class Videoclub {
         }while (opcionFormato < 1 || opcionFormato > 4);
         return null;
     }
-public static void altasPeliculas(Scanner sc, ArrayList<Multimedia> multimedias, ArrayList<Socio> socios){
+    public static void altasPeliculas(Scanner sc, ArrayList<Multimedia> multimedias, ArrayList<Socio> socios){
     System.out.println("Introduce el título de la película: ");
     String titulo = sc.nextLine();
     System.out.println("Introduce el nombre del director de la película: ");
@@ -134,5 +179,18 @@ public static void altasPeliculas(Scanner sc, ArrayList<Multimedia> multimedias,
         poblacion = sc.nextLine();
 
         return new Socio(LocalDate.of(anioSocio, mesSocio, diaSocio), nombre, poblacion, nif);
+    }
+
+    public static void alquilarMultimedia(Scanner sc, Socio socio, ArrayList<Multimedia> multimedias){
+        System.out.println("Introduce que tipo de multimedia quieres alquilar? \n1 Película \n2 Videojuego \n3 Disco");
+        int opcion = sc.nextInt();
+        System.out.println("Introduce el titulo");
+        String titulo = sc.nextLine();
+
+        for (Multimedia multimedia: multimedias){
+            if (multimedia.getTitulo().toLowerCase().equals(titulo.toLowerCase())){
+
+            }
+        }
     }
 }
