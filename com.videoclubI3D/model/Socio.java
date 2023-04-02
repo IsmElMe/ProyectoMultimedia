@@ -17,6 +17,7 @@ public class Socio {
         this.nombre = nombre;
         this.poblacion = poblacion;
         this.NIF = NIF;
+        multimediasAlquiladas = new ArrayList<>();
     }
 
     public static int getNumSocio() {

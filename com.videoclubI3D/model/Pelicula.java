@@ -1,5 +1,7 @@
 package model;
 
+import java.time.LocalDate;
+
 public class Pelicula extends Multimedia {
     private int duracion;
     private String actorPrincipal;
@@ -17,6 +19,14 @@ public class Pelicula extends Multimedia {
         setDuracion(duracion);
         setActorPrincipal(actorPrincipal);
         setActrizPrinciapl(actrizPrinciapl);
+
+        if(anio < 2012){
+            setPrecio(Constantes.PRECIO_DEFAULT - 1);
+        }
+
+        if (anio == LocalDate.now().getYear()){
+            setPrecio(Constantes.PRECIO_DEFAULT + 1);
+        }
     }
 
     @Override
