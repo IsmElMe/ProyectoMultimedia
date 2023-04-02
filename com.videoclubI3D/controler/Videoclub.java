@@ -1,10 +1,8 @@
 package controler;
 
-
-
-import java.util.ArrayList;
 import model.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -13,7 +11,7 @@ public class Videoclub {
         Scanner sc = new Scanner(System.in);
 
         ArrayList<Socio> socios = new ArrayList<>();
-        ArrayList<Multimedia> multimedias = new ArrayList<Multimedia>();
+        ArrayList<Multimedia> multimedias = new ArrayList<>();
 
         int opcionAltas = 0;
         System.out.println("""
@@ -26,8 +24,9 @@ public class Videoclub {
                 """);
         opcionAltas = sc.nextInt();
 
-        switch (opcionAltas){
+        switch (opcionAltas) {
             case 1:
+                socios.add(altaSocio(sc));
                 break;
             case 2:
                 altasPeliculas(sc, multimedias, socios);
@@ -102,8 +101,10 @@ public static void altasPeliculas(Scanner sc, ArrayList<Multimedia> multimedias,
     Formato formato = Formato.CD;
     System.out.println("Introduce el anio de la película: ");
     int anio = sc.nextInt();
+    sc.nextLine();
     System.out.println("Introduce la duración de la película: ");
     int duracion = sc.nextInt();
+    sc.nextLine();
     System.out.println("Introduce el nombre del actor principal: ");
     String actorPrincipal = sc.nextLine();
     System.out.println("Introduce el nombre de la actriz principal: ");
@@ -111,5 +112,27 @@ public static void altasPeliculas(Scanner sc, ArrayList<Multimedia> multimedias,
 
     multimedias.add(new Pelicula(titulo, autor, formato, anio, duracion, actorPrincipal, actrizPrinciapl));
 }
+    public static Socio altaSocio(Scanner sc) {
+        byte mesSocio, diaSocio;
+        int anioSocio;
+        String nif, nombre, poblacion;
 
+        System.out.println("Introduce el nif del socio");
+        nif = sc.nextLine();
+        System.out.println("Introduce el nombre del socio");
+        nombre = sc.nextLine();
+        System.out.println("Introduce el dia de nacimiento del socio");
+        diaSocio = sc.nextByte();
+        sc.nextLine();
+        System.out.println("Introduce el mes de nacimiento del socio");
+        mesSocio = sc.nextByte();
+        sc.nextLine();
+        System.out.println("Introduce el año de nacimiento del socio");
+        anioSocio = sc.nextInt();
+        sc.nextLine();
+        System.out.println("Introduce la población del socio");
+        poblacion = sc.nextLine();
+
+        return new Socio(LocalDate.of(anioSocio, mesSocio, diaSocio), nombre, poblacion, nif);
+    }
 }
