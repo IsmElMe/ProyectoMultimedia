@@ -7,6 +7,8 @@ public abstract class Multimedia {
     private Formato formato;
     private int anio;
 
+    private int precio;
+
     public Multimedia(){
         titulo = Constantes.TITULO_DEFECTO;
         autor = Constantes.AUTOR_DEFECTO;
@@ -59,6 +61,14 @@ public abstract class Multimedia {
 
     public static int getNumMultimedias() {
         return numMultimedias;
+    }
+
+    public int getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(int precio) {
+        this.precio = precio;
     }
 
     @Override
