@@ -3,6 +3,7 @@ package controler;
 import model.*;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -173,19 +174,28 @@ public class Videoclub {
         byte mesSocio, diaSocio;
         int anioSocio;
         String nif, nombre, poblacion;
+        Period periodo;
 
         System.out.println("Introduce el nif del socio");
         nif = sc.nextLine();
         System.out.println("Introduce el nombre del socio");
         nombre = sc.nextLine();
-        System.out.println("Introduce el dia de nacimiento del socio");
-        diaSocio = sc.nextByte();
-        sc.nextLine();
-        System.out.println("Introduce el mes de nacimiento del socio");
-        mesSocio = sc.nextByte();
-        sc.nextLine();
-        System.out.println("Introduce el año de nacimiento del socio");
-        anioSocio = sc.nextInt();
+
+        do {
+            System.out.println("Introduce el dia de nacimiento del socio");
+            diaSocio = sc.nextByte();
+            sc.nextLine();
+            System.out.println("Introduce el mes de nacimiento del socio");
+            mesSocio = sc.nextByte();
+            sc.nextLine();
+            System.out.println("Introduce el año de nacimiento del socio");
+            anioSocio = sc.nextInt();
+            periodo = Period.between(LocalDate.of(anioSocio, mesSocio, diaSocio), LocalDate.now());
+
+            if (periodo.getYears() < 18)
+                System.out.println("No puedes darte de alta, eres menos de edad");
+        } while (periodo.getYears() < 18);
+
         sc.nextLine();
         System.out.println("Introduce la población del socio");
         poblacion = sc.nextLine();
