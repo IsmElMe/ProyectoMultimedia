@@ -32,9 +32,9 @@ public class Videojuego extends Multimedia {
 		this.plataformas = plataformas;
 	}
 
-	public static class ComparatorFecha implements Comparator<Multimedia> {
+	public static class ComparatorFecha implements Comparator<Videojuego> {
 		@Override
-		public int compare(Multimedia o1, Multimedia o2) {
+		public int compare(Videojuego o1, Videojuego o2) {
 			return o2.getAnio() - o1.getAnio();
 		}
 	}
