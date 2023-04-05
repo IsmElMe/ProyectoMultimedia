@@ -81,6 +81,6 @@ public class Socio {
 				"\n \tNIF: " + NIF +
 				"\n \tNombre: " + nombre +
 				"\n \tFecha nacimiento: " + fechaNacimiento.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) +
-				"\n \tPoblación: " + poblacion;
+				"\n \tPoblación: " + poblacion + "\n";
 	}
 }

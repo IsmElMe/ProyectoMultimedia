@@ -1,6 +1,7 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.Comparator;
 
 public class Videojuego extends Multimedia {
 
@@ -29,5 +30,12 @@ public class Videojuego extends Multimedia {
 
 	public void setPlataformas(Plataforma[] plataformas) {
 		this.plataformas = plataformas;
+	}
+
+	public static class ComparatorFecha implements Comparator<Multimedia> {
+		@Override
+		public int compare(Multimedia o1, Multimedia o2) {
+			return o2.getAnio() - o1.getAnio();
+		}
 	}
 }

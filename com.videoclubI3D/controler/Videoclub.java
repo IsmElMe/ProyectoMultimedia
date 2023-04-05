@@ -5,6 +5,7 @@ import model.*;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class Videoclub {
@@ -27,11 +28,9 @@ public class Videoclub {
 			sc.nextLine();
 
 			switch (opcion) {
-				case 1:
-					altas(sc, socios, multimedias);
-					break;
+				case 1 -> altas(sc, socios, multimedias);
 
-				case 2:
+				case 2 -> alquilarMultimedia(sc, socios.get(0), multimedias);
 					/*
 					 * Solo pueden ser socios los mayores de edad.
 					 *
@@ -48,12 +47,10 @@ public class Videoclub {
 					 * Finalmente, cuando el socio devuelve el objeto multimedia se debe comprobar que está dentro del plazo de alquiler de
 					 * 3 días. Por cada día que pase del mencionado periodo, el socio deberá pagar un recargo de 2 €.
 					 * */
-					alquilarMultimedia(sc, socios.get(0), multimedias);
-					break;
 
-				case 3:
-					devolverMultimedia(sc, socios.get(0), multimedias);
-					break;
+				case 3 -> devolverMultimedia(sc, socios.get(0), multimedias);
+
+				case 4 -> listas(sc, multimedias, socios);
 			}
 		} while (opcion != 0);
 	}
@@ -74,25 +71,50 @@ public class Videoclub {
 			sc.nextLine();
 
 			switch (opcionAltas) {
-				case 1:
-					socios.add(altaSocio(sc));
-					break;
-				case 2:
-					altasPeliculas(sc, multimedias, socios);
-					break;
-				case 3:
-					altaVideojuego(multimedias, sc);
-					break;
+				case 1 -> socios.add(altaSocio(sc));
 
-				case 4:
-					//método alta disco
-					break;
+				case 2 -> altasPeliculas(sc, multimedias, socios);
 
-				case 0:
-					System.out.println("Has salido de altas");
-					break;
+				case 3 -> altaVideojuego(multimedias, sc);
+
+				case 4 -> /*método alta disco*/{}
+
+				case 0 -> System.out.println("Has salido de altas");
 			}
 		} while (opcionAltas != 0);
+	}
+
+	public static void listas(Scanner sc, ArrayList<Multimedia> multimedias, ArrayList<Socio> socios) {
+		int opcionLista;
+		ArrayList<Pelicula> peliculas = sacarPeliculas(multimedias);
+		ArrayList<Videojuego> videojuegos = sacarVideojuegos(multimedias);
+
+		do {
+			System.out.println("""
+					1. Listado de todos los objetos multimedia
+					2. Listado de todas las películas ordenadas por título
+					3. Listado de todas las canciones de un disco por duración
+					4. Listado de todos los videojuegos ordenados por año
+					5. Listado de los alquileres actuales de un socio
+					6. Listado de los socios con recargos pendientes
+					0. Salir""");
+			opcionLista = sc.nextInt();
+			sc.nextLine();
+
+			switch (opcionLista) {
+				case 1 -> System.out.println(mostrarMultimedia(multimedias));
+
+				case 2 -> {
+					Collections.sort(peliculas);
+					System.out.println(mostrarPelicula(peliculas));
+				}
+
+				case 4 -> {
+					videojuegos.sort(new Videojuego.ComparatorFecha());
+					System.out.println(mostrarVideojuego(videojuegos));
+				}
+			}
+		} while (opcionLista != 0);
 	}
 
 	public static void altaVideojuego(ArrayList<Multimedia> multimedias, Scanner sc) {
@@ -115,21 +137,15 @@ public class Videoclub {
 			opcionPlataforma = sc.nextInt();
 
 			switch (opcionPlataforma) {
-				case 1:
-					plataformas[0] = Plataforma.PS5;
-					break;
-				case 2:
-					plataformas[1] = Plataforma.XBOX;
-					break;
-				case 3:
-					plataformas[2] = Plataforma.NINTEND0_SWITCH;
-					break;
-				case 4:
-					plataformas[3] = Plataforma.PC;
-				case 0:
+				case 1 -> plataformas[0] = Plataforma.PS5;
 
+				case 2 -> plataformas[1] = Plataforma.XBOX;
+
+				case 3 -> plataformas[2] = Plataforma.NINTEND0_SWITCH;
+
+				case 4 -> plataformas[3] = Plataforma.PC;
 			}
-		} while (opcionPlataforma != 0);
+		} while (opcionPlataforma < 1 || opcionPlataforma > 4);
 
 		multimedias.add(new Videojuego(titulo, autor, formato, anio, plataformas));
 	}
@@ -143,18 +159,15 @@ public class Videoclub {
 			opcionFormato = sc.nextInt();
 
 			switch (opcionFormato) {
-				case 1:
-					return Formato.CD;
-				case 2:
-					return Formato.DVD;
-				case 3:
-					return Formato.BLU_RAY;
-				case 4:
-					return Formato.ARCHIVO;
-			}
-		} while (opcionFormato < 1 || opcionFormato > 4);
+				case 1 -> {return Formato.CD;}
 
-		return null;
+				case 2 -> {return Formato.DVD;}
+
+				case 3 -> {return Formato.BLU_RAY;}
+
+				case 4 -> {return Formato.ARCHIVO;}
+			}
+		} while (true);
 	}
 
 	public static void altasPeliculas(Scanner sc, ArrayList<Multimedia> multimedias, ArrayList<Socio> socios) {
@@ -251,5 +264,55 @@ public class Videoclub {
 		}
 
 		System.out.println("Debes pagar " + precio + "$");
+	}
+
+	public static String mostrarMultimedia(ArrayList<Multimedia> multimedias) {
+		StringBuilder stb = new StringBuilder();
+
+		for (Multimedia multimedia : multimedias) {
+			stb.append(multimedia.toString());
+		}
+
+		return stb.toString();
+	}
+
+	public static String mostrarPelicula(ArrayList<Pelicula> peliculas) {
+		StringBuilder stb = new StringBuilder();
+
+		for (Pelicula pelicula : peliculas) {
+			stb.append(pelicula.toString());
+		}
+
+		return stb.toString();
+	}
+
+	public static String mostrarVideojuego(ArrayList<Videojuego> videojuegos) {
+		StringBuilder stb = new StringBuilder();
+
+		for (Videojuego videojuego : videojuegos) {
+			stb.append(videojuego.toString());
+		}
+
+		return stb.toString();
+	}
+
+	public static ArrayList<Pelicula> sacarPeliculas(ArrayList<Multimedia> multimedias) {
+		ArrayList<Pelicula> peliculas = new ArrayList<>();
+
+		for (Multimedia multimedia : multimedias)
+			if (multimedia instanceof Pelicula)
+				peliculas.add((Pelicula) multimedia);
+
+		return peliculas;
+	}
+
+	public static ArrayList<Videojuego> sacarVideojuegos(ArrayList<Multimedia> multimedias) {
+		ArrayList<Videojuego> videojuegos = new ArrayList<>();
+
+		for (Multimedia multimedia : multimedias)
+			if (multimedia instanceof Videojuego)
+				videojuegos.add((Videojuego) multimedia);
+
+		return videojuegos;
 	}
 }

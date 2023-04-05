@@ -2,7 +2,7 @@ package model;
 
 import java.time.LocalDate;
 
-public class Pelicula extends Multimedia {
+public class Pelicula extends Multimedia implements Comparable<Pelicula> {
 	private int duracion;
 	private String actorPrincipal;
 	private String actrizPrincipal;
@@ -54,10 +54,15 @@ public class Pelicula extends Multimedia {
 	}
 
 	@Override
+	public int compareTo(Pelicula o) {
+		return super.getTitulo().compareToIgnoreCase(o.getTitulo());
+	}
+
+	@Override
 	public String toString() {
 		return super.toString() +
 				"\nDuración: " + getDuracion() +
 				"\nActor Principal: " + getActorPrincipal() +
-				"\nActriz Principal: " + getActrizPrincipal();
+				"\nActriz Principal: " + getActrizPrincipal() + "\n";
 	}
 }
