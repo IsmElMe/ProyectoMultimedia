@@ -5,20 +5,20 @@ import java.time.LocalDate;
 public class Pelicula extends Multimedia {
 	private int duracion;
 	private String actorPrincipal;
-	private String actrizPrinciapl;
+	private String actrizPrincipal;
 
 	public Pelicula() {
 		super();
 		duracion = Constantes.DURACION_INT_DEFAULT;
 		actorPrincipal = Constantes.AUTOR_DEFECTO;
-		actrizPrinciapl = Constantes.AUTOR_DEFECTO;
+		actrizPrincipal = Constantes.AUTOR_DEFECTO;
 	}
 
-	public Pelicula(String titulo, String autor, Formato formato, int anio, int duracion, String actorPrincipal, String actrizPrinciapl) {
+	public Pelicula(String titulo, String autor, Formato formato, int anio, int duracion, String actorPrincipal, String actrizPrincipal) {
 		super(titulo, autor, formato, anio);
 		setDuracion(duracion);
 		setActorPrincipal(actorPrincipal);
-		setActrizPrinciapl(actrizPrinciapl);
+		setActrizPrincipal(actrizPrincipal);
 
 		if (anio < 2012) {
 			setPrecio(Constantes.PRECIO_DEFAULT - 1);
@@ -45,12 +45,12 @@ public class Pelicula extends Multimedia {
 		this.actorPrincipal = actorPrincipal;
 	}
 
-	public String getActrizPrinciapl() {
-		return actrizPrinciapl;
+	public String getActrizPrincipal() {
+		return actrizPrincipal;
 	}
 
-	public void setActrizPrinciapl(String actrizPrinciapl) {
-		this.actrizPrinciapl = actrizPrinciapl;
+	public void setActrizPrincipal(String actrizPrincipal) {
+		this.actrizPrincipal = actrizPrincipal;
 	}
 
 	@Override
@@ -58,6 +58,6 @@ public class Pelicula extends Multimedia {
 		return super.toString() +
 				"\nDuración: " + getDuracion() +
 				"\nActor Principal: " + getActorPrincipal() +
-				"\nActriz Principal: " + getActrizPrinciapl();
+				"\nActriz Principal: " + getActrizPrincipal();
 	}
 }
