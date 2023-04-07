@@ -87,7 +87,7 @@ public class Videoclub {
 	public static void listas(Scanner sc, ArrayList<Multimedia> multimedias, ArrayList<Socio> socios) {
 		int opcionLista;
 		ArrayList<Pelicula> peliculas = sacarPeliculas(multimedias);
-		ArrayList<Videojuego> videojuegos = sacarVideojuegos(multimedias);
+		ArrayList<Multimedia> videojuegos = sacarVideojuegos(multimedias);
 
 		do {
 			System.out.println("""
@@ -111,7 +111,7 @@ public class Videoclub {
 
 				case 4 -> {
 					videojuegos.sort(new Videojuego.ComparatorFecha());
-					System.out.println(mostrarVideojuego(videojuegos));
+					System.out.println(mostrarMultimedia(videojuegos));
 				}
 			}
 		} while (opcionLista != 0);
@@ -279,19 +279,9 @@ public class Videoclub {
 	public static String mostrarPelicula(ArrayList<Pelicula> peliculas) {
 		StringBuilder stb = new StringBuilder();
 
-		for (Pelicula pelicula : peliculas) {
+		for (Pelicula pelicula : peliculas)
 			stb.append(pelicula.toString());
-		}
 
-		return stb.toString();
-	}
-
-	public static String mostrarVideojuego(ArrayList<Videojuego> videojuegos) {
-		StringBuilder stb = new StringBuilder();
-
-		for (Videojuego videojuego : videojuegos) {
-			stb.append(videojuego.toString());
-		}
 
 		return stb.toString();
 	}
@@ -306,12 +296,12 @@ public class Videoclub {
 		return peliculas;
 	}
 
-	public static ArrayList<Videojuego> sacarVideojuegos(ArrayList<Multimedia> multimedias) {
-		ArrayList<Videojuego> videojuegos = new ArrayList<>();
+	public static ArrayList<Multimedia> sacarVideojuegos(ArrayList<Multimedia> multimedias) {
+		ArrayList<Multimedia> videojuegos = new ArrayList<>();
 
 		for (Multimedia multimedia : multimedias)
 			if (multimedia instanceof Videojuego)
-				videojuegos.add((Videojuego) multimedia);
+				videojuegos.add(multimedia);
 
 		return videojuegos;
 	}
