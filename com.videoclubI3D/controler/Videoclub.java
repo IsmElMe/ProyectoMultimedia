@@ -186,9 +186,9 @@ public class Videoclub {
 		System.out.println("Introduce el nombre del actor principal: ");
 		String actorPrincipal = sc.nextLine();
 		System.out.println("Introduce el nombre de la actriz principal: ");
-		String actrizPrinciapl = sc.nextLine();
+		String actrizPrincipal= sc.nextLine();
 
-		multimedias.add(new Pelicula(titulo, autor, formato, anio, duracion, actorPrincipal, actrizPrinciapl));
+		multimedias.add(new Pelicula(titulo, autor, formato, anio, duracion, actorPrincipal, actrizPrincipal));
 	}
 
 	public static Socio altaSocio(Scanner sc) {
