@@ -45,4 +45,8 @@ public class VentanaPrincipal extends JFrame {
 
         super.setVisible(true);
     }
+
+    public static void main(String[] args) {
+        new VentanaPrincipal();
+    }
 }
