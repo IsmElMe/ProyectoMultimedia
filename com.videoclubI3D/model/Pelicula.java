@@ -2,62 +2,67 @@ package model;
 
 import java.time.LocalDate;
 
-public class Pelicula extends Multimedia {
-    private int duracion;
-    private String actorPrincipal;
-    private String actrizPrinciapl;
+public class Pelicula extends Multimedia implements Comparable<Multimedia> {
+	private int duracion;
+	private String actorPrincipal;
+	private String actrizPrincipal;
 
-    public Pelicula(){
-        super();
-        duracion = 0;
-        actorPrincipal = "";
-        actrizPrinciapl = "";
-    }
+	public Pelicula() {
+		super();
+		duracion = Constantes.DURACION_INT_DEFAULT;
+		actorPrincipal = Constantes.AUTOR_DEFECTO;
+		actrizPrincipal = Constantes.AUTOR_DEFECTO;
+	}
 
-    public Pelicula(String titulo, String autor, Formato formato, int anio, int duracion, String actorPrincipal, String actrizPrinciapl) {
-        super(titulo, autor, formato, anio);
-        setDuracion(duracion);
-        setActorPrincipal(actorPrincipal);
-        setActrizPrinciapl(actrizPrinciapl);
+	public Pelicula(String titulo, String autor, Formato formato, int anio, int duracion, String actorPrincipal, String actrizPrincipal) {
+		super(titulo, autor, formato, anio);
+		setDuracion(duracion);
+		setActorPrincipal(actorPrincipal);
+		setActrizPrincipal(actrizPrincipal);
 
-        if(anio < 2012){
-            setPrecio(Constantes.PRECIO_DEFAULT - 1);
-        }
+		if (anio < 2012) {
+			setPrecio(Constantes.PRECIO_DEFAULT - 1);
+		}
 
-        if (anio == LocalDate.now().getYear()){
-            setPrecio(Constantes.PRECIO_DEFAULT + 1);
-        }
-    }
+		if (anio == LocalDate.now().getYear()) {
+			setPrecio(Constantes.PRECIO_DEFAULT + 1);
+		}
+	}
 
-    @Override
-    public String toString() {
-        return super.toString() +
-                "\nDuración: " + getDuracion() +
-                "\nActor Principal: " + getActorPrincipal() +
-                "\nActriz Principal: " + getActrizPrinciapl();
-    }
+	public int getDuracion() {
+		return duracion;
+	}
 
-    public int getDuracion() {
-        return duracion;
-    }
+	public void setDuracion(int duracion) {
+		this.duracion = duracion;
+	}
 
-    public void setDuracion(int duracion) {
-        this.duracion = duracion;
-    }
+	public String getActorPrincipal() {
+		return actorPrincipal;
+	}
 
-    public String getActorPrincipal() {
-        return actorPrincipal;
-    }
+	public void setActorPrincipal(String actorPrincipal) {
+		this.actorPrincipal = actorPrincipal;
+	}
 
-    public void setActorPrincipal(String actorPrincipal) {
-        this.actorPrincipal = actorPrincipal;
-    }
+	public String getActrizPrincipal() {
+		return actrizPrincipal;
+	}
 
-    public String getActrizPrinciapl() {
-        return actrizPrinciapl;
-    }
+	public void setActrizPrincipal(String actrizPrincipal) {
+		this.actrizPrincipal = actrizPrincipal;
+	}
 
-    public void setActrizPrinciapl(String actrizPrinciapl) {
-        this.actrizPrinciapl = actrizPrinciapl;
-    }
+	@Override
+	public int compareTo(Multimedia o) {
+		return super.getTitulo().compareToIgnoreCase(o.getTitulo());
+	}
+
+	@Override
+	public String toString() {
+		return super.toString() +
+				"\nDuración: " + getDuracion() +
+				"\nActor Principal: " + getActorPrincipal() +
+				"\nActriz Principal: " + getActrizPrincipal() + "\n";
+	}
 }
