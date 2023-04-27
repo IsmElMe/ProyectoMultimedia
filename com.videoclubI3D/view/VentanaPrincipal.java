@@ -49,7 +49,17 @@ public class VentanaPrincipal extends JFrame {
         btnListar.setFont(Constantes.FUENTE_BOTON);
         btnListar.setBounds(rectangle);
 
+        eventos();
         super.setVisible(true);
+    }
+
+    private void eventos() {
+        VentanaAltas ventanaAltas = new VentanaAltas();
+
+        btnAltas.addActionListener(evento -> {
+            if (!ventanaAltas.isVisible())
+                ventanaAltas.setVisible(true);
+        });
     }
 
     public static void main(String[] args) {

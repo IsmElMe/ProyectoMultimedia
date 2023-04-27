@@ -11,7 +11,6 @@ public class Constantes {
 	public static final int MAX_DIAS_ALQUILER = 3;
 	public static final int ANCHO_PANTALLA = Toolkit.getDefaultToolkit().getScreenSize().width;
 	public static final int ALTO_PANTALLA = Toolkit.getDefaultToolkit().getScreenSize().height;
-
 	public static final double DURACION_DOUBLE_DEFAULT = 0.0;
 	public static final String TITULO_DEFECTO = "";
 	public static final String AUTOR_DEFECTO = "";
