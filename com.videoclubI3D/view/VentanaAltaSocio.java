@@ -1,5 +1,7 @@
 package view;
 
+import model.Constantes;
+
 import java.awt.Font;
 import java.awt.LayoutManager;
 import javax.swing.*;
@@ -11,10 +13,7 @@ public class VentanaAltaSocio extends JFrame {
     private JLabel lblNombre;
     private JLabel lblFechaNac;
     private JLabel lblPoblacion;
-    private JTextArea txtNumSocio;
-    private JTextArea txtNombre;
-    private JTextArea txtFechaNac;
-    private JTextArea txtPoblacion;
+    private JTextField txtNumSocio, txtNombre, txtFechaNac, txtPoblacion;
     private JButton btnGuardar;
 
     public VentanaAltaSocio() {
@@ -22,7 +21,7 @@ public class VentanaAltaSocio extends JFrame {
         super.setContentPane(this.panel);
         super.setLayout(null);
         super.setResizable(false);
-        super.setSize(600, 500);
+        super.setBounds((Constantes.ANCHO_PANTALLA / 2) - 250, (Constantes.ALTO_PANTALLA / 2) - 235, 500, 470);
         super.setDefaultCloseOperation(HIDE_ON_CLOSE);
 
         lblTitulo = new JLabel("Alta Socio");
@@ -34,7 +33,7 @@ public class VentanaAltaSocio extends JFrame {
         panel.add(this.lblNumSocio);
         lblNumSocio.setFont(new Font("Titulo", 0, 15));
         lblNumSocio.setBounds(70, 60, 100, 120);
-        txtNumSocio = new JTextArea();
+        txtNumSocio = new JTextField();
         panel.add(this.txtNumSocio);
         txtNumSocio.setBounds(160, 110, 250, 20);
 
@@ -42,7 +41,7 @@ public class VentanaAltaSocio extends JFrame {
         panel.add(this.lblNombre);
         lblNombre.setFont(new Font("Titulo", 0, 15));
         lblNombre.setBounds(70, 120, 100, 120);
-        txtNombre = new JTextArea();
+        txtNombre = new JTextField();
         panel.add(this.txtNombre);
         txtNombre.setBounds(160, 170, 250, 20);
 
@@ -50,7 +49,7 @@ public class VentanaAltaSocio extends JFrame {
         panel.add(this.lblFechaNac);
         lblFechaNac.setFont(new Font("Titulo", 0, 15));
         lblFechaNac.setBounds(70, 180, 200, 120);
-        txtFechaNac = new JTextArea();
+        txtFechaNac = new JTextField();
         panel.add(this.txtFechaNac);
         txtFechaNac.setBounds(240, 230, 100, 20);
 
@@ -58,7 +57,7 @@ public class VentanaAltaSocio extends JFrame {
         panel.add(this.lblPoblacion);
         lblPoblacion.setFont(new Font("Titulo", 0, 15));
         lblPoblacion.setBounds(70, 240, 100, 120);
-        txtPoblacion = new JTextArea();
+        txtPoblacion = new JTextField();
         panel.add(this.txtPoblacion);
         txtPoblacion.setBounds(160, 290, 250, 20);
 
