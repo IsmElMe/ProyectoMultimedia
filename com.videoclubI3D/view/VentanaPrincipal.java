@@ -1,5 +1,6 @@
 package view;
 
+import controler.Videoclub;
 import model.Constantes;
 
 import javax.swing.*;
@@ -17,8 +18,8 @@ public class VentanaPrincipal extends JFrame {
         super.setContentPane(panel);
         super.setLayout(null);
         super.setResizable(false);
-        super.setBounds((Constantes.ANCHO_PANTALLA / 2) - 300, (Constantes.ALTO_PANTALLA / 2) - 250, 600, 500);
         super.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        super.setBounds((Constantes.ANCHO_PANTALLA / 2) - 300, (Constantes.ALTO_PANTALLA / 2) - 250, 600, 500);
 
         Rectangle rectangle = new Rectangle((super.getWidth() / 2) - 175, 140, 350, 40);
         lblTitulo = new JLabel("Videoclub I3D");
@@ -54,15 +55,14 @@ public class VentanaPrincipal extends JFrame {
     }
 
     private void eventos() {
-        VentanaAltas ventanaAltas = new VentanaAltas();
-
         btnAltas.addActionListener(evento -> {
-            if (!ventanaAltas.isVisible())
-                ventanaAltas.setVisible(true);
+            if (!Videoclub.ventanaAltas.isVisible())
+                Videoclub.ventanaAltas.setVisible(true);
         });
-    }
 
-    public static void main(String[] args) {
-        new VentanaPrincipal();
+        btnAlquilarMultimedaSocio.addActionListener(evento -> {
+            if (!Videoclub.ventanaAlquilarMultimedia.isVisible())
+                Videoclub.ventanaAlquilarMultimedia.setVisible(true);
+        });
     }
 }

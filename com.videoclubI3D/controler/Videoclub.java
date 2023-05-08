@@ -1,6 +1,7 @@
 package controler;
 
 import model.*;
+import view.*;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -9,50 +10,11 @@ import java.util.Collections;
 import java.util.Scanner;
 
 public class Videoclub {
+	public static final VentanaAltas ventanaAltas = new VentanaAltas();
+	public static final VentanaAlquilarMultimedia ventanaAlquilarMultimedia = new VentanaAlquilarMultimedia();
+
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-
-		ArrayList<Socio> socios = new ArrayList<>();
-		ArrayList<Multimedia> multimedias = new ArrayList<>();
-
-		int opcion;
-
-		do {
-			System.out.println("""
-					1 Altas
-					2 Alquilar multimedia a socio
-					3 Devolver multimedia de socio
-					4 Listar
-					0 Salir""");
-			opcion = sc.nextInt();
-			sc.nextLine();
-
-			switch (opcion) {
-				case 1 -> altas(sc, socios, multimedias);
-
-				case 2 -> alquilarMultimedia(sc, socios.get(0), multimedias);
-					/*
-					 * Solo pueden ser socios los mayores de edad.
-					 *
-					 * Un socio podrá alquilar tantos objetos multimedia como desee mientras no tenga recargos pendientes de pagar
-					 *
-					 * Los elementos multimedia se alquilan a los socios durante un periodo máximo de 3 días.
-					 *
-					 * El alquiler tendrá un precio base de 4 €.
-					 *
-					 * El alquiler se ve rebajado 1 € si la película es anterior al año 2012, si el disco tiene una duración
-					 * menor a 30 minutos o si el videojuego es anterior al año 2010. Se verá aumentado si la película
-					 * es de este mismo año en el caso de las películas y los videojuegos.
-					 *
-					 * Finalmente, cuando el socio devuelve el objeto multimedia se debe comprobar que está dentro del plazo de alquiler de
-					 * 3 días. Por cada día que pase del mencionado periodo, el socio deberá pagar un recargo de 2 €.
-					 * */
-
-				case 3 -> devolverMultimedia(sc, socios.get(0), multimedias);
-
-				case 4 -> listas(sc, multimedias, socios);
-			}
-		} while (opcion != 0);
+		new VentanaPrincipal();
 	}
 
 	public static void altas(Scanner sc, ArrayList<Socio> socios, ArrayList<Multimedia> multimedias) {
