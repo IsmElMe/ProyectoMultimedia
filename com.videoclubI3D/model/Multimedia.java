@@ -1,5 +1,7 @@
 package model;
 
+import static model.Constantes.FORMATO_DEFECTO;
+
 public abstract class Multimedia {
 	private static int numMultimedias = 0;
 	private String titulo;
@@ -12,7 +14,7 @@ public abstract class Multimedia {
 	public Multimedia() {
 		titulo = Constantes.TITULO_DEFECTO;
 		autor = Constantes.AUTOR_DEFECTO;
-		formato = Constantes.FORMATO_DEFECTO;
+		formato = FORMATO_DEFECTO;
 		anio = Constantes.ANIO_DEFETO;
 		numMultimedias++;
 	}

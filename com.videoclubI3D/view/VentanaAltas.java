@@ -1,5 +1,6 @@
 package view;
 
+import controler.Videoclub;
 import model.Constantes;
 
 import javax.swing.*;
@@ -45,6 +46,15 @@ public class VentanaAltas extends JFrame{
         panel.add(btnAltaDisco);
         btnAltaDisco.setFont(new Font("Titulo", Font.BOLD, 30));
         btnAltaDisco.setBounds((super.getWidth() / 2) - 150, 380, 300, 40);
+
+        eventos();
+    }
+
+    private void eventos() {
+        btnAltaSocio.addActionListener(evento -> {
+            if (!Videoclub.ventanaAltaSocio.isVisible())
+                Videoclub.ventanaAltaSocio.setVisible(true);
+        });
     }
 }
 
