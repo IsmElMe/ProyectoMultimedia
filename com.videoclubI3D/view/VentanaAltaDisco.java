@@ -4,6 +4,7 @@ import model.Constantes;
 
 import javax.swing.*;
 import java.awt.*;
+import java.time.LocalDate;
 
 public class VentanaAltaDisco extends JFrame {
 
@@ -69,10 +70,43 @@ public class VentanaAltaDisco extends JFrame {
         panel.add(lblFormato);
         lblFormato.setFont(Constantes.FUENTE_LABEL);
         lblFormato.setBounds(rectangleLabel);
+        rectangleLabel.y += 40;
 
         lblCanciones = new JLabel("Canciones:");
         panel.add(lblCanciones);
         lblCanciones.setFont(Constantes.FUENTE_LABEL);
+        lblCanciones.setBounds(rectangleLabel);
+    }
 
+    private void crearInput() {
+        Rectangle rectangleTextField = new Rectangle(100, 100, super.getWidth() - 150, 20);
+
+        txtTitulo = new JTextField();
+        panel.add(txtTitulo);
+        txtTitulo.setBounds(rectangleTextField);
+        rectangleTextField.y += 40;
+
+        txtAutor = new JTextField();
+        panel.add(txtAutor);
+        txtAutor.setBounds(rectangleTextField);
+
+        spnDuracion = new JSpinner();
+        panel.add(spnDuracion);
+        spnDuracion.setModel(new SpinnerNumberModel(60, 60, 240, 1));
+        spnDuracion.setBounds(130, 180, 50, 20);
+
+        cbAnyo = new JComboBox<>();
+        panel.add(cbAnyo);
+        cbAnyo.setEditable(true);
+        cbAnyo.setBounds(super.getWidth() - 150, 180, 100, 20);
+
+        for (int i = 1940; i <= LocalDate.now().getYear(); i++)
+            cbAnyo.addItem(i);
+
+        cbAnyo.setSelectedIndex(cbAnyo.getItemCount() - 1);
+
+        rectangleTextField.width -= 60;
+        rectangleTextField.x += 60;
+        rectangleTextField.y += 80;
     }
 }
