@@ -21,7 +21,7 @@ public class VentanaAltaPelicula extends JFrame {
     private JButton btnGuardar;
 
     public VentanaAltaPelicula() {
-        super("Videoclub I3D - Alta película");
+        super("Blockbuster - Alta película");
         panel = new JPanel();
         super.setContentPane(panel);
         super.setLayout(null);

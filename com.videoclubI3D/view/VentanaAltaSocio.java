@@ -17,7 +17,7 @@ public class VentanaAltaSocio extends JFrame {
     private JButton btnGuardar;
 
     public VentanaAltaSocio() {
-        super("Videoclub I3D - Alta Socio");
+        super("Blockbuster - Alta Socio");
         super.setContentPane(this.panel);
         super.setLayout(null);
         super.setResizable(false);

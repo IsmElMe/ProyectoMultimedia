@@ -13,7 +13,7 @@ public class VentanaAltas extends JFrame{
             btnAltaVideojuego, btnAltaDisco;
 
     public VentanaAltas() {
-        super("Videoclub I3D - Altas");
+        super("Blockbuster - Altas");
         panel = new JPanel();
         super.setContentPane(panel);
         super.setLayout(null);

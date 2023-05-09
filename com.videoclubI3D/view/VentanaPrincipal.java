@@ -13,7 +13,7 @@ public class VentanaPrincipal extends JFrame {
             btnDevolverMultimedia, btnListar;
 
     public VentanaPrincipal() {
-        super("Videoclub I3D - Inicio");
+        super("Blockbuster - Inicio");
         panel = new JPanel();
         super.setContentPane(panel);
         super.setLayout(null);

@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class VentanaAlquilarMultimedia extends JFrame {
     public VentanaAlquilarMultimedia() {
-        super("Videoclub I3D - Alquilar multimedia a socio");
+        super("Blockbuster - Alquilar multimedia a socio");
         JPanel panel = new JPanel();
         super.setContentPane(panel);
         super.setLayout(null);
