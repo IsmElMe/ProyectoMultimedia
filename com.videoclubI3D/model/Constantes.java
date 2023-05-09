@@ -15,7 +15,7 @@ public class Constantes {
 	public static final String TITULO_DEFECTO = "";
 	public static final String AUTOR_DEFECTO = "";
 	public static final Formato FORMATO_DEFECTO = Formato.DVD;
-	public static final Font FUENTE_TITULO = new Font("Titulo", Font.BOLD, 25);
-	public static final Font FUENTE_BOTON = new Font("Boton", Font.PLAIN, 20);
-	public static final Font FUENTE_LABEL = new Font("Label", Font.PLAIN, 16);
+	public static final Font FUENTE_TITULO = new Font("Arial", Font.BOLD, 25);
+	public static final Font FUENTE_BOTON = new Font("Boton", Font.BOLD, 15);
+	public static final Font FUENTE_LABEL = new Font("Label", Font.BOLD, 16);
 }

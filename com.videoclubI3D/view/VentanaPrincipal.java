@@ -22,35 +22,36 @@ public class VentanaPrincipal extends JFrame {
         super.setBounds((Constantes.ANCHO_PANTALLA / 2) - 300, (Constantes.ALTO_PANTALLA / 2) - 250, 600, 500);
 
         Rectangle rectangle = new Rectangle((super.getWidth() / 2) - 175, 140, 350, 40);
-        lblTitulo = new JLabel("Videoclub I3D");
+        lblTitulo = new JLabel("VIDEOCLUB I3D");
         panel.add(lblTitulo);
         lblTitulo.setFont(Constantes.FUENTE_TITULO);
         lblTitulo.setBounds((super.getWidth() / 2) - 100, 15, 200, 100);
 
-        btnAltas = new JButton("Altas");
+        btnAltas = new JButton("ALTAS");
         panel.add(btnAltas);
         btnAltas.setFont(Constantes.FUENTE_BOTON);
         btnAltas.setBounds(rectangle);
         rectangle.y += 80;
 
-        btnAlquilarMultimedaSocio = new JButton("Alquilar multimedia a socio");
+        btnAlquilarMultimedaSocio = new JButton("ALQUILAR MULTIMEDIA A SOCIO");
         panel.add(btnAlquilarMultimedaSocio);
         btnAlquilarMultimedaSocio.setFont(Constantes.FUENTE_BOTON);
         btnAlquilarMultimedaSocio.setBounds(rectangle);
         rectangle.y += 80;
 
-        btnDevolverMultimedia = new JButton("Devolver multimedia de socio");
+        btnDevolverMultimedia = new JButton("DEVOLVER MULTIMEDIA DE SOCIO");
         panel.add(btnDevolverMultimedia);
         btnDevolverMultimedia.setFont(Constantes.FUENTE_BOTON);
         btnDevolverMultimedia.setBounds(rectangle);
         rectangle.y += 80;
 
-        btnListar = new JButton("Listar");
+        btnListar = new JButton("LISTAR");
         panel.add(btnListar);
         btnListar.setFont(Constantes.FUENTE_BOTON);
         btnListar.setBounds(rectangle);
 
         eventos();
+
         super.setVisible(true);
     }
 
@@ -64,5 +65,9 @@ public class VentanaPrincipal extends JFrame {
             if (!Videoclub.ventanaAlquilarMultimedia.isVisible())
                 Videoclub.ventanaAlquilarMultimedia.setVisible(true);
         });
+    }
+
+    public static void main(String[] args) {
+        new VentanaPrincipal();
     }
 }
