@@ -3,18 +3,24 @@ package controler;
 import model.*;
 import view.*;
 
-import java.time.LocalDate;
-import java.time.Period;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Scanner;
+import java.time.*;
+import java.util.*;
+import javax.swing.*;
 
 public class Videoclub {
 	public static final VentanaAltas ventanaAltas = new VentanaAltas();
+    public static final VentanaAltaSocio ventanaAltaSocio = new VentanaAltaSocio();
 	public static final VentanaAlquilarMultimedia ventanaAlquilarMultimedia = new VentanaAlquilarMultimedia();
+
+	private static ArrayList<Socio> socios = new ArrayList<>();
 
 	public static void main(String[] args) {
 		new VentanaPrincipal();
+	}
+
+	public static void guardarSocio(Socio socio) {
+		socios.add(socio);
+		JOptionPane.showMessageDialog(null, "Se ha guardado el socio correctamente");
 	}
 
 	public static void altas(Scanner sc, ArrayList<Socio> socios, ArrayList<Multimedia> multimedias) {

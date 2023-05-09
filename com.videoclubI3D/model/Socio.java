@@ -60,7 +60,10 @@ public class Socio {
 		this.multimediasAlquiladas = multimediasAlquiladas;
 	}
 
-	private boolean comprobarNif(String nif) {
+	public static boolean comprobarNif(String nif) {
+		if (!(nif.length() == 9))
+			return false;
+
 		int dniNum = Integer.parseInt(nif.substring(0, 8)) % 23;
 		String letra = "TRWAGMYFPDXBNJZSQVHLCKE";
 
