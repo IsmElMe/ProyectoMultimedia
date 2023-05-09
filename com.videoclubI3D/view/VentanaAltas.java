@@ -1,5 +1,7 @@
 package view;
 
+import model.Constantes;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -16,7 +18,7 @@ public class VentanaAltas extends JFrame{
         super.setContentPane(panel);
         super.setLayout(null);
         super.setResizable(false);
-        super.setSize(600, 500);
+        super.setBounds((Constantes.ANCHO_PANTALLA / 2) - 300, (Constantes.ALTO_PANTALLA / 2) - 250,600, 500);
         super.setDefaultCloseOperation(HIDE_ON_CLOSE);
 
         lblTitulo = new JLabel("Altas");
@@ -43,12 +45,6 @@ public class VentanaAltas extends JFrame{
         panel.add(btnAltaDisco);
         btnAltaDisco.setFont(new Font("Titulo", Font.BOLD, 30));
         btnAltaDisco.setBounds((super.getWidth() / 2) - 150, 380, 300, 40);
-
-        setVisible(true);
-    }
-
-    public static void main(String[] args) {
-        new VentanaAltas();
     }
 }
 

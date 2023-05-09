@@ -151,10 +151,4 @@ public class VentanaAltaPelicula extends JFrame {
         panel.add(txtActrizPrincipal);
         txtActrizPrincipal.setBounds(rectangleTextField);
     }
-
-    public static void main(String[] args) {
-        VentanaAltaPelicula gui = new VentanaAltaPelicula();
-        gui.setVisible(true);
-        gui.setDefaultCloseOperation(EXIT_ON_CLOSE);
-    }
 }
