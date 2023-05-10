@@ -119,7 +119,7 @@ public class VentanaAltaPelicula extends JFrame {
     }
 
     private void crearInput() {
-        Rectangle rectangleTextField = new Rectangle(100, 100, super.getWidth() - 150, 20);
+        Rectangle rectangleTextField = new Rectangle(120, 100, super.getWidth() - 170, 20);
 
         txtTitulo = new JTextField();
         panel.add(txtTitulo);

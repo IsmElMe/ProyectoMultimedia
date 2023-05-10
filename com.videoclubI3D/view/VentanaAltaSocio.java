@@ -17,7 +17,7 @@ public class VentanaAltaSocio extends JFrame {
     private JLabel lblNombre;
     private JLabel lblFechaNac;
     private JLabel lblPoblacion;
-    private JTextField txtNif, txtNombre, txtFechaNac, txtPoblacion;
+    private JTextField txtNif, txtNombre, txtPoblacion;
     private JButton btnGuardar;
     private JDateChooser calendario;
 
