@@ -11,6 +11,7 @@ public class Videoclub {
 	public static final VentanaAltas ventanaAltas = new VentanaAltas();
     public static final VentanaAltaSocio ventanaAltaSocio = new VentanaAltaSocio();
 	public static final VentanaAlquilarMultimedia ventanaAlquilarMultimedia = new VentanaAlquilarMultimedia();
+	public static final VentanaDevolver ventanaDevolver = new VentanaDevolver();
 
 	private static ArrayList<Socio> socios = new ArrayList<>();
 
