@@ -22,7 +22,7 @@ public class VentanaAltaSocio extends JFrame {
     private JDateChooser calendario;
 
     public VentanaAltaSocio() {
-        super("Videoclub I3D - Alta Socio");
+        super("BLOCKBUSTER - ALTA SOCIO");
         super.setContentPane(this.panel);
         super.setLayout(null);
         super.setResizable(false);

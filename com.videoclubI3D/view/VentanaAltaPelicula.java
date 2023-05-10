@@ -25,23 +25,24 @@ public class VentanaAltaPelicula extends JFrame {
     private JButton btnGuardar;
 
     public VentanaAltaPelicula() {
-        super("Videoclub I3D - Alta película");
+        super("BLOCKBUSTER - ALTA PELICULA");
         panel = new JPanel();
         super.setContentPane(panel);
         super.setLayout(null);
         super.setDefaultCloseOperation(HIDE_ON_CLOSE);
         super.setResizable(false);
-        super.setBounds((Constantes.ANCHO_PANTALLA / 2) - 250, (Constantes.ALTO_PANTALLA / 2) - 235, 500, 470);
+        panel.setBackground(Color.decode("#1f4489"));
+        super.setBounds(300, 250, 430, 490);
 
         crearLabel();
         crearInput();
 
-        Rectangle rectangleRadioButton = new Rectangle(120, 300, 100,20);
+        Rectangle rectangleRadioButton = new Rectangle(100, 290, 140,20);
         grupoRadioButton = new ButtonGroup();
         rdbCd = new JRadioButton("CD");
         rdbDvd = new JRadioButton("DVD");
         rdbBluray = new JRadioButton("BLUE-RAY");
-        rdbArchivo = new JRadioButton("Archivo");
+        rdbArchivo = new JRadioButton("ARCHIVO");
         grupoRadioButton.add(rdbCd);
         grupoRadioButton.add(rdbDvd);
         grupoRadioButton.add(rdbBluray);
@@ -52,6 +53,19 @@ public class VentanaAltaPelicula extends JFrame {
         panel.add(rdbArchivo);
         rdbCd.setSelected(true);
 
+        rdbCd.setFont(Constantes.FUENTE_LABEL);
+        rdbCd.setBackground(Color.decode("#1f4489"));
+        rdbCd.setForeground(Color.WHITE);
+        rdbDvd.setFont(Constantes.FUENTE_LABEL);
+        rdbDvd.setBackground(Color.decode("#1f4489"));
+        rdbDvd.setForeground(Color.WHITE);
+        rdbBluray.setFont(Constantes.FUENTE_LABEL);
+        rdbBluray.setBackground(Color.decode("#1f4489"));
+        rdbBluray.setForeground(Color.WHITE);
+        rdbArchivo.setFont(Constantes.FUENTE_LABEL);
+        rdbArchivo.setBackground(Color.decode("#1f4489"));
+        rdbArchivo.setForeground(Color.WHITE);
+
         rdbCd.setBounds(rectangleRadioButton);
         rectangleRadioButton.y += 20;
         rdbDvd.setBounds(rectangleRadioButton);
@@ -60,102 +74,101 @@ public class VentanaAltaPelicula extends JFrame {
         rectangleRadioButton.y += 20;
         rdbArchivo.setBounds(rectangleRadioButton);
 
-        btnGuardar = new JButton("Guardar");
+        btnGuardar = new JButton("GUARDAR");
         panel.add(btnGuardar);
-        btnGuardar.setBounds(super.getWidth() - 150, super.getHeight() - 70, 100, 20);
+        btnGuardar.setFont(Constantes.FUENTE_BOTON);
+        btnGuardar.setForeground(Color.decode("#1f4489"));
+        btnGuardar.setBackground(Color.decode("#fcc139"));
+        btnGuardar.setBounds(160, 390, 120, 25);
 
         crearPelicula();
     }
 
     private void crearLabel() {
-        Rectangle rectangleLabel = new Rectangle(50, 100, 150, 20);
 
-        lblTituloVentana = new JLabel("Alta película");
+        lblTituloVentana = new JLabel("ALTA PELICULA");
         panel.add(lblTituloVentana);
         lblTituloVentana.setFont(Constantes.FUENTE_TITULO);
-        lblTituloVentana.setBounds((super.getWidth() / 2) - 100, 15, 200, 60);
+        lblTituloVentana.setBounds(120, 0, 300, 100);
+        lblTituloVentana.setForeground(Color.decode("#fcc139"));
 
-        lblTitulo = new JLabel("Título:");
+        lblTitulo = new JLabel("TÍTULO");
         panel.add(lblTitulo);
         lblTitulo.setFont(Constantes.FUENTE_LABEL);
-        lblTitulo.setBounds(rectangleLabel);
-        rectangleLabel.y += 40;
+        lblTitulo.setBounds(40, 70, 200, 40);
+        lblTitulo.setForeground(Color.decode("#fcc139"));
 
-        lblAutor = new JLabel("Autor:");
+        lblAutor = new JLabel("AUTOR");
         panel.add(lblAutor);
         lblAutor.setFont(Constantes.FUENTE_LABEL);
-        lblAutor.setBounds(rectangleLabel);
-        rectangleLabel.y += 40;
+        lblAutor.setBounds(40, 110, 200, 40);
+        lblAutor.setForeground(Color.decode("#fcc139"));
 
-        lblDuracion = new JLabel("Duración:");
+        lblDuracion = new JLabel("DURACIÓN");
         panel.add(lblDuracion);
         lblDuracion.setFont(Constantes.FUENTE_LABEL);
-        lblDuracion.setBounds(rectangleLabel);
+        lblDuracion.setBounds(40, 145, 200, 40);
+        lblDuracion.setForeground(Color.decode("#fcc139"));
 
-        rectangleLabel.x += 250;
-        lblAnyo = new JLabel("Año:");
+        lblAnyo = new JLabel("AÑO");
         panel.add(lblAnyo);
         lblAnyo.setFont(Constantes.FUENTE_LABEL);
-        lblAnyo.setBounds(rectangleLabel);
-        rectangleLabel.x -= 250;
-        rectangleLabel.y += 40;
+        lblAnyo.setBounds(340, 145, 200, 40);
+        lblAnyo.setBounds(240, 145, 200, 40);
+        lblAnyo.setForeground(Color.decode("#fcc139"));
 
-        lblActorPrincipal = new JLabel("Actor principal:");
+        lblActorPrincipal = new JLabel("ACTOR PRINCIPAL");
         panel.add(lblActorPrincipal);
         lblActorPrincipal.setFont(Constantes.FUENTE_LABEL);
-        lblActorPrincipal.setBounds(rectangleLabel);
-        rectangleLabel.y += 40;
+        lblActorPrincipal.setBounds(40, 180, 200, 40);
+        lblActorPrincipal.setForeground(Color.decode("#fcc139"));
 
-        lblActrizPrincipal = new JLabel("Actriz principal:");
+        lblActrizPrincipal = new JLabel("ACTRIZ PRINCIPAL");
         panel.add(lblActrizPrincipal);
         lblActrizPrincipal.setFont(Constantes.FUENTE_LABEL);
-        lblActrizPrincipal.setBounds(rectangleLabel);
-        rectangleLabel.y += 40;
+        lblActrizPrincipal.setBounds(40, 215, 200, 40);
+        lblActrizPrincipal.setForeground(Color.decode("#fcc139"));
 
-        lblFormato = new JLabel("Formato:");
+        lblFormato = new JLabel("FORMATO");
         panel.add(lblFormato);
         lblFormato.setFont(Constantes.FUENTE_LABEL);
-        lblFormato.setBounds(rectangleLabel);
+        lblFormato.setBounds(40, 250, 200, 40);
+        lblFormato.setForeground(Color.decode("#fcc139"));
     }
 
     private void crearInput() {
-        Rectangle rectangleTextField = new Rectangle(120, 100, super.getWidth() - 170, 20);
 
         txtTitulo = new JTextField();
         panel.add(txtTitulo);
-        txtTitulo.setBounds(rectangleTextField);
-        rectangleTextField.y += 40;
+        txtTitulo.setBounds(120, 80, 200, 20);
 
         txtAutor = new JTextField();
         panel.add(txtAutor);
-        txtAutor.setBounds(rectangleTextField);
+        txtAutor.setBounds(120, 120, 200, 20);
 
         spnDuracion = new JSpinner();
         panel.add(spnDuracion);
         spnDuracion.setModel(new SpinnerNumberModel(60, 60, 240, 1));
-        spnDuracion.setBounds(130, 180, 50, 20);
+        spnDuracion.setBounds(150, 155, 50, 20);
 
         cmbAnyo = new JComboBox<>();
         panel.add(cmbAnyo);
         cmbAnyo.setEditable(true);
-        cmbAnyo.setBounds(super.getWidth() - 150, 180, 100, 20);
+        cmbAnyo.setBounds(290, 155, 70, 20);
 
         for (int i = 1940; i <= LocalDate.now().getYear(); i++)
             cmbAnyo.addItem(i);
 
         cmbAnyo.setSelectedIndex(cmbAnyo.getItemCount() - 1);
 
-        rectangleTextField.width -= 60;
-        rectangleTextField.x += 60;
-        rectangleTextField.y += 80;
         txtActorPrincipal = new JTextField();
         panel.add(txtActorPrincipal);
-        txtActorPrincipal.setBounds(rectangleTextField);
-        rectangleTextField.y += 40;
+        txtActorPrincipal.setBounds(200, 191, 160, 20);
 
         txtActrizPrincipal = new JTextField();
         panel.add(txtActrizPrincipal);
-        txtActrizPrincipal.setBounds(rectangleTextField);
+        txtActrizPrincipal.setBounds(200, 225, 160, 20);
+
     }
 
     private void crearPelicula() {
@@ -183,13 +196,13 @@ public class VentanaAltaPelicula extends JFrame {
             actrizPrincipal = actrizPrincipal.trim();
 
             if (titulo.equals(""))
-                JOptionPane.showMessageDialog(null, "El campo título está vacío");
+                JOptionPane.showMessageDialog(null, "EL CAMPO TÍTULO ESTA VACÍO");
             else if (autor.equals(""))
-                JOptionPane.showMessageDialog(null, "El campo autor está vacío");
+                JOptionPane.showMessageDialog(null, "EL CAMPO AUTOR ESTA VACÍ");
             else if (actorPrincipal.equals(""))
-                JOptionPane.showMessageDialog(null, "El campo actor principal está vacío");
+                JOptionPane.showMessageDialog(null, "EL CAMPO ACTOR PRINCIPAL ESTA VACÍ0");
             else if (actrizPrincipal.equals(""))
-                JOptionPane.showMessageDialog(null, "El campo actriz principal está vacío");
+                JOptionPane.showMessageDialog(null, "EL CAMPO ACTRIZ PRINCIPAL ESTA VACÍ0");
             else
                 Videoclub.guardarPelicula(new Pelicula(titulo, autor, formato, anyo, duracion, actorPrincipal, actrizPrincipal));
         });
