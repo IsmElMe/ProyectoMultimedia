@@ -1,10 +1,14 @@
 package view;
 
+import controler.Videoclub;
 import model.Constantes;
+import model.Formato;
+import model.Pelicula;
 
 import javax.swing.*;
 import java.awt.*;
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class VentanaAltaPelicula extends JFrame {
     private JPanel panel;
@@ -59,6 +63,8 @@ public class VentanaAltaPelicula extends JFrame {
         btnGuardar = new JButton("Guardar");
         panel.add(btnGuardar);
         btnGuardar.setBounds(super.getWidth() - 150, super.getHeight() - 70, 100, 20);
+
+        crearPelicula();
     }
 
     private void crearLabel() {
@@ -113,7 +119,7 @@ public class VentanaAltaPelicula extends JFrame {
     }
 
     private void crearInput() {
-        Rectangle rectangleTextField = new Rectangle(100, 100, super.getWidth() - 150, 20);
+        Rectangle rectangleTextField = new Rectangle(120, 100, super.getWidth() - 170, 20);
 
         txtTitulo = new JTextField();
         panel.add(txtTitulo);
@@ -150,5 +156,42 @@ public class VentanaAltaPelicula extends JFrame {
         txtActrizPrincipal = new JTextField();
         panel.add(txtActrizPrincipal);
         txtActrizPrincipal.setBounds(rectangleTextField);
+    }
+
+    private void crearPelicula() {
+        btnGuardar.addActionListener(evento -> {
+            String titulo = txtTitulo.getText();
+            String autor = txtAutor.getText();
+            int duracion = Integer.parseInt(spnDuracion.getValue().toString());
+            int anyo = Integer.parseInt(Objects.requireNonNull(cmbAnyo.getSelectedItem()).toString());
+            String actorPrincipal = txtActorPrincipal.getText();
+            String actrizPrincipal = txtActrizPrincipal.getText();
+            Formato formato;
+
+            if (rdbCd.isSelected())
+                formato = Formato.CD;
+            else if (rdbDvd.isSelected())
+                formato = Formato.DVD;
+            else if (rdbBluray.isSelected())
+                formato = Formato.BLU_RAY;
+            else
+                formato = Formato.ARCHIVO;
+
+            titulo = titulo.trim();
+            autor = autor.trim();
+            actorPrincipal = actorPrincipal.trim();
+            actrizPrincipal = actrizPrincipal.trim();
+
+            if (titulo.equals(""))
+                JOptionPane.showMessageDialog(null, "El campo título está vacío");
+            else if (autor.equals(""))
+                JOptionPane.showMessageDialog(null, "El campo autor está vacío");
+            else if (actorPrincipal.equals(""))
+                JOptionPane.showMessageDialog(null, "El campo actor principal está vacío");
+            else if (actrizPrincipal.equals(""))
+                JOptionPane.showMessageDialog(null, "El campo actriz principal está vacío");
+            else
+                Videoclub.guardarPelicula(new Pelicula(titulo, autor, formato, anyo, duracion, actorPrincipal, actrizPrincipal));
+        });
     }
 }

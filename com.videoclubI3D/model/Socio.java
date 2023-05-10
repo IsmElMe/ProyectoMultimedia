@@ -61,11 +61,18 @@ public class Socio {
 	}
 
 	public static boolean comprobarNif(String nif) {
+		int dniNum;
+		String letra;
+
 		if (!(nif.length() == 9))
 			return false;
 
-		int dniNum = Integer.parseInt(nif.substring(0, 8)) % 23;
-		String letra = "TRWAGMYFPDXBNJZSQVHLCKE";
+		try {
+			dniNum = Integer.parseInt(nif.substring(0, 8)) % 23;
+			letra = "TRWAGMYFPDXBNJZSQVHLCKE";
+		} catch (NumberFormatException error) {
+			return false;
+		}
 
 		return nif.equals(nif.substring(0, 8) + letra.charAt(dniNum));
 	}
