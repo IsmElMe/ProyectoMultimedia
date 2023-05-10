@@ -67,17 +67,10 @@ public class VentanaAltaDisco extends JFrame {
         lblAutor.setBounds(rectangleLabel);
         rectangleLabel.y += 40;
 
-        lblDuracion = new JLabel("Duración:");
-        panel.add(lblDuracion);
-        lblDuracion.setFont(Constantes.FUENTE_LABEL);
-        lblDuracion.setBounds(rectangleLabel);
-        rectangleLabel.x += 250;
-
         lblAnyo = new JLabel("Año:");
         panel.add(lblAnyo);
         lblAnyo.setFont(Constantes.FUENTE_LABEL);
         lblAnyo.setBounds(rectangleLabel);
-        rectangleLabel.x -= 250;
         rectangleLabel.y += 40;
 
         lblFormato = new JLabel("Formato:");
@@ -85,6 +78,7 @@ public class VentanaAltaDisco extends JFrame {
         lblFormato.setFont(Constantes.FUENTE_LABEL);
         lblFormato.setBounds(rectangleLabel);
         rectangleLabel.x += 201;
+        rectangleLabel.y -= 40;
 
         lblCanciones = new JLabel("Canciones:");
         panel.add(lblCanciones);
@@ -104,16 +98,10 @@ public class VentanaAltaDisco extends JFrame {
         panel.add(txtAutor);
         txtAutor.setBounds(rectangleTextField);
 
-        spnDuracion = new JSpinner();
-        panel.add(spnDuracion);
-        spnDuracion.setEnabled(false);
-        spnDuracion.setModel(new SpinnerNumberModel(20, 20,240, 1));
-        spnDuracion.setBounds(130, 180, 50, 20);
-
         cbAnyo = new JComboBox<>();
         panel.add(cbAnyo);
         cbAnyo.setEditable(true);
-        cbAnyo.setBounds(super.getWidth() - 150, 180, 100, 20);
+        cbAnyo.setBounds(100, 180, 100, 20);
 
         for (int i = 1940; i <= LocalDate.now().getYear(); i++)
             cbAnyo.addItem(i);
@@ -151,12 +139,12 @@ public class VentanaAltaDisco extends JFrame {
         cbCanciones = new JComboBox<>();
         panel.add(cbCanciones);
         cbCanciones.setEditable(true);
-        cbCanciones.setBounds(super.getWidth() - 150, 220, 100, 20);
+        cbCanciones.setBounds(super.getWidth() - 150, 180, 100, 20);
 
         taCancionesDisco = new JTextArea();
         panel.add(taCancionesDisco);
         taCancionesDisco.setEditable(false);
-        taCancionesDisco.setBounds(super.getWidth() - 250, 260, 100, 80);
+        taCancionesDisco.setBounds(super.getWidth() - 250, 220, 100, 120);
     }
 
     public static void main(String[] args) {
