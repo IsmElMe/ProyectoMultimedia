@@ -27,22 +27,22 @@ public class VentanaAltas extends JFrame{
         lblTitulo.setFont(new Font("Titulo", Font.BOLD, 30));
         lblTitulo.setBounds((super.getWidth() / 2) - 37, 15, 74, 100);
 
-        btnAltaSocio = new JButton("Altas");
+        btnAltaSocio = new JButton("Alta de socio");
         panel.add(btnAltaSocio);
         btnAltaSocio.setFont(new Font("Titulo", Font.BOLD, 25));
         btnAltaSocio.setBounds((super.getWidth() / 2) - 150, 140, 300, 40);
 
-        btnAltaPelicula = new JButton("Alquilar multimedia a socio");
+        btnAltaPelicula = new JButton("Alta de película");
         panel.add(btnAltaPelicula);
         btnAltaPelicula.setFont(new Font("Titulo", Font.BOLD, 20));
         btnAltaPelicula.setBounds((super.getWidth() / 2) - 150, 220, 300, 40);
 
-        btnAltaVideojuego = new JButton("Devolver multimedia de socio");
+        btnAltaVideojuego = new JButton("Alta de videojuego");
         panel.add(btnAltaVideojuego);
         btnAltaVideojuego.setFont(new Font("Titulo", Font.BOLD, 15));
         btnAltaVideojuego.setBounds((super.getWidth() / 2) - 150, 300, 300, 40);
 
-        btnAltaDisco = new JButton("Listar");
+        btnAltaDisco = new JButton("Alta de disco");
         panel.add(btnAltaDisco);
         btnAltaDisco.setFont(new Font("Titulo", Font.BOLD, 30));
         btnAltaDisco.setBounds((super.getWidth() / 2) - 150, 380, 300, 40);
@@ -54,6 +54,11 @@ public class VentanaAltas extends JFrame{
         btnAltaSocio.addActionListener(evento -> {
             if (!Videoclub.ventanaAltaSocio.isVisible())
                 Videoclub.ventanaAltaSocio.setVisible(true);
+        });
+
+        btnAltaPelicula.addActionListener(evento -> {
+            if (!Videoclub.ventanaAltaPelicula.isVisible())
+                Videoclub.ventanaAltaPelicula.setVisible(true);
         });
     }
 }
