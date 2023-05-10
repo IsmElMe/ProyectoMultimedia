@@ -50,10 +50,10 @@ public class VentanaAltaDisco extends JFrame {
     public void crearLabel(){
         Rectangle rectangleLabel = new Rectangle(50, 100, 150, 20);
 
-        lblTituloVentana = new JLabel("Alta disco");
+        lblTituloVentana = new JLabel("Alta Disco");
         panel.add(lblTituloVentana);
         lblTituloVentana.setFont(Constantes.FUENTE_TITULO);
-        lblTituloVentana.setBounds((super.getWidth() / 2) - 100, 15, 200, 60);
+        lblTituloVentana.setBounds((super.getWidth() / 2) - 60, 15, 200, 60);
 
         lblTitulo = new JLabel("Título:");
         panel.add(lblTitulo);
