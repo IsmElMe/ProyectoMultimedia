@@ -19,6 +19,7 @@ public class VentanaAltas extends JFrame{
         super.setContentPane(panel);
         super.setLayout(null);
         super.setResizable(false);
+        super.setBounds((Constantes.ANCHO_PANTALLA / 2) - 300, (Constantes.ALTO_PANTALLA / 2) - 250,600, 500);
         super.setDefaultCloseOperation(HIDE_ON_CLOSE);
         panel.setBackground(Color.decode("#1f4489"));
         super.setBounds(300, 200, 500, 370);
@@ -66,10 +67,11 @@ public class VentanaAltas extends JFrame{
             if (!Videoclub.ventanaAltaSocio.isVisible())
                 Videoclub.ventanaAltaSocio.setVisible(true);
         });
-    }
 
-    public static void main(String[] args) {
-        new VentanaAltas();
+        btnAltaPelicula.addActionListener(evento -> {
+            if (!Videoclub.ventanaAltaPelicula.isVisible())
+                Videoclub.ventanaAltaPelicula.setVisible(true);
+        });
     }
 }
 
