@@ -1,7 +1,7 @@
 package model;
 
-import java.awt.Font;
-import java.awt.Toolkit;
+import java.awt.*;
+
 
 public class Constantes {
 	public static final int ANIO_DEFETO = 1980;

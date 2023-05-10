@@ -14,7 +14,7 @@ public class VentanaDevolver extends JFrame {
     private JButton btnAnalizar, btnCobrar;
 
     public VentanaDevolver() {
-        super("Videoclub I3D - Devolver Multimedia");
+        super("BLOCKBUSTER - DEVOLUCIONES");
         panel = new JPanel();
         super.setContentPane(panel);
         super.setLayout(null);
@@ -29,10 +29,16 @@ public class VentanaDevolver extends JFrame {
         btnAnalizar = new JButton("ANALIZAR");
         panel.add(btnAnalizar);
         btnAnalizar.setBounds(295, 90, 100, 20);
+        btnAnalizar.setForeground(Color.decode("#1f4489"));
+        btnAnalizar.setBackground(Color.decode("#fcc139"));
+
 
         btnCobrar = new JButton("COBRAR");
         panel.add(btnCobrar);
         btnCobrar.setBounds(295, 220, 100, 20);
+        btnCobrar.setForeground(Color.decode("#1f4489"));
+        btnCobrar.setBackground(Color.decode("#fcc139"));
+
 
         listaMultimediaSocio = new JComboBox<>();
         panel.add(listaMultimediaSocio);
@@ -77,11 +83,5 @@ public class VentanaDevolver extends JFrame {
         panel.add(txtNIF);
         txtNIF.setBounds(105, 90, 150, 20);
 
-    }
-
-    public static void main(String[] args) {
-        VentanaDevolver gui = new VentanaDevolver();
-        gui.setVisible(true);
-        gui.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 }

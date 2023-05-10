@@ -19,33 +19,44 @@ public class VentanaAltas extends JFrame{
         super.setContentPane(panel);
         super.setLayout(null);
         super.setResizable(false);
-        super.setBounds((Constantes.ANCHO_PANTALLA / 2) - 300, (Constantes.ALTO_PANTALLA / 2) - 250,600, 500);
         super.setDefaultCloseOperation(HIDE_ON_CLOSE);
+        panel.setBackground(Color.decode("#1f4489"));
+        super.setBounds(300, 200, 500, 370);
+        super.setVisible(true);
 
-        lblTitulo = new JLabel("Altas");
+        lblTitulo = new JLabel("ALTAS");
         panel.add(lblTitulo);
-        lblTitulo.setFont(new Font("Titulo", Font.BOLD, 30));
-        lblTitulo.setBounds((super.getWidth() / 2) - 37, 15, 74, 100);
+        lblTitulo.setFont(Constantes.FUENTE_TITULO);
+        lblTitulo.setBounds(220, 0, 200, 100);
+        lblTitulo.setForeground(Color.decode("#fcc139"));
 
-        btnAltaSocio = new JButton("Altas");
+        btnAltaSocio = new JButton("ALTA SOCIO");
         panel.add(btnAltaSocio);
-        btnAltaSocio.setFont(new Font("Titulo", Font.BOLD, 25));
-        btnAltaSocio.setBounds((super.getWidth() / 2) - 150, 140, 300, 40);
+        btnAltaSocio.setFont(Constantes.FUENTE_BOTON);
+        btnAltaSocio.setBounds( 80, 100, 350, 25);
+        btnAltaSocio.setForeground(Color.decode("#1f4489"));
+        btnAltaSocio.setBackground(Color.decode("#fcc139"));
 
-        btnAltaPelicula = new JButton("Alquilar multimedia a socio");
+        btnAltaPelicula = new JButton("ALTA PELÍCULA");
         panel.add(btnAltaPelicula);
-        btnAltaPelicula.setFont(new Font("Titulo", Font.BOLD, 20));
-        btnAltaPelicula.setBounds((super.getWidth() / 2) - 150, 220, 300, 40);
+        btnAltaPelicula.setFont(Constantes.FUENTE_BOTON);
+        btnAltaPelicula.setBounds(80, 150, 350, 25);
+        btnAltaPelicula.setForeground(Color.decode("#1f4489"));
+        btnAltaPelicula.setBackground(Color.decode("#fcc139"));
 
-        btnAltaVideojuego = new JButton("Devolver multimedia de socio");
+        btnAltaVideojuego = new JButton("ALTA VIDEOJUEGO");
         panel.add(btnAltaVideojuego);
-        btnAltaVideojuego.setFont(new Font("Titulo", Font.BOLD, 15));
-        btnAltaVideojuego.setBounds((super.getWidth() / 2) - 150, 300, 300, 40);
+        btnAltaVideojuego.setFont(Constantes.FUENTE_BOTON);
+        btnAltaVideojuego.setBounds(80, 200, 350, 25);
+        btnAltaVideojuego.setForeground(Color.decode("#1f4489"));
+        btnAltaVideojuego.setBackground(Color.decode("#fcc139"));
 
-        btnAltaDisco = new JButton("Listar");
+        btnAltaDisco = new JButton("ALTA DISCO");
         panel.add(btnAltaDisco);
-        btnAltaDisco.setFont(new Font("Titulo", Font.BOLD, 30));
-        btnAltaDisco.setBounds((super.getWidth() / 2) - 150, 380, 300, 40);
+        btnAltaDisco.setFont(Constantes.FUENTE_BOTON);
+        btnAltaDisco.setBounds(80, 250, 350, 25);
+        btnAltaDisco.setForeground(Color.decode("#1f4489"));
+        btnAltaDisco.setBackground(Color.decode("#fcc139"));
 
         eventos();
     }
@@ -55,6 +66,10 @@ public class VentanaAltas extends JFrame{
             if (!Videoclub.ventanaAltaSocio.isVisible())
                 Videoclub.ventanaAltaSocio.setVisible(true);
         });
+    }
+
+    public static void main(String[] args) {
+        new VentanaAltas();
     }
 }
 
