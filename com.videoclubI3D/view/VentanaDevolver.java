@@ -28,14 +28,14 @@ public class VentanaDevolver extends JFrame {
 
         btnAnalizar = new JButton("ANALIZAR");
         panel.add(btnAnalizar);
-        btnAnalizar.setBounds(295, 90, 100, 20);
+        btnAnalizar.setBounds(295, 90, 120, 25);
         btnAnalizar.setForeground(Color.decode("#1f4489"));
         btnAnalizar.setBackground(Color.decode("#fcc139"));
 
 
         btnCobrar = new JButton("COBRAR");
         panel.add(btnCobrar);
-        btnCobrar.setBounds(295, 220, 100, 20);
+        btnCobrar.setBounds(295, 220, 120, 25);
         btnCobrar.setForeground(Color.decode("#1f4489"));
         btnCobrar.setBackground(Color.decode("#fcc139"));
 

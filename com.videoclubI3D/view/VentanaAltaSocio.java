@@ -5,7 +5,7 @@ import controler.Videoclub;
 import model.Constantes;
 import model.Socio;
 
-import java.awt.Font;
+import java.awt.*;
 import java.util.Date;
 import javax.swing.*;
 import java.time.*;
@@ -26,50 +26,59 @@ public class VentanaAltaSocio extends JFrame {
         super.setContentPane(this.panel);
         super.setLayout(null);
         super.setResizable(false);
-        super.setBounds((Constantes.ANCHO_PANTALLA / 2) - 250, (Constantes.ALTO_PANTALLA / 2) - 235, 500, 470);
         super.setDefaultCloseOperation(HIDE_ON_CLOSE);
+        panel.setBackground(Color.decode("#1f4489"));
+        super.setBounds(300, 200, 430, 330);
 
-        lblTitulo = new JLabel("Alta Socio");
+        lblTitulo = new JLabel("ALTA SOCIO");
         panel.add(this.lblTitulo);
-        lblTitulo.setFont(new Font("Titulo", 1, 30));
-        lblTitulo.setBounds(super.getWidth() / 2 - 74, 15, 148, 60);
+        lblTitulo.setFont(Constantes.FUENTE_TITULO);
+        lblTitulo.setBounds(140, 0, 300, 100);
+        lblTitulo.setForeground(Color.decode("#fcc139"));
 
-        lblNif = new JLabel("NIF: ");
-        panel.add(this.lblNif);
-        lblNif.setFont(new Font("Titulo", 0, 15));
-        lblNif.setBounds(70, 60, 100, 120);
+        lblNif = new JLabel("NIF");
+        panel.add(lblNif);
+        lblNif.setFont(Constantes.FUENTE_LABEL);
+        lblNif.setBounds(40, 75, 200, 40);
+        lblNif.setForeground(Color.decode("#fcc139"));
         txtNif = new JTextField();
-        panel.add(this.txtNif);
-        txtNif.setBounds(160, 110, 250, 20);
+        panel.add(txtNif);
+        txtNif.setBounds(85, 86, 150, 20);
 
-        lblNombre = new JLabel("Nombre: ");
-        panel.add(this.lblNombre);
-        lblNombre.setFont(new Font("Titulo", 0, 15));
-        lblNombre.setBounds(70, 120, 100, 120);
+        lblNombre = new JLabel("NOMBRE");
+        panel.add(lblNombre);
+        lblNombre.setFont(Constantes.FUENTE_LABEL);
+        lblNombre.setBounds(40, 110, 200, 40);
+        lblNombre.setForeground(Color.decode("#fcc139"));
         txtNombre = new JTextField();
-        panel.add(this.txtNombre);
-        txtNombre.setBounds(160, 170, 250, 20);
+        panel.add(txtNombre);
+        txtNombre.setBounds(130, 121, 150, 20);
 
-        lblFechaNac = new JLabel("Fecha Nacimiento: ");
-        panel.add(this.lblFechaNac);
-        lblFechaNac.setFont(new Font("Titulo", 0, 15));
-        lblFechaNac.setBounds(70, 180, 200, 120);
+        lblFechaNac = new JLabel("FECHA NACIMIENTO");
+        panel.add(lblFechaNac);
+        lblFechaNac.setFont(Constantes.FUENTE_LABEL);
+        lblFechaNac.setBounds(40, 145, 200, 40);
+        lblFechaNac.setForeground(Color.decode("#fcc139"));
 
         calendario = new JDateChooser();
         panel.add(calendario);
-        calendario.setBounds(240, 230, 100, 20);
+        calendario.setBounds(220, 155, 100, 20);
 
-        lblPoblacion = new JLabel("Población: ");
-        panel.add(this.lblPoblacion);
-        lblPoblacion.setFont(new Font("Titulo", 0, 15));
-        lblPoblacion.setBounds(70, 240, 100, 120);
+        lblPoblacion = new JLabel("POBLACIÓN");
+        panel.add(lblPoblacion);
+        lblPoblacion.setFont(Constantes.FUENTE_LABEL);
+        lblPoblacion.setBounds(40, 180, 200, 40);
+        lblPoblacion.setForeground(Color.decode("#fcc139"));
         txtPoblacion = new JTextField();
         panel.add(this.txtPoblacion);
-        txtPoblacion.setBounds(160, 290, 250, 20);
+        txtPoblacion.setBounds(160, 190, 150, 20);
 
-        btnGuardar = new JButton("Guardar");
+        btnGuardar = new JButton("GUARDAR");
         panel.add(btnGuardar);
-        btnGuardar.setBounds(super.getWidth() - 150, super.getHeight() - 70, 100, 20);
+        btnGuardar.setFont(Constantes.FUENTE_BOTON);
+        btnGuardar.setForeground(Color.decode("#1f4489"));
+        btnGuardar.setBackground(Color.decode("#fcc139"));
+        btnGuardar.setBounds(160, 240, 120, 25);
 
         crearSocio();
     }
