@@ -54,7 +54,7 @@ public class VentanaAltaVideojuego extends JFrame {
         rdbDvd.setBackground(Color.decode("#1f4489"));
         rdbDvd.setForeground(Color.WHITE);
         rdbBluray.setFont(Constantes.FUENTE_LABEL);
-        rdbBluray.setBackground(Color.decode("#1f4489"));
+        rdbBluray.setBackground(Color.decode("#1f4487"));
         rdbBluray.setForeground(Color.WHITE);
         rdbArchivo.setFont(Constantes.FUENTE_LABEL);
         rdbArchivo.setBackground(Color.decode("#1f4489"));
