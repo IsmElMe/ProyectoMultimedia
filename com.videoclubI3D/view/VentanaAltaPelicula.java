@@ -198,13 +198,17 @@ public class VentanaAltaPelicula extends JFrame {
             if (titulo.equals(""))
                 JOptionPane.showMessageDialog(null, "EL CAMPO TÍTULO ESTA VACÍO");
             else if (autor.equals(""))
-                JOptionPane.showMessageDialog(null, "EL CAMPO AUTOR ESTA VACÍ");
+                JOptionPane.showMessageDialog(null, "EL CAMPO AUTOR ESTA VACÍO");
+            else if (anyo < 1940)
+                JOptionPane.showMessageDialog(null, "NO SE PUEDEN INTRODUCIR MULTIMEDIAS ANTERIORES A 1940");
+            else if (anyo > LocalDate.now().getYear())
+                JOptionPane.showMessageDialog(null, "EL AÑO DEL MULTIMEDIA ES MAYOR AL AÑO ACTUAL");
             else if (actorPrincipal.equals(""))
                 JOptionPane.showMessageDialog(null, "EL CAMPO ACTOR PRINCIPAL ESTA VACÍ0");
             else if (actrizPrincipal.equals(""))
                 JOptionPane.showMessageDialog(null, "EL CAMPO ACTRIZ PRINCIPAL ESTA VACÍ0");
             else
-                Videoclub.guardarPelicula(new Pelicula(titulo, autor, formato, anyo, duracion, actorPrincipal, actrizPrincipal));
+                Videoclub.guardarMultimedia(new Pelicula(titulo, autor, formato, anyo, duracion, actorPrincipal, actrizPrincipal));
         });
     }
 }

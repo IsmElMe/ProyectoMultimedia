@@ -1,18 +1,19 @@
 package view;
 
-import model.Constantes;
+import controler.Videoclub;
+import model.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class VentanaAltaVideojuego extends JFrame {
     private JPanel panel;
     private JLabel
             lblTituloVentana, lblTitulo, lblAutor,
             lblDuracion, lblAnyo, lblFormato, lblPlataforma;
-    private JTextField
-            txtTitulo, txtAutor;
+    private JTextField txtTitulo, txtAutor;
     private JSpinner spnDuracion;
     private JComboBox<Integer> cmbAnyo;
     private ButtonGroup grupoRadioButton;
@@ -82,6 +83,8 @@ public class VentanaAltaVideojuego extends JFrame {
         btnGuardar = new JButton("Guardar");
         panel.add(btnGuardar);
         btnGuardar.setBounds(super.getWidth() - 150, super.getHeight() - 70, 100, 20);
+
+        crearVideojuego();
     }
 
     private void crearLabel() {
@@ -160,9 +163,36 @@ public class VentanaAltaVideojuego extends JFrame {
         rectangleTextField.y += 80;
     }
 
-    public static void main(String[] args) {
-        VentanaAltaVideojuego gui = new VentanaAltaVideojuego();
-        gui.setVisible(true);
-        gui.setDefaultCloseOperation(EXIT_ON_CLOSE);
+    private void crearVideojuego() {
+        btnGuardar.addActionListener(evento -> {
+            String titulo = txtTitulo.getText();
+            String autor = txtAutor.getText();
+            int anyo = Integer.parseInt(Objects.requireNonNull(cmbAnyo.getSelectedItem()).toString());
+            Formato formato;
+            Plataforma[] plataformas = new Plataforma[4];
+
+            if (rdbCd.isSelected())
+                formato = Formato.CD;
+            else if (rdbDvd.isSelected())
+                formato = Formato.DVD;
+            else if (rdbBluray.isSelected())
+                formato = Formato.BLU_RAY;
+            else
+                formato = Formato.ARCHIVO;
+
+            titulo = titulo.trim();
+            autor = autor.trim();
+
+            if (titulo.equals(""))
+                JOptionPane.showMessageDialog(null, "EL CAMPO TÍTULO ESTÁ VACÍO");
+            else if (autor.equals(""))
+                JOptionPane.showMessageDialog(null, "EL CAMPO AUTOR ESTÁ VACÍO");
+            else if (anyo < 1940)
+                JOptionPane.showMessageDialog(null, "NO SE PUEDEN INTRODUCIR MULTIMEDIAS ANTERIORES A 1940");
+            else if (anyo > LocalDate.now().getYear())
+                JOptionPane.showMessageDialog(null, "EL AÑO DEL MULTIMEDIA ES MAYOR AL AÑO ACTUAL");
+            else
+                Videoclub.guardarMultimedia(new Videojuego(titulo, autor, formato, anyo, plataformas));
+        });
     }
 }
