@@ -20,7 +20,7 @@ public class VentanaAltaVideojuego extends JFrame {
     private JButton btnGuardar;
 
     public VentanaAltaVideojuego() {
-        super("Videoclub I3D - Alta Videojuego");
+        super("Blockbuster - Alta Videojuego");
         panel = new JPanel();
         super.setContentPane(panel);
         super.setLayout(null);
