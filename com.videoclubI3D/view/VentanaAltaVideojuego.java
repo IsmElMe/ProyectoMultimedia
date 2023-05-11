@@ -10,33 +10,33 @@ public class VentanaAltaVideojuego extends JFrame {
     private JPanel panel;
     private JLabel
             lblTituloVentana, lblTitulo, lblAutor,
-            lblDuracion, lblAnyo, lblFormato, lblPlataforma;
+            lblAnyo, lblFormato, lblPlataforma;
     private JTextField
             txtTitulo, txtAutor;
-    private JSpinner spnDuracion;
     private JComboBox<Integer> cmbAnyo;
     private ButtonGroup grupoRadioButton;
     private JRadioButton rdbCd, rdbDvd, rdbBluray, rdbArchivo, rdbPs5, rdbXbox, rdbSwitch, rdbPc;
     private JButton btnGuardar;
 
     public VentanaAltaVideojuego() {
-        super("Videoclub I3D - Alta Videojuego");
+        super("BLOCKBUSTER - ALTA VIDEOJUEGO");
         panel = new JPanel();
         super.setContentPane(panel);
         super.setLayout(null);
         super.setDefaultCloseOperation(HIDE_ON_CLOSE);
         super.setResizable(false);
-        super.setBounds((Constantes.ANCHO_PANTALLA / 2) - 250, (Constantes.ALTO_PANTALLA / 2) - 235, 500, 470);
+        panel.setBackground(Color.decode("#1f4489"));
+        super.setBounds(300, 250, 430, 440);
 
         crearLabel();
         crearInput();
 
-        Rectangle rectangleRadioButton = new Rectangle(100, 250, 100,20);
+        Rectangle rectangleRadioButton = new Rectangle(50, 230, 150,20);
         grupoRadioButton = new ButtonGroup();
         rdbCd = new JRadioButton("CD");
         rdbDvd = new JRadioButton("DVD");
         rdbBluray = new JRadioButton("BLUE-RAY");
-        rdbArchivo = new JRadioButton("Archivo");
+        rdbArchivo = new JRadioButton("ARCHIVO");
         grupoRadioButton.add(rdbCd);
         grupoRadioButton.add(rdbDvd);
         grupoRadioButton.add(rdbBluray);
@@ -47,6 +47,19 @@ public class VentanaAltaVideojuego extends JFrame {
         panel.add(rdbArchivo);
         rdbCd.setSelected(true);
 
+        rdbCd.setFont(Constantes.FUENTE_LABEL);
+        rdbCd.setBackground(Color.decode("#1f4489"));
+        rdbCd.setForeground(Color.WHITE);
+        rdbDvd.setFont(Constantes.FUENTE_LABEL);
+        rdbDvd.setBackground(Color.decode("#1f4489"));
+        rdbDvd.setForeground(Color.WHITE);
+        rdbBluray.setFont(Constantes.FUENTE_LABEL);
+        rdbBluray.setBackground(Color.decode("#1f4489"));
+        rdbBluray.setForeground(Color.WHITE);
+        rdbArchivo.setFont(Constantes.FUENTE_LABEL);
+        rdbArchivo.setBackground(Color.decode("#1f4489"));
+        rdbArchivo.setForeground(Color.WHITE);
+
         rdbCd.setBounds(rectangleRadioButton);
         rectangleRadioButton.y += 20;
         rdbDvd.setBounds(rectangleRadioButton);
@@ -55,7 +68,7 @@ public class VentanaAltaVideojuego extends JFrame {
         rectangleRadioButton.y += 20;
         rdbArchivo.setBounds(rectangleRadioButton);
 
-        Rectangle rectanglePlataforma = new Rectangle(300, 250, 100,20);
+        Rectangle rectanglePlataforma = new Rectangle(200, 230, 100,20);
         grupoRadioButton = new ButtonGroup();
         rdbPs5 = new JRadioButton("PS5");
         rdbXbox = new JRadioButton("XBOX");
@@ -79,85 +92,83 @@ public class VentanaAltaVideojuego extends JFrame {
         rectanglePlataforma.y += 20;
         rdbPc.setBounds(rectanglePlataforma);
 
-        btnGuardar = new JButton("Guardar");
+        rdbPs5.setFont(Constantes.FUENTE_LABEL);
+        rdbPs5.setBackground(Color.decode("#1f4489"));
+        rdbPs5.setForeground(Color.WHITE);
+        rdbXbox.setFont(Constantes.FUENTE_LABEL);
+        rdbXbox.setBackground(Color.decode("#1f4489"));
+        rdbXbox.setForeground(Color.WHITE);
+        rdbSwitch.setFont(Constantes.FUENTE_LABEL);
+        rdbSwitch.setBackground(Color.decode("#1f4489"));
+        rdbSwitch.setForeground(Color.WHITE);
+        rdbPc.setFont(Constantes.FUENTE_LABEL);
+        rdbPc.setBackground(Color.decode("#1f4489"));
+        rdbPc.setForeground(Color.WHITE);
+
+        btnGuardar = new JButton("GUARDAR");
         panel.add(btnGuardar);
-        btnGuardar.setBounds(super.getWidth() - 150, super.getHeight() - 70, 100, 20);
+        btnGuardar.setForeground(Color.decode("#1f4489"));
+        btnGuardar.setBackground(Color.decode("#fcc139"));
+        btnGuardar.setBounds(160, 340, 120, 25);
     }
 
     private void crearLabel() {
-        Rectangle rectangleLabel = new Rectangle(50, 100, 150, 20);
-
-        lblTituloVentana = new JLabel("Alta Videojuego");
+        lblTituloVentana = new JLabel("ALTA PELÍCULA");
         panel.add(lblTituloVentana);
         lblTituloVentana.setFont(Constantes.FUENTE_TITULO);
-        lblTituloVentana.setBounds((super.getWidth() / 2) - 100, 15, 250, 60);
+        lblTituloVentana.setBounds(120, 0, 300, 100);
+        lblTituloVentana.setForeground(Color.decode("#fcc139"));
 
-        lblTitulo = new JLabel("Título:");
+        lblTitulo = new JLabel("TÍTULO");
         panel.add(lblTitulo);
         lblTitulo.setFont(Constantes.FUENTE_LABEL);
-        lblTitulo.setBounds(rectangleLabel);
-        rectangleLabel.y += 40;
+        lblTitulo.setBounds(40, 70, 200, 40);
+        lblTitulo.setForeground(Color.decode("#fcc139"));
 
-        lblAutor = new JLabel("Autor:");
+        lblAutor = new JLabel("AUTOR");
         panel.add(lblAutor);
         lblAutor.setFont(Constantes.FUENTE_LABEL);
-        lblAutor.setBounds(rectangleLabel);
-        rectangleLabel.y += 40;
+        lblAutor.setBounds(40, 110, 200, 40);
+        lblAutor.setForeground(Color.decode("#fcc139"));
 
-        lblDuracion = new JLabel("Duración:");
-        panel.add(lblDuracion);
-        lblDuracion.setFont(Constantes.FUENTE_LABEL);
-        lblDuracion.setBounds(rectangleLabel);
-
-        rectangleLabel.x += 250;
-        lblAnyo = new JLabel("Año:");
+        lblAnyo = new JLabel("AÑO");
         panel.add(lblAnyo);
         lblAnyo.setFont(Constantes.FUENTE_LABEL);
-        lblAnyo.setBounds(rectangleLabel);
-        rectangleLabel.x -= 250;
-        rectangleLabel.y += 40;
+        lblAnyo.setBounds(40, 150, 200, 40);
+        lblAnyo.setForeground(Color.decode("#fcc139"));
 
-        lblFormato = new JLabel("Formato:");
+        lblFormato = new JLabel("FORMATO");
         panel.add(lblFormato);
         lblFormato.setFont(Constantes.FUENTE_LABEL);
-        lblFormato.setBounds(rectangleLabel);
+        lblFormato.setForeground(Color.decode("#fcc139"));
+        lblFormato.setBounds(40, 200, 150, 20);
 
-        lblPlataforma = new JLabel("Plataforma:");
+        lblPlataforma = new JLabel("PLATAFORMA");
         panel.add(lblPlataforma);
         lblPlataforma.setFont(Constantes.FUENTE_LABEL);
-        lblPlataforma.setBounds(250, 220, 150, 20);
+        lblPlataforma.setForeground(Color.decode("#fcc139"));
+        lblPlataforma.setBounds(200, 200, 150, 20);
     }
 
     private void crearInput() {
-        Rectangle rectangleTextField = new Rectangle(100, 100, super.getWidth() - 150, 20);
 
         txtTitulo = new JTextField();
         panel.add(txtTitulo);
-        txtTitulo.setBounds(rectangleTextField);
-        rectangleTextField.y += 40;
+        txtTitulo.setBounds(120, 80, 200, 20);
 
         txtAutor = new JTextField();
         panel.add(txtAutor);
-        txtAutor.setBounds(rectangleTextField);
-
-        spnDuracion = new JSpinner();
-        panel.add(spnDuracion);
-        spnDuracion.setModel(new SpinnerNumberModel(60, 60, 240, 1));
-        spnDuracion.setBounds(130, 180, 50, 20);
+        txtAutor.setBounds(120, 120, 200, 20);
 
         cmbAnyo = new JComboBox<>();
         panel.add(cmbAnyo);
         cmbAnyo.setEditable(true);
-        cmbAnyo.setBounds(super.getWidth() - 150, 180, 100, 20);
+        cmbAnyo.setBounds(100, 160, 50, 20);
 
         for (int i = 1940; i <= LocalDate.now().getYear(); i++)
             cmbAnyo.addItem(i);
 
         cmbAnyo.setSelectedIndex(cmbAnyo.getItemCount() - 1);
-
-        rectangleTextField.width -= 60;
-        rectangleTextField.x += 60;
-        rectangleTextField.y += 80;
     }
 
     public static void main(String[] args) {
