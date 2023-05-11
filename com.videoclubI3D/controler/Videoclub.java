@@ -10,10 +10,12 @@ import javax.swing.*;
 public class Videoclub {
 	public static final VentanaAltas ventanaAltas = new VentanaAltas();
     public static final VentanaAltaSocio ventanaAltaSocio = new VentanaAltaSocio();
+	public static final VentanaAltaPelicula ventanaAltaPelicula = new VentanaAltaPelicula();
 	public static final VentanaAlquilarMultimedia ventanaAlquilarMultimedia = new VentanaAlquilarMultimedia();
 	public static final VentanaDevolver ventanaDevolver = new VentanaDevolver();
 
 	private static ArrayList<Socio> socios = new ArrayList<>();
+    private static ArrayList<Multimedia> multimedias = new ArrayList<>();
 
 	public static void main(String[] args) {
 		new VentanaPrincipal();
@@ -23,6 +25,11 @@ public class Videoclub {
 		socios.add(socio);
 		JOptionPane.showMessageDialog(null, "Se ha guardado el socio correctamente");
 	}
+
+    public static void guardarPelicula(Pelicula pelicula) {
+        multimedias.add(pelicula);
+        JOptionPane.showMessageDialog(null, "Se ha guardado la película correctamente");
+    }
 
 	public static void altas(Scanner sc, ArrayList<Socio> socios, ArrayList<Multimedia> multimedias) {
 		int opcionAltas;

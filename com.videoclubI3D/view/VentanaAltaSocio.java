@@ -17,12 +17,12 @@ public class VentanaAltaSocio extends JFrame {
     private JLabel lblNombre;
     private JLabel lblFechaNac;
     private JLabel lblPoblacion;
-    private JTextField txtNif, txtNombre, txtFechaNac, txtPoblacion;
+    private JTextField txtNif, txtNombre, txtPoblacion;
     private JButton btnGuardar;
     private JDateChooser calendario;
 
     public VentanaAltaSocio() {
-        super("Blockbuster - Alta Socio");
+        super("BLOCKBUSTER - ALTA SOCIO");
         super.setContentPane(this.panel);
         super.setLayout(null);
         super.setResizable(false);

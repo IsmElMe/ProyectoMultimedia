@@ -22,7 +22,6 @@ public class VentanaAltas extends JFrame{
         super.setDefaultCloseOperation(HIDE_ON_CLOSE);
         panel.setBackground(Color.decode("#1f4489"));
         super.setBounds(300, 200, 500, 370);
-        super.setVisible(true);
 
         lblTitulo = new JLabel("ALTAS");
         panel.add(lblTitulo);
@@ -66,10 +65,10 @@ public class VentanaAltas extends JFrame{
             if (!Videoclub.ventanaAltaSocio.isVisible())
                 Videoclub.ventanaAltaSocio.setVisible(true);
         });
-    }
 
-    public static void main(String[] args) {
-        new VentanaAltas();
+        btnAltaPelicula.addActionListener(evento -> {
+            if (!Videoclub.ventanaAltaPelicula.isVisible())
+                Videoclub.ventanaAltaPelicula.setVisible(true);
+        });
     }
 }
-
