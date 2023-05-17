@@ -31,7 +31,6 @@ public class VentanaAltaPelicula extends JFrame {
         super.setLayout(null);
         super.setDefaultCloseOperation(HIDE_ON_CLOSE);
         super.setResizable(false);
-        super.setVisible(true);
         panel.setBackground(Color.decode("#1f4489"));
         super.setBounds(300, 250, 430, 490);
 
@@ -211,9 +210,5 @@ public class VentanaAltaPelicula extends JFrame {
             else
                 Videoclub.guardarMultimedia(new Pelicula(titulo, autor, formato, anyo, duracion, actorPrincipal, actrizPrincipal));
         });
-    }
-
-    public static void main(String[] args) {
-        new VentanaAltaPelicula();
     }
 }

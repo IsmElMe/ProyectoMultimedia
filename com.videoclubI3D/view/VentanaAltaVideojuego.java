@@ -113,7 +113,7 @@ public class VentanaAltaVideojuego extends JFrame {
     }
 
     private void crearLabel() {
-        lblTituloVentana = new JLabel("ALTA PELÍCULA");
+        lblTituloVentana = new JLabel("ALTA VIDEOJUEGO");
         panel.add(lblTituloVentana);
         lblTituloVentana.setFont(Constantes.FUENTE_TITULO);
         lblTituloVentana.setBounds(120, 0, 300, 100);
@@ -169,11 +169,5 @@ public class VentanaAltaVideojuego extends JFrame {
             cmbAnyo.addItem(i);
 
         cmbAnyo.setSelectedIndex(cmbAnyo.getItemCount() - 1);
-    }
-
-    public static void main(String[] args) {
-        VentanaAltaVideojuego gui = new VentanaAltaVideojuego();
-        gui.setVisible(true);
-        gui.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 }
