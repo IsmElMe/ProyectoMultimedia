@@ -1,10 +1,12 @@
 package view;
 
-import model.Constantes;
+import controler.Videoclub;
+import model.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class VentanaAltaVideojuego extends JFrame {
     private JPanel panel;
@@ -15,7 +17,8 @@ public class VentanaAltaVideojuego extends JFrame {
             txtTitulo, txtAutor;
     private JComboBox<Integer> cmbAnyo;
     private ButtonGroup grupoRadioButton;
-    private JRadioButton rdbCd, rdbDvd, rdbBluray, rdbArchivo, rdbPs5, rdbXbox, rdbSwitch, rdbPc;
+    private JRadioButton rdbCd, rdbDvd, rdbBluray, rdbArchivo;
+    private JCheckBox chkPs5, chkXbox, chkSwitch, chkPc;
     private JButton btnGuardar;
 
     public VentanaAltaVideojuego() {
@@ -69,47 +72,43 @@ public class VentanaAltaVideojuego extends JFrame {
         rdbArchivo.setBounds(rectangleRadioButton);
 
         Rectangle rectanglePlataforma = new Rectangle(200, 230, 100,20);
-        grupoRadioButton = new ButtonGroup();
-        rdbPs5 = new JRadioButton("PS5");
-        rdbXbox = new JRadioButton("XBOX");
-        rdbSwitch = new JRadioButton("SWITCH");
-        rdbPc = new JRadioButton("PC");
-        grupoRadioButton.add(rdbPs5);
-        grupoRadioButton.add(rdbXbox);
-        grupoRadioButton.add(rdbSwitch);
-        grupoRadioButton.add(rdbPc);
-        panel.add(rdbPs5);
-        panel.add(rdbXbox);
-        panel.add(rdbSwitch);
-        panel.add(rdbPc);
-        rdbPs5.setSelected(true);
+        chkPs5 = new JCheckBox("PS5");
+        chkXbox = new JCheckBox("XBOX");
+        chkSwitch = new JCheckBox("SWITCH");
+        chkPc = new JCheckBox("PC");
+        panel.add(chkPs5);
+        panel.add(chkXbox);
+        panel.add(chkSwitch);
+        panel.add(chkPc);
 
-        rdbPs5.setBounds(rectanglePlataforma);
+        chkPs5.setBounds(rectanglePlataforma);
         rectanglePlataforma.y += 20;
-        rdbXbox.setBounds(rectanglePlataforma);
+        chkXbox.setBounds(rectanglePlataforma);
         rectanglePlataforma.y += 20;
-        rdbSwitch.setBounds(rectanglePlataforma);
+        chkSwitch.setBounds(rectanglePlataforma);
         rectanglePlataforma.y += 20;
-        rdbPc.setBounds(rectanglePlataforma);
+        chkPc.setBounds(rectanglePlataforma);
 
-        rdbPs5.setFont(Constantes.FUENTE_LABEL);
-        rdbPs5.setBackground(Color.decode("#1f4489"));
-        rdbPs5.setForeground(Color.WHITE);
-        rdbXbox.setFont(Constantes.FUENTE_LABEL);
-        rdbXbox.setBackground(Color.decode("#1f4489"));
-        rdbXbox.setForeground(Color.WHITE);
-        rdbSwitch.setFont(Constantes.FUENTE_LABEL);
-        rdbSwitch.setBackground(Color.decode("#1f4489"));
-        rdbSwitch.setForeground(Color.WHITE);
-        rdbPc.setFont(Constantes.FUENTE_LABEL);
-        rdbPc.setBackground(Color.decode("#1f4489"));
-        rdbPc.setForeground(Color.WHITE);
+        chkPs5.setFont(Constantes.FUENTE_LABEL);
+        chkPs5.setBackground(Color.decode("#1f4489"));
+        chkPs5.setForeground(Color.WHITE);
+        chkXbox.setFont(Constantes.FUENTE_LABEL);
+        chkXbox.setBackground(Color.decode("#1f4489"));
+        chkXbox.setForeground(Color.WHITE);
+        chkSwitch.setFont(Constantes.FUENTE_LABEL);
+        chkSwitch.setBackground(Color.decode("#1f4489"));
+        chkSwitch.setForeground(Color.WHITE);
+        chkPc.setFont(Constantes.FUENTE_LABEL);
+        chkPc.setBackground(Color.decode("#1f4489"));
+        chkPc.setForeground(Color.WHITE);
 
         btnGuardar = new JButton("GUARDAR");
         panel.add(btnGuardar);
         btnGuardar.setForeground(Color.decode("#1f4489"));
         btnGuardar.setBackground(Color.decode("#fcc139"));
         btnGuardar.setBounds(160, 340, 120, 25);
+
+        crearVideojuego();
     }
 
     private void crearLabel() {
@@ -163,11 +162,61 @@ public class VentanaAltaVideojuego extends JFrame {
         cmbAnyo = new JComboBox<>();
         panel.add(cmbAnyo);
         cmbAnyo.setEditable(true);
-        cmbAnyo.setBounds(100, 160, 50, 20);
+        cmbAnyo.setBounds(100, 160, 100, 20);
 
         for (int i = 1940; i <= LocalDate.now().getYear(); i++)
             cmbAnyo.addItem(i);
 
         cmbAnyo.setSelectedIndex(cmbAnyo.getItemCount() - 1);
+    }
+
+    private void crearVideojuego() {
+        btnGuardar.addActionListener(evento -> {
+            String titulo = txtTitulo.getText();
+            String autor = txtAutor.getText();
+            int anyo = Integer.parseInt(Objects.requireNonNull(cmbAnyo.getSelectedItem()).toString());
+            Formato formato;
+            Plataforma[] plataformas = new Plataforma[Constantes.MAX_PLATAFORMAS];
+
+            titulo = titulo.trim();
+            autor = autor.trim();
+
+            if (rdbCd.isSelected())
+                formato = Formato.CD;
+            else if (rdbDvd.isSelected())
+                formato = Formato.DVD;
+            else if (rdbBluray.isSelected())
+                formato = Formato.BLU_RAY;
+            else
+                formato = Formato.ARCHIVO;
+
+            if (chkPc.isSelected())
+                plataformas[0] = Plataforma.PC;
+            if (chkPs5.isSelected())
+                plataformas[1] = Plataforma.PS5;
+            if (chkXbox.isSelected())
+                plataformas[2] = Plataforma.XBOX;
+            if (chkSwitch.isSelected())
+                plataformas[3] = Plataforma.NINTEND0_SWITCH;
+
+            byte contNull = 0;
+            for (Plataforma plataforma : plataformas)
+                if (plataforma == null)
+                    contNull++;
+
+            if (contNull != Constantes.MAX_PLATAFORMAS) {
+                if (titulo.equals(""))
+                    JOptionPane.showMessageDialog(null, "EL CAMPO TÍTULO ESTÁ VACÍO");
+                else if (autor.equals(""))
+                    JOptionPane.showMessageDialog(null, "EL CAMPO AUTOR ESTÁ VACÍO");
+                else if (anyo < 1940)
+                    JOptionPane.showMessageDialog(null, "NO SE PUEDEN INTRODUCIR MULTIMEDIAS ANTERIORES A 1940");
+                else if (anyo > LocalDate.now().getYear())
+                    JOptionPane.showMessageDialog(null, "EL AÑO DEL MULTIMEDIA ES MAYOR AL AÑO ACTUAL");
+                else
+                    Videoclub.guardarMultimedia(new Videojuego(titulo, autor, formato, anyo, plataformas));
+            } else
+                JOptionPane.showMessageDialog(null, "EL VIDEOJUEGO NO TIENE NINGUNA PLATAFORMA");
+        });
     }
 }
