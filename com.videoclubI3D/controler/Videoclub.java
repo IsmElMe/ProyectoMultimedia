@@ -12,6 +12,7 @@ public class Videoclub {
     public static final VentanaAltaSocio ventanaAltaSocio = new VentanaAltaSocio();
 	public static final VentanaAltaPelicula ventanaAltaPelicula = new VentanaAltaPelicula();
 	public static final VentanaAltaVideojuego ventanaAltaVideojuego = new VentanaAltaVideojuego();
+	public static final VentanaAltaCancion ventanaAltaCancion = new VentanaAltaCancion();
 	public static final VentanaAlquilarMultimedia ventanaAlquilarMultimedia = new VentanaAlquilarMultimedia();
 	public static final VentanaDevolver ventanaDevolver = new VentanaDevolver();
 
