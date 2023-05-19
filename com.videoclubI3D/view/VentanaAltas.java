@@ -11,7 +11,7 @@ public class VentanaAltas extends JFrame{
     private JPanel panel;
     private JLabel lblTitulo;
     private JButton btnAltaSocio, btnAltaPelicula,
-            btnAltaVideojuego, btnAltaDisco;
+            btnAltaVideojuego, btnAltaDisco, btnAltaCancion;
 
     public VentanaAltas() {
         super("BLOCKBUSTER - ALTAS");
@@ -21,7 +21,7 @@ public class VentanaAltas extends JFrame{
         super.setResizable(false);
         super.setDefaultCloseOperation(HIDE_ON_CLOSE);
         panel.setBackground(Color.decode("#1f4489"));
-        super.setBounds(300, 200, 500, 370);
+        super.setBounds((Constantes.ANCHO_PANTALLA / 2) - 250, (Constantes.ALTO_PANTALLA / 2) - 215, 500, 430);
 
         lblTitulo = new JLabel("ALTAS");
         panel.add(lblTitulo);
@@ -57,6 +57,13 @@ public class VentanaAltas extends JFrame{
         btnAltaDisco.setForeground(Color.decode("#1f4489"));
         btnAltaDisco.setBackground(Color.decode("#fcc139"));
 
+        btnAltaCancion = new JButton("ALTA CANCIÓN");
+        panel.add(btnAltaCancion);
+        btnAltaCancion.setFont(Constantes.FUENTE_BOTON);
+        btnAltaCancion.setBounds(80, 300, 350, 25);
+        btnAltaCancion.setForeground(Color.decode("#1f4489"));
+        btnAltaCancion.setBackground(Color.decode("#fcc139"));
+
         eventos();
     }
 
@@ -74,6 +81,11 @@ public class VentanaAltas extends JFrame{
         btnAltaVideojuego.addActionListener(evento -> {
             if (!Videoclub.ventanaAltaVideojuego.isVisible())
                 Videoclub.ventanaAltaVideojuego.setVisible(true);
+        });
+
+        btnAltaCancion.addActionListener(evento -> {
+            if (!Videoclub.ventanaAltaCancion.isVisible())
+                Videoclub.ventanaAltaCancion.setVisible(true);
         });
     }
 }

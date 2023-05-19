@@ -6,16 +6,15 @@ import javax.swing.*;
 import java.awt.*;
 
 public class VentanaAlquilarMultimedia extends JFrame {
-    private JPanel panel;
     public VentanaAlquilarMultimedia() {
         super("BLOCKBUSTER - ALQUILAR MULTIMEDIA");
-        panel = new JPanel();
+        JPanel panel = new JPanel();
         super.setContentPane(panel);
         super.setLayout(null);
         super.setResizable(false);
         super.setDefaultCloseOperation(HIDE_ON_CLOSE);
         panel.setBackground(Color.decode("#1f4489"));
-        super.setBounds(300, 200, 430, 400);
+        super.setBounds((Constantes.ANCHO_PANTALLA / 2) - 215, (Constantes.ALTO_PANTALLA / 2) - 200, 430, 400);
 
         crearLabel(panel);
         crearRadioButton(panel);
@@ -34,7 +33,6 @@ public class VentanaAlquilarMultimedia extends JFrame {
         JTextField txtTitulo = new JTextField();
         panel.add(txtTitulo);
         txtTitulo.setBounds(120, 250, 200, 20);
-
     }
 
     private void crearLabel(JPanel panel) {
@@ -61,7 +59,6 @@ public class VentanaAlquilarMultimedia extends JFrame {
         lblTitulo.setFont(Constantes.FUENTE_LABEL);
         lblTitulo.setBounds(40, 240, 100, 40);
         lblTitulo.setForeground(Color.decode("#fcc139"));
-
     }
 
     private void crearRadioButton(JPanel panel) {

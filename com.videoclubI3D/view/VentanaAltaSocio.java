@@ -28,7 +28,7 @@ public class VentanaAltaSocio extends JFrame {
         super.setResizable(false);
         super.setDefaultCloseOperation(HIDE_ON_CLOSE);
         panel.setBackground(Color.decode("#1f4489"));
-        super.setBounds(300, 200, 430, 330);
+        super.setBounds((Constantes.ANCHO_PANTALLA / 2) - 215, (Constantes.ALTO_PANTALLA / 2) - 165, 430, 330);
 
         lblTitulo = new JLabel("ALTA SOCIO");
         panel.add(this.lblTitulo);
@@ -101,7 +101,7 @@ public class VentanaAltaSocio extends JFrame {
             Date fecha = calendario.getDate();
             // Se transforma la fecha en un objeto Instant
             Instant instant = fecha.toInstant();
-            // Se obtiene la fecha horaria del sistema
+            // Se obtiene la zona horaria del sistema
             ZoneId zonaHoraria = ZoneId.systemDefault();
             // Del objeto Instant que tiene la fecha llama al método atZone con la zona horaria del sistema y lo transforma a LocalDate
             fechaNacimiento = instant.atZone(zonaHoraria).toLocalDate();
