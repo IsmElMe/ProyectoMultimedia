@@ -163,10 +163,4 @@ public class VentanaAltaDisco extends JFrame {
         taCancionesDisco.setEditable(false);
         taCancionesDisco.setBounds(super.getWidth() - 250, 220, 100, 120);
     }
-
-    public static void main(String[] args) {
-        VentanaAltaDisco gui = new VentanaAltaDisco();
-        gui.setVisible(true);
-        gui.setDefaultCloseOperation(EXIT_ON_CLOSE);
-    }
 }
