@@ -23,7 +23,7 @@ public class VentanaAltaDisco extends JFrame {
     private JButton btnGuardar, btnAnyadir, btnEliminar;
 
     public VentanaAltaDisco(){
-        super("Blockbuster - Alta Disco");
+        super("BLOCKBUSTER - ALTA DISCO");
         panel = new JPanel();
         super.setContentPane(panel);
         super.setLayout(null);
@@ -35,60 +35,60 @@ public class VentanaAltaDisco extends JFrame {
         crearLabel();
         crearInput();
 
-        btnGuardar = new JButton("Guardar");
+        btnGuardar = new JButton("GUARDAR");
         panel.add(btnGuardar);
         btnGuardar.setFont(Constantes.FUENTE_BOTON);
-        btnGuardar.setBounds(super.getWidth() - 150, super.getHeight() - 70, 100, 20);
+        btnGuardar.setBounds(super.getWidth() - 150, super.getHeight() - 70, 110, 20);
         btnGuardar.setForeground(Color.decode("#1f4489"));
         btnGuardar.setBackground(Color.decode("#fcc139"));
 
-        btnAnyadir = new JButton("Añadir");
+        btnAnyadir = new JButton("AÑADIR");
         panel.add(btnAnyadir);
         btnAnyadir.setFont(Constantes.FUENTE_BOTON);
-        btnAnyadir.setBounds(super.getWidth() -140, 220, 100, 20);
+        btnAnyadir.setBounds(super.getWidth() -140, 200, 110, 20);
         btnAnyadir.setForeground(Color.decode("#1f4489"));
         btnAnyadir.setBackground(Color.decode("#fcc139"));
 
-        btnEliminar = new JButton("Eliminar");
+        btnEliminar = new JButton("ELIMINAR");
         panel.add(btnEliminar);
         btnEliminar.setFont(Constantes.FUENTE_BOTON);
-        btnEliminar.setBounds(super.getWidth() -140, 250, 100, 20);
+        btnEliminar.setBounds(super.getWidth() -140, 230, 110, 20);
         btnEliminar.setForeground(Color.decode("#1f4489"));
         btnEliminar.setBackground(Color.decode("#fcc139"));
 
     }
 
     public void crearLabel(){
-        Rectangle rectangleLabel = new Rectangle(50, 100, 150, 20);
+        Rectangle rectangleLabel = new Rectangle(50, 80, 150, 20);
 
-        lblTituloVentana = new JLabel("Alta Disco");
+        lblTituloVentana = new JLabel("ALTA DISCO");
         panel.add(lblTituloVentana);
         lblTituloVentana.setFont(Constantes.FUENTE_TITULO);
-        lblTituloVentana.setBounds((super.getWidth() / 2) - 60, 15, 200, 60);
+        lblTituloVentana.setBounds((super.getWidth() / 2) - 75, 15, 200, 60);
         lblTituloVentana.setForeground(Color.decode("#fcc139"));
 
-        lblTitulo = new JLabel("Título:");
+        lblTitulo = new JLabel("TÍTULO");
         panel.add(lblTitulo);
         lblTitulo.setFont(Constantes.FUENTE_LABEL);
         lblTitulo.setBounds(rectangleLabel);
         lblTitulo.setForeground(Color.decode("#fcc139"));
         rectangleLabel.y += 40;
 
-        lblAutor = new JLabel("Autor:");
+        lblAutor = new JLabel("AUTOR");
         panel.add(lblAutor);
         lblAutor.setFont(Constantes.FUENTE_LABEL);
         lblAutor.setBounds(rectangleLabel);
         lblAutor.setForeground(Color.decode("#fcc139"));
         rectangleLabel.y += 40;
 
-        lblAnyo = new JLabel("Año:");
+        lblAnyo = new JLabel("AÑO");
         panel.add(lblAnyo);
         lblAnyo.setFont(Constantes.FUENTE_LABEL);
         lblAnyo.setBounds(rectangleLabel);
         lblAnyo.setForeground(Color.decode("#fcc139"));
         rectangleLabel.y += 40;
 
-        lblFormato = new JLabel("Formato:");
+        lblFormato = new JLabel("FORMATO");
         panel.add(lblFormato);
         lblFormato.setFont(Constantes.FUENTE_LABEL);
         lblFormato.setBounds(rectangleLabel);
@@ -96,7 +96,7 @@ public class VentanaAltaDisco extends JFrame {
         rectangleLabel.x += 201;
         rectangleLabel.y -= 40;
 
-        lblCanciones = new JLabel("Canciones:");
+        lblCanciones = new JLabel("CANCIONES");
         panel.add(lblCanciones);
         lblCanciones.setFont(Constantes.FUENTE_LABEL);
         lblCanciones.setBounds(rectangleLabel);
@@ -104,7 +104,7 @@ public class VentanaAltaDisco extends JFrame {
     }
 
     private void crearInput() {
-        Rectangle rectangleTextField = new Rectangle(100, 100, super.getWidth() - 150, 20);
+        Rectangle rectangleTextField = new Rectangle(120, 80, 200, 20);
 
         txtTitulo = new JTextField();
         panel.add(txtTitulo);
@@ -118,7 +118,7 @@ public class VentanaAltaDisco extends JFrame {
         cbAnyo = new JComboBox<>();
         panel.add(cbAnyo);
         cbAnyo.setEditable(true);
-        cbAnyo.setBounds(100, 180, 100, 20);
+        cbAnyo.setBounds(90, 160, 100, 20);
 
         for (int i = 1940; i <= LocalDate.now().getYear(); i++)
             cbAnyo.addItem(i);
@@ -129,7 +129,7 @@ public class VentanaAltaDisco extends JFrame {
         rectangleTextField.x += 60;
         rectangleTextField.y += 80;
 
-        Rectangle rectangleRadioButton = new Rectangle(100, 250, 150,20);
+        Rectangle rectangleRadioButton = new Rectangle(100, 230, 150,20);
         bgFormato = new ButtonGroup();
         rbCd = new JRadioButton("CD");
         rbDvd = new JRadioButton("DVD");
@@ -169,11 +169,11 @@ public class VentanaAltaDisco extends JFrame {
         cbCanciones = new JComboBox<>();
         panel.add(cbCanciones);
         cbCanciones.setEditable(true);
-        cbCanciones.setBounds(super.getWidth() - 150, 180, 100, 20);
+        cbCanciones.setBounds(super.getWidth() - 150, 160, 100, 20);
 
         taCancionesDisco = new JTextArea();
         panel.add(taCancionesDisco);
         taCancionesDisco.setEditable(false);
-        taCancionesDisco.setBounds(super.getWidth() - 250, 220, 100, 120);
+        taCancionesDisco.setBounds(super.getWidth() - 250, 200, 100, 120);
     }
 }
