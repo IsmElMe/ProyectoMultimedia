@@ -129,12 +129,12 @@ public class VentanaAltaDisco extends JFrame {
         rectangleTextField.x += 60;
         rectangleTextField.y += 80;
 
-        Rectangle rectangleRadioButton = new Rectangle(100, 250, 100,20);
+        Rectangle rectangleRadioButton = new Rectangle(100, 250, 150,20);
         bgFormato = new ButtonGroup();
         rbCd = new JRadioButton("CD");
         rbDvd = new JRadioButton("DVD");
         rbBluray = new JRadioButton("BLUE-RAY");
-        rbArchivo = new JRadioButton("Archivo");
+        rbArchivo = new JRadioButton("ARCHIVO");
         bgFormato.add(rbCd);
         bgFormato.add(rbDvd);
         bgFormato.add(rbBluray);
@@ -144,6 +144,19 @@ public class VentanaAltaDisco extends JFrame {
         panel.add(rbBluray);
         panel.add(rbArchivo);
         rbCd.setSelected(true);
+
+        rbCd.setFont(Constantes.FUENTE_LABEL);
+        rbCd.setBackground(Color.decode("#1f4489"));
+        rbCd.setForeground(Color.WHITE);
+        rbDvd.setFont(Constantes.FUENTE_LABEL);
+        rbDvd.setBackground(Color.decode("#1f4489"));
+        rbDvd.setForeground(Color.WHITE);
+        rbBluray.setFont(Constantes.FUENTE_LABEL);
+        rbBluray.setBackground(Color.decode("#1f4489"));
+        rbBluray.setForeground(Color.WHITE);
+        rbArchivo.setFont(Constantes.FUENTE_LABEL);
+        rbArchivo.setBackground(Color.decode("#1f4489"));
+        rbArchivo.setForeground(Color.WHITE);
 
         rbCd.setBounds(rectangleRadioButton);
         rectangleRadioButton.y += 20;
