@@ -1,9 +1,13 @@
 package view;
 
+import controler.GestionBaseDatos;
 import model.Constantes;
 
 import javax.swing.*;
 import java.awt.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 public class VentanaDevolver extends JFrame {
     private JPanel panel;
@@ -47,6 +51,8 @@ public class VentanaDevolver extends JFrame {
         panel.add(jsDiasAlquiler);
         jsDiasAlquiler.setModel(new SpinnerNumberModel(1, 1, 100, 1));
         jsDiasAlquiler.setBounds(370, 215, 50, 20);
+
+        eventos();
     }
 
     private void crearLabel() {
@@ -85,5 +91,32 @@ public class VentanaDevolver extends JFrame {
         txtNIF = new JTextField();
         panel.add(txtNIF);
         txtNIF.setBounds(105, 90, 150, 20);
+    }
+
+    private void eventos(){
+        btnAnalizar.addActionListener(e -> {
+            try {
+                Connection con = GestionBaseDatos.conectarBaseDatos();
+                if (con == null) {
+                    throw new RuntimeException("Fallo al intentar conectar con la base de datos");
+                }else {
+                    Statement st = con.createStatement();
+                    ResultSet rsSocio = st.executeQuery("select * from socio");
+                    ResultSet rsMultimedia = st.executeQuery("select * from multimedias_socio");
+                    while (rsSocio.next()){
+                        String nif = rsSocio.getString("nif");
+                        int num_socio = rsMultimedia.getInt("num_socio");
+
+                        if (nif.equals(txtNIF.getText())){
+
+                        }
+                    }
+
+                    con.close();
+                }
+            }catch (Exception e1){
+                e1.printStackTrace();
+            }
+        });
     }
 }
