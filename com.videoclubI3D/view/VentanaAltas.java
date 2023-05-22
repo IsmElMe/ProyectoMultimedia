@@ -75,5 +75,10 @@ public class VentanaAltas extends JFrame{
             if (!Videoclub.ventanaAltaVideojuego.isVisible())
                 Videoclub.ventanaAltaVideojuego.setVisible(true);
         });
+
+        btnAltaDisco.addActionListener(evento -> {
+            if (!Videoclub.ventanaAltaDisco.isVisible())
+                Videoclub.ventanaAltaDisco.setVisible(true);
+        });
     }
 }

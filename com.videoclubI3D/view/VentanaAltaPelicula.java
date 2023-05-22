@@ -113,7 +113,6 @@ public class VentanaAltaPelicula extends JFrame {
         lblAnyo = new JLabel("AÑO");
         panel.add(lblAnyo);
         lblAnyo.setFont(Constantes.FUENTE_LABEL);
-        lblAnyo.setBounds(340, 145, 200, 40);
         lblAnyo.setBounds(240, 145, 200, 40);
         lblAnyo.setForeground(Color.decode("#fcc139"));
 
