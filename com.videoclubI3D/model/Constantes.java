@@ -14,6 +14,8 @@ public class Constantes {
 	public static final double DURACION_DOUBLE_DEFAULT = 0.0;
 	public static final String TITULO_DEFECTO = "";
 	public static final String AUTOR_DEFECTO = "";
+	public static final String COLOR_AZUL = "#1F4489";
+	public static final String COLOR_AMARILLO = "#FCC139";
 	public static final Formato FORMATO_DEFECTO = Formato.DVD;
 	public static final Font FUENTE_TITULO = new Font("Arial", Font.BOLD, 25);
 	public static final Font FUENTE_BOTON = new Font("Boton", Font.BOLD, 15);

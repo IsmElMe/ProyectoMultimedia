@@ -20,8 +20,7 @@ public class VentanaPrincipal extends JFrame {
         super.setResizable(false);
         super.setDefaultCloseOperation(EXIT_ON_CLOSE);
         panel.setBackground(Color.decode("#1f4489"));
-        super.setBounds(300, 200, 500, 370);
-
+        super.setBounds((Constantes.ANCHO_PANTALLA / 2) - 250, (Constantes.ALTO_PANTALLA / 2) - 185, 500, 370);
 
         lblTitulo = new JLabel("BLOCKBUSTER");
         panel.add(lblTitulo);
@@ -29,15 +28,12 @@ public class VentanaPrincipal extends JFrame {
         lblTitulo.setBounds(150, 0, 200, 100);
         lblTitulo.setForeground(Color.decode("#fcc139"));
 
-
-
         btnAltas = new JButton("ALTAS");
         panel.add(btnAltas);
         btnAltas.setFont(Constantes.FUENTE_BOTON);
         btnAltas.setBounds( 80, 100, 350, 25);
         btnAltas.setForeground(Color.decode("#1f4489"));
         btnAltas.setBackground(Color.decode("#fcc139"));
-
 
         btnAlquilarMultimedaSocio = new JButton("ALQUILAR MULTIMEDIA A SOCIO");
         panel.add(btnAlquilarMultimedaSocio);
@@ -61,8 +57,6 @@ public class VentanaPrincipal extends JFrame {
         btnListar.setBackground(Color.decode("#fcc139"));
 
         eventos();
-
-
         super.setVisible(true);
     }
 
@@ -81,9 +75,5 @@ public class VentanaPrincipal extends JFrame {
             if (!Videoclub.ventanaDevolver.isVisible())
                 Videoclub.ventanaDevolver.setVisible(true);
         });
-    }
-
-    public static void main(String[] args) {
-        new VentanaPrincipal();
     }
 }

@@ -11,8 +11,11 @@ public class Videoclub {
 	public static final VentanaAltas ventanaAltas = new VentanaAltas();
     public static final VentanaAltaSocio ventanaAltaSocio = new VentanaAltaSocio();
 	public static final VentanaAltaPelicula ventanaAltaPelicula = new VentanaAltaPelicula();
+	public static final VentanaAltaVideojuego ventanaAltaVideojuego = new VentanaAltaVideojuego();
+	public static final VentanaAltaCancion ventanaAltaCancion = new VentanaAltaCancion();
 	public static final VentanaAlquilarMultimedia ventanaAlquilarMultimedia = new VentanaAlquilarMultimedia();
 	public static final VentanaDevolver ventanaDevolver = new VentanaDevolver();
+	public static final VentanaAltaDisco ventanaAltaDisco = new VentanaAltaDisco();
 
 	private static ArrayList<Socio> socios = new ArrayList<>();
     private static ArrayList<Multimedia> multimedias = new ArrayList<>();
@@ -26,9 +29,9 @@ public class Videoclub {
 		JOptionPane.showMessageDialog(null, "Se ha guardado el socio correctamente");
 	}
 
-    public static void guardarPelicula(Pelicula pelicula) {
-        multimedias.add(pelicula);
-        JOptionPane.showMessageDialog(null, "Se ha guardado la película correctamente");
+    public static void guardarMultimedia(Multimedia multimedia) {
+        multimedias.add(multimedia);
+        JOptionPane.showMessageDialog(null, "Se ha guardado el multimedia correctamente");
     }
 
 	public static void altas(Scanner sc, ArrayList<Socio> socios, ArrayList<Multimedia> multimedias) {

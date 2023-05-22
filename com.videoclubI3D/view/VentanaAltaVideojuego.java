@@ -1,21 +1,23 @@
 package view;
 
-import model.Constantes;
+import controler.Videoclub;
+import model.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class VentanaAltaVideojuego extends JFrame {
     private JPanel panel;
     private JLabel
             lblTituloVentana, lblTitulo, lblAutor,
             lblAnyo, lblFormato, lblPlataforma;
-    private JTextField
-            txtTitulo, txtAutor;
+    private JTextField txtTitulo, txtAutor;
     private JComboBox<Integer> cmbAnyo;
     private ButtonGroup grupoRadioButton;
-    private JRadioButton rdbCd, rdbDvd, rdbBluray, rdbArchivo, rdbPs5, rdbXbox, rdbSwitch, rdbPc;
+    private JRadioButton rdbCd, rdbDvd, rdbBluray, rdbArchivo;
+    private JCheckBox chkPs5, chkXbox, chkSwitch, chkPc;
     private JButton btnGuardar;
 
     public VentanaAltaVideojuego() {
@@ -26,94 +28,24 @@ public class VentanaAltaVideojuego extends JFrame {
         super.setDefaultCloseOperation(HIDE_ON_CLOSE);
         super.setResizable(false);
         panel.setBackground(Color.decode("#1f4489"));
-        super.setBounds(300, 250, 430, 440);
+        super.setBounds((Constantes.ANCHO_PANTALLA / 2) - 215, (Constantes.ALTO_PANTALLA / 2) - 220, 430, 440);
 
         crearLabel();
         crearInput();
-
-        Rectangle rectangleRadioButton = new Rectangle(50, 230, 150,20);
-        grupoRadioButton = new ButtonGroup();
-        rdbCd = new JRadioButton("CD");
-        rdbDvd = new JRadioButton("DVD");
-        rdbBluray = new JRadioButton("BLUE-RAY");
-        rdbArchivo = new JRadioButton("ARCHIVO");
-        grupoRadioButton.add(rdbCd);
-        grupoRadioButton.add(rdbDvd);
-        grupoRadioButton.add(rdbBluray);
-        grupoRadioButton.add(rdbArchivo);
-        panel.add(rdbCd);
-        panel.add(rdbDvd);
-        panel.add(rdbBluray);
-        panel.add(rdbArchivo);
-        rdbCd.setSelected(true);
-
-        rdbCd.setFont(Constantes.FUENTE_LABEL);
-        rdbCd.setBackground(Color.decode("#1f4489"));
-        rdbCd.setForeground(Color.WHITE);
-        rdbDvd.setFont(Constantes.FUENTE_LABEL);
-        rdbDvd.setBackground(Color.decode("#1f4489"));
-        rdbDvd.setForeground(Color.WHITE);
-        rdbBluray.setFont(Constantes.FUENTE_LABEL);
-        rdbBluray.setBackground(Color.decode("#1f4487"));
-        rdbBluray.setForeground(Color.WHITE);
-        rdbArchivo.setFont(Constantes.FUENTE_LABEL);
-        rdbArchivo.setBackground(Color.decode("#1f4489"));
-        rdbArchivo.setForeground(Color.WHITE);
-
-        rdbCd.setBounds(rectangleRadioButton);
-        rectangleRadioButton.y += 20;
-        rdbDvd.setBounds(rectangleRadioButton);
-        rectangleRadioButton.y += 20;
-        rdbBluray.setBounds(rectangleRadioButton);
-        rectangleRadioButton.y += 20;
-        rdbArchivo.setBounds(rectangleRadioButton);
-
-        Rectangle rectanglePlataforma = new Rectangle(200, 230, 100,20);
-        grupoRadioButton = new ButtonGroup();
-        rdbPs5 = new JRadioButton("PS5");
-        rdbXbox = new JRadioButton("XBOX");
-        rdbSwitch = new JRadioButton("SWITCH");
-        rdbPc = new JRadioButton("PC");
-        grupoRadioButton.add(rdbPs5);
-        grupoRadioButton.add(rdbXbox);
-        grupoRadioButton.add(rdbSwitch);
-        grupoRadioButton.add(rdbPc);
-        panel.add(rdbPs5);
-        panel.add(rdbXbox);
-        panel.add(rdbSwitch);
-        panel.add(rdbPc);
-        rdbPs5.setSelected(true);
-
-        rdbPs5.setBounds(rectanglePlataforma);
-        rectanglePlataforma.y += 20;
-        rdbXbox.setBounds(rectanglePlataforma);
-        rectanglePlataforma.y += 20;
-        rdbSwitch.setBounds(rectanglePlataforma);
-        rectanglePlataforma.y += 20;
-        rdbPc.setBounds(rectanglePlataforma);
-
-        rdbPs5.setFont(Constantes.FUENTE_LABEL);
-        rdbPs5.setBackground(Color.decode("#1f4489"));
-        rdbPs5.setForeground(Color.WHITE);
-        rdbXbox.setFont(Constantes.FUENTE_LABEL);
-        rdbXbox.setBackground(Color.decode("#1f4489"));
-        rdbXbox.setForeground(Color.WHITE);
-        rdbSwitch.setFont(Constantes.FUENTE_LABEL);
-        rdbSwitch.setBackground(Color.decode("#1f4489"));
-        rdbSwitch.setForeground(Color.WHITE);
-        rdbPc.setFont(Constantes.FUENTE_LABEL);
-        rdbPc.setBackground(Color.decode("#1f4489"));
-        rdbPc.setForeground(Color.WHITE);
+        crearRadioButton();
+        crearCheckBox();
 
         btnGuardar = new JButton("GUARDAR");
         panel.add(btnGuardar);
         btnGuardar.setForeground(Color.decode("#1f4489"));
         btnGuardar.setBackground(Color.decode("#fcc139"));
         btnGuardar.setBounds(160, 340, 120, 25);
+
+        crearVideojuego();
     }
 
     private void crearLabel() {
-        lblTituloVentana = new JLabel("ALTA PELÍCULA");
+        lblTituloVentana = new JLabel("ALTA VIDEOJUEGO");
         panel.add(lblTituloVentana);
         lblTituloVentana.setFont(Constantes.FUENTE_TITULO);
         lblTituloVentana.setBounds(120, 0, 300, 100);
@@ -151,7 +83,6 @@ public class VentanaAltaVideojuego extends JFrame {
     }
 
     private void crearInput() {
-
         txtTitulo = new JTextField();
         panel.add(txtTitulo);
         txtTitulo.setBounds(120, 80, 200, 20);
@@ -163,7 +94,7 @@ public class VentanaAltaVideojuego extends JFrame {
         cmbAnyo = new JComboBox<>();
         panel.add(cmbAnyo);
         cmbAnyo.setEditable(true);
-        cmbAnyo.setBounds(100, 160, 50, 20);
+        cmbAnyo.setBounds(100, 160, 100, 20);
 
         for (int i = 1940; i <= LocalDate.now().getYear(); i++)
             cmbAnyo.addItem(i);
@@ -171,9 +102,125 @@ public class VentanaAltaVideojuego extends JFrame {
         cmbAnyo.setSelectedIndex(cmbAnyo.getItemCount() - 1);
     }
 
-    public static void main(String[] args) {
-        VentanaAltaVideojuego gui = new VentanaAltaVideojuego();
-        gui.setVisible(true);
-        gui.setDefaultCloseOperation(EXIT_ON_CLOSE);
+    private void crearRadioButton() {
+        Rectangle rectangleRadioButton = new Rectangle(50, 230, 150,20);
+        grupoRadioButton = new ButtonGroup();
+        rdbCd = new JRadioButton("CD");
+        rdbDvd = new JRadioButton("DVD");
+        rdbBluray = new JRadioButton("BLUE-RAY");
+        rdbArchivo = new JRadioButton("ARCHIVO");
+        grupoRadioButton.add(rdbCd);
+        grupoRadioButton.add(rdbDvd);
+        grupoRadioButton.add(rdbBluray);
+        grupoRadioButton.add(rdbArchivo);
+        panel.add(rdbCd);
+        panel.add(rdbDvd);
+        panel.add(rdbBluray);
+        panel.add(rdbArchivo);
+        rdbCd.setSelected(true);
+
+        rdbCd.setFont(Constantes.FUENTE_LABEL);
+        rdbCd.setBackground(Color.decode("#1f4489"));
+        rdbCd.setForeground(Color.WHITE);
+        rdbDvd.setFont(Constantes.FUENTE_LABEL);
+        rdbDvd.setBackground(Color.decode("#1f4489"));
+        rdbDvd.setForeground(Color.WHITE);
+        rdbBluray.setFont(Constantes.FUENTE_LABEL);
+        rdbBluray.setBackground(Color.decode("#1f4487"));
+        rdbBluray.setForeground(Color.WHITE);
+        rdbArchivo.setFont(Constantes.FUENTE_LABEL);
+        rdbArchivo.setBackground(Color.decode("#1f4489"));
+        rdbArchivo.setForeground(Color.WHITE);
+
+        rdbCd.setBounds(rectangleRadioButton);
+        rectangleRadioButton.y += 20;
+        rdbDvd.setBounds(rectangleRadioButton);
+        rectangleRadioButton.y += 20;
+        rdbBluray.setBounds(rectangleRadioButton);
+        rectangleRadioButton.y += 20;
+        rdbArchivo.setBounds(rectangleRadioButton);
+    }
+
+    private void crearCheckBox() {
+        Rectangle rectanglePlataforma = new Rectangle(200, 230, 100,20);
+        chkPc = new JCheckBox("PC");
+        chkSwitch = new JCheckBox("SWITCH");
+        chkPs5 = new JCheckBox("PS5");
+        chkXbox = new JCheckBox("XBOX");
+        panel.add(chkPc);
+        panel.add(chkSwitch);
+        panel.add(chkPs5);
+        panel.add(chkXbox);
+
+        chkPc.setBounds(rectanglePlataforma);
+        rectanglePlataforma.y += 20;
+        chkSwitch.setBounds(rectanglePlataforma);
+        rectanglePlataforma.y += 20;
+        chkPs5.setBounds(rectanglePlataforma);
+        rectanglePlataforma.y += 20;
+        chkXbox.setBounds(rectanglePlataforma);
+
+        chkPs5.setFont(Constantes.FUENTE_LABEL);
+        chkPs5.setBackground(Color.decode("#1f4489"));
+        chkPs5.setForeground(Color.WHITE);
+        chkXbox.setFont(Constantes.FUENTE_LABEL);
+        chkXbox.setBackground(Color.decode("#1f4489"));
+        chkXbox.setForeground(Color.WHITE);
+        chkSwitch.setFont(Constantes.FUENTE_LABEL);
+        chkSwitch.setBackground(Color.decode("#1f4489"));
+        chkSwitch.setForeground(Color.WHITE);
+        chkPc.setFont(Constantes.FUENTE_LABEL);
+        chkPc.setBackground(Color.decode("#1f4489"));
+        chkPc.setForeground(Color.WHITE);
+    }
+
+    private void crearVideojuego() {
+        btnGuardar.addActionListener(evento -> {
+            String titulo = txtTitulo.getText();
+            String autor = txtAutor.getText();
+            int anyo = Integer.parseInt(Objects.requireNonNull(cmbAnyo.getSelectedItem()).toString());
+            Formato formato;
+            Plataforma[] plataformas = new Plataforma[Constantes.MAX_PLATAFORMAS];
+
+            titulo = titulo.trim();
+            autor = autor.trim();
+
+            if (rdbCd.isSelected())
+                formato = Formato.CD;
+            else if (rdbDvd.isSelected())
+                formato = Formato.DVD;
+            else if (rdbBluray.isSelected())
+                formato = Formato.BLU_RAY;
+            else
+                formato = Formato.ARCHIVO;
+
+            if (chkPc.isSelected())
+                plataformas[0] = Plataforma.PC;
+            if (chkSwitch.isSelected())
+                plataformas[1] = Plataforma.NINTEND0_SWITCH;
+            if (chkPs5.isSelected())
+                plataformas[2] = Plataforma.PS5;
+            if (chkXbox.isSelected())
+                plataformas[3] = Plataforma.XBOX;
+
+            byte contNull = 0;
+            for (Plataforma plataforma : plataformas)
+                if (plataforma == null)
+                    contNull++;
+
+            if (contNull != Constantes.MAX_PLATAFORMAS) {
+                if (titulo.equals(""))
+                    JOptionPane.showMessageDialog(null, "EL CAMPO TÍTULO ESTÁ VACÍO");
+                else if (autor.equals(""))
+                    JOptionPane.showMessageDialog(null, "EL CAMPO AUTOR ESTÁ VACÍO");
+                else if (anyo < 1940)
+                    JOptionPane.showMessageDialog(null, "NO SE PUEDEN INTRODUCIR MULTIMEDIAS ANTERIORES A 1940");
+                else if (anyo > LocalDate.now().getYear())
+                    JOptionPane.showMessageDialog(null, "EL AÑO DEL MULTIMEDIA ES MAYOR AL AÑO ACTUAL");
+                else
+                    Videoclub.guardarMultimedia(new Videojuego(titulo, autor, formato, anyo, plataformas));
+            } else
+                JOptionPane.showMessageDialog(null, "EL VIDEOJUEGO NO TIENE NINGUNA PLATAFORMA");
+        });
     }
 }

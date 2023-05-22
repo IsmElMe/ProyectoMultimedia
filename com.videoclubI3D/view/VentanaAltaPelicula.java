@@ -31,9 +31,8 @@ public class VentanaAltaPelicula extends JFrame {
         super.setLayout(null);
         super.setDefaultCloseOperation(HIDE_ON_CLOSE);
         super.setResizable(false);
-        super.setVisible(true);
         panel.setBackground(Color.decode("#1f4489"));
-        super.setBounds(300, 250, 430, 490);
+        super.setBounds((Constantes.ANCHO_PANTALLA / 2) - 215, (Constantes.ALTO_PANTALLA / 2) - 245, 430, 490);
 
         crearLabel();
         crearInput();
@@ -199,17 +198,17 @@ public class VentanaAltaPelicula extends JFrame {
             if (titulo.equals(""))
                 JOptionPane.showMessageDialog(null, "EL CAMPO TÍTULO ESTA VACÍO");
             else if (autor.equals(""))
-                JOptionPane.showMessageDialog(null, "EL CAMPO AUTOR ESTA VACÍ");
+                JOptionPane.showMessageDialog(null, "EL CAMPO AUTOR ESTA VACÍO");
+            else if (anyo < 1940)
+                JOptionPane.showMessageDialog(null, "NO SE PUEDEN INTRODUCIR MULTIMEDIAS ANTERIORES A 1940");
+            else if (anyo > LocalDate.now().getYear())
+                JOptionPane.showMessageDialog(null, "EL AÑO DEL MULTIMEDIA ES MAYOR AL AÑO ACTUAL");
             else if (actorPrincipal.equals(""))
                 JOptionPane.showMessageDialog(null, "EL CAMPO ACTOR PRINCIPAL ESTA VACÍ0");
             else if (actrizPrincipal.equals(""))
                 JOptionPane.showMessageDialog(null, "EL CAMPO ACTRIZ PRINCIPAL ESTA VACÍ0");
             else
-                Videoclub.guardarPelicula(new Pelicula(titulo, autor, formato, anyo, duracion, actorPrincipal, actrizPrincipal));
+                Videoclub.guardarMultimedia(new Pelicula(titulo, autor, formato, anyo, duracion, actorPrincipal, actrizPrincipal));
         });
-    }
-
-    public static void main(String[] args) {
-        new VentanaAltaPelicula();
     }
 }

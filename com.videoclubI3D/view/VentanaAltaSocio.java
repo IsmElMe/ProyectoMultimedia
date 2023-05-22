@@ -28,7 +28,7 @@ public class VentanaAltaSocio extends JFrame {
         super.setResizable(false);
         super.setDefaultCloseOperation(HIDE_ON_CLOSE);
         panel.setBackground(Color.decode("#1f4489"));
-        super.setBounds(300, 200, 430, 330);
+        super.setBounds((Constantes.ANCHO_PANTALLA / 2) - 215, (Constantes.ALTO_PANTALLA / 2) - 165, 430, 330);
 
         lblTitulo = new JLabel("ALTA SOCIO");
         panel.add(this.lblTitulo);
@@ -63,6 +63,7 @@ public class VentanaAltaSocio extends JFrame {
         calendario = new JDateChooser();
         panel.add(calendario);
         calendario.setBounds(220, 155, 100, 20);
+        calendario.setDate(Date.from(Instant.now()));
 
         lblPoblacion = new JLabel("POBLACIÓN");
         panel.add(lblPoblacion);
@@ -88,28 +89,24 @@ public class VentanaAltaSocio extends JFrame {
             String nif = txtNif.getText();
             String nombre = txtNombre.getText();
             String poblacion = txtPoblacion.getText();
-            LocalDate fechaNacimiento = null;
-            Period edad = Period.between(LocalDate.now(), LocalDate.now());
+            LocalDate fechaNacimiento;
+            Period edad;
 
             // Quita los espacios al principio y al final del texto
             nif = nif.trim().toUpperCase();
             nombre = nombre.trim();
             poblacion = poblacion.trim();
 
-            try {
-                // Se obtiene la fecha del calendario
-                Date fecha = calendario.getDate();
-                // Se transforma la fecha en un objeto Instant
-                Instant instant = fecha.toInstant();
-                // Se obtiene la fecha horaria del sistema
-                ZoneId zonaHoraria = ZoneId.systemDefault();
-                // Del objeto Instant que tiene la fecha llama al método atZone con la zona horaria del sistema y lo transforma a LocalDate
-                fechaNacimiento = instant.atZone(zonaHoraria).toLocalDate();
+            // Se obtiene la fecha del calendario
+            Date fecha = calendario.getDate();
+            // Se transforma la fecha en un objeto Instant
+            Instant instant = fecha.toInstant();
+            // Se obtiene la zona horaria del sistema
+            ZoneId zonaHoraria = ZoneId.systemDefault();
+            // Del objeto Instant que tiene la fecha llama al método atZone con la zona horaria del sistema y lo transforma a LocalDate
+            fechaNacimiento = instant.atZone(zonaHoraria).toLocalDate();
 
-                edad = Period.between(fechaNacimiento, LocalDate.now());
-            } catch (NullPointerException error) {
-                JOptionPane.showMessageDialog(null, "La fecha de nacimiento está vacía");
-            }
+            edad = Period.between(fechaNacimiento, LocalDate.now());
 
             if (!Socio.comprobarNif(nif))
                 JOptionPane.showMessageDialog(null, "El NIF no es válido");
