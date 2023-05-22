@@ -1,11 +1,22 @@
 package view;
 
+import controler.Videoclub;
 import model.Constantes;
+import model.Multimedia;
+import model.Socio;
+import model.Formato;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class VentanaAlquilarMultimedia extends JFrame {
+    private JTextField txtNif;
+    private ButtonGroup buttonGroup;
+    private JRadioButton rdbPelicula, rdbVideojuego, rdbDisco;
+    private JComboBox<String> cmbMultimedia;
+    private JButton btnAlquilar;
+
     public VentanaAlquilarMultimedia() {
         super("BLOCKBUSTER - ALQUILAR MULTIMEDIA");
         JPanel panel = new JPanel();
@@ -19,20 +30,22 @@ public class VentanaAlquilarMultimedia extends JFrame {
         crearLabel(panel);
         crearRadioButton(panel);
 
-        JButton btnAlquilar = new JButton("ALQUILAR");
+        btnAlquilar = new JButton("ALQUILAR");
         panel.add(btnAlquilar);
         btnAlquilar.setFont(Constantes.FUENTE_BOTON);
         btnAlquilar.setForeground(Color.decode("#1f4489"));
         btnAlquilar.setBackground(Color.decode("#fcc139"));
         btnAlquilar.setBounds(160, 300, 120, 25);
 
-        JTextField txtNif = new JTextField();
+        txtNif = new JTextField();
         panel.add(txtNif);
         txtNif.setBounds(80, 86, 150, 20);
 
-        JTextField txtTitulo = new JTextField();
-        panel.add(txtTitulo);
-        txtTitulo.setBounds(120, 250, 200, 20);
+        cmbMultimedia = new JComboBox<>();
+        panel.add(cmbMultimedia);
+        cmbMultimedia.setBounds(120, 250, 200, 20);
+
+        alquilarMultimedia();
     }
 
     private void crearLabel(JPanel panel) {
@@ -65,21 +78,21 @@ public class VentanaAlquilarMultimedia extends JFrame {
         Rectangle rectangle = new Rectangle(150, 160, 150, 20);
 
         ButtonGroup buttonGroup = new ButtonGroup();
-        JRadioButton rdbPelicula = new JRadioButton("PELÍCULA");
+        rdbPelicula = new JRadioButton("PELÍCULA");
         rdbPelicula.setFont(Constantes.FUENTE_LABEL);
         rdbPelicula.setBackground(Color.decode("#1f4489"));
         rdbPelicula.setForeground(Color.WHITE);
         rdbPelicula.setBounds(rectangle);
         rectangle.y += 25;
 
-        JRadioButton rdbVideojuego = new JRadioButton("VIDEOJUEGO");
+        rdbVideojuego = new JRadioButton("VIDEOJUEGO");
         rdbVideojuego.setFont(Constantes.FUENTE_LABEL);
         rdbVideojuego.setBackground(Color.decode("#1f4489"));
         rdbVideojuego.setForeground(Color.WHITE);
         rdbVideojuego.setBounds(rectangle);
         rectangle.y += 25;
 
-        JRadioButton rdbDisco = new JRadioButton("DISCO");
+        rdbDisco = new JRadioButton("DISCO");
         rdbDisco.setFont(Constantes.FUENTE_LABEL);
         rdbDisco.setBackground(Color.decode("#1f4489"));
         rdbDisco.setForeground(Color.WHITE);
@@ -91,7 +104,42 @@ public class VentanaAlquilarMultimedia extends JFrame {
         panel.add(rdbPelicula);
         panel.add(rdbVideojuego);
         panel.add(rdbDisco);
+    }
 
-        rdbPelicula.setSelected(true);
+    private void alquilarMultimedia() {
+        btnAlquilar.addActionListener(evento -> {
+            String nifSocio = txtNif.getText().toUpperCase();
+            ArrayList<Socio> socios = Videoclub.getSocios();
+            nifSocio = nifSocio.trim();
+
+            for (Socio socio : socios) {
+                if (socio.getNIF().equals(nifSocio))
+                    System.out.println("Socio encontrado");
+            }
+        });
+
+        rdbPelicula.addActionListener(evento -> {
+            ArrayList<Multimedia> multimedias = Videoclub.sacarPeliculas();
+            cmbMultimedia.removeAllItems();
+
+            for (Multimedia multimedia : multimedias)
+                cmbMultimedia.addItem(multimedia.getTitulo());
+        });
+
+        rdbVideojuego.addActionListener(evento -> {
+            ArrayList<Multimedia> multimedias = Videoclub.sacarVideojuegos();
+            cmbMultimedia.removeAllItems();
+
+            for (Multimedia multimedia : multimedias)
+                cmbMultimedia.addItem(multimedia.getTitulo());
+        });
+
+        rdbDisco.addActionListener(evento -> {
+            ArrayList<Multimedia> multimedias = Videoclub.sacarDiscos();
+            cmbMultimedia.removeAllItems();
+
+            for (Multimedia multimedia : multimedias)
+                cmbMultimedia.addItem(multimedia.getTitulo());
+        });
     }
 }
