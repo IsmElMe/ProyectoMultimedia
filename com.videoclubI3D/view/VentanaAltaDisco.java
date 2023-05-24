@@ -163,9 +163,11 @@ public class VentanaAltaDisco extends JFrame {
         taCancionesDisco.setBorder(BorderFactory.createLineBorder(Color.decode("#fcc139"), 3));
     }
 
+    /*
     public static void main(String[] args) {
         VentanaAltaDisco gui = new VentanaAltaDisco();
         gui.setVisible(true);
         gui.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
+     */
 }
