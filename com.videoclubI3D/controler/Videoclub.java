@@ -20,6 +20,14 @@ public class Videoclub {
 	private static ArrayList<Socio> socios = new ArrayList<>();
     private static ArrayList<Multimedia> multimedias = new ArrayList<>();
 
+	public static ArrayList<Socio> getSocios() {
+		return socios;
+	}
+
+	public static ArrayList<Multimedia> getMultimedias() {
+		return multimedias;
+	}
+
 	public static void main(String[] args) {
 		new VentanaPrincipal();
 	}
@@ -65,8 +73,8 @@ public class Videoclub {
 
 	public static void listas(Scanner sc, ArrayList<Multimedia> multimedias, ArrayList<Socio> socios) {
 		int opcionLista;
-		ArrayList<Pelicula> peliculas = sacarPeliculas(multimedias);
-		ArrayList<Multimedia> videojuegos = sacarVideojuegos(multimedias);
+		ArrayList<Multimedia> peliculas = sacarPeliculas();
+		ArrayList<Multimedia> videojuegos = sacarVideojuegos();
 
 		do {
 			System.out.println("""
@@ -84,7 +92,7 @@ public class Videoclub {
 				case 1 -> System.out.println(mostrarMultimedia(multimedias));
 
 				case 2 -> {
-					Collections.sort(peliculas);
+					//Collections.sort(peliculas);
 					System.out.println(mostrarPelicula(peliculas));
 				}
 
@@ -203,22 +211,15 @@ public class Videoclub {
 		return new Socio(LocalDate.of(anioSocio, mesSocio, diaSocio), nombre, poblacion, nif);
 	}
 
-	public static void alquilarMultimedia(Scanner sc, Socio socio, ArrayList<Multimedia> multimedias) {
-		System.out.println("Introduce que tipo de multimedia quieres alquilar? \n1 Película \n2 Videojuego \n3 Disco");
-		int opcion = sc.nextInt();
-		sc.nextLine();
-		System.out.println("Introduce el titulo");
-		String titulo = sc.nextLine();
+	public static void alquilarMultimedia(Socio socio, Multimedia multimediaAlquilar) {
+		String titulo = multimediaAlquilar.getTitulo();
 		ArrayList<Multimedia> multimediaSocio = socio.getMultimediasAlquiladas();
 
-		for (Multimedia multimedia : multimedias) {
-			if (multimedia.getTitulo().equalsIgnoreCase(titulo.toLowerCase())) {
+		for (Multimedia multimedia : multimedias)
+			if (multimedia.getTitulo().equalsIgnoreCase(titulo))
 				multimediaSocio.add(multimedia);
-			}
-		}
 
 		socio.setMultimediasAlquiladas(multimediaSocio);
-		System.out.println(socio.getMultimediasAlquiladas().toString());
 	}
 
 	public static void devolverMultimedia(Scanner sc, Socio socio, ArrayList<Multimedia> multimedias) {
@@ -255,18 +256,18 @@ public class Videoclub {
 		return stb.toString();
 	}
 
-	public static String mostrarPelicula(ArrayList<Pelicula> peliculas) {
+	public static String mostrarPelicula(ArrayList<Multimedia> peliculas) {
 		StringBuilder stb = new StringBuilder();
 
-		for (Pelicula pelicula : peliculas)
+		for (Multimedia pelicula : peliculas)
 			stb.append(pelicula.toString());
 
 
 		return stb.toString();
 	}
 
-	public static ArrayList<Pelicula> sacarPeliculas(ArrayList<Multimedia> multimedias) {
-		ArrayList<Pelicula> peliculas = new ArrayList<>();
+	public static ArrayList<Multimedia> sacarPeliculas() {
+		ArrayList<Multimedia> peliculas = new ArrayList<>();
 
 		for (Multimedia multimedia : multimedias)
 			if (multimedia instanceof Pelicula)
@@ -275,7 +276,7 @@ public class Videoclub {
 		return peliculas;
 	}
 
-	public static ArrayList<Multimedia> sacarVideojuegos(ArrayList<Multimedia> multimedias) {
+	public static ArrayList<Multimedia> sacarVideojuegos() {
 		ArrayList<Multimedia> videojuegos = new ArrayList<>();
 
 		for (Multimedia multimedia : multimedias)
@@ -283,5 +284,15 @@ public class Videoclub {
 				videojuegos.add(multimedia);
 
 		return videojuegos;
+	}
+
+	public static ArrayList<Multimedia> sacarDiscos() {
+		ArrayList<Multimedia> discos = new ArrayList<>();
+
+		for (Multimedia multimedia : multimedias)
+			if (multimedia instanceof Disco)
+				discos.add((Disco) multimedia);
+
+		return discos;
 	}
 }
