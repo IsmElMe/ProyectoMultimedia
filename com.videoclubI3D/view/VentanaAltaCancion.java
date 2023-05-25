@@ -14,7 +14,6 @@ public class VentanaAltaCancion extends JFrame {
         JPanel panel = new JPanel();
         super.setContentPane(panel);
         super.setLayout(null);
-        super.setVisible(true);
         super.setDefaultCloseOperation(HIDE_ON_CLOSE);
         super.setResizable(false);
         super.setBounds((Constantes.ANCHO_PANTALLA / 2) - 225, (Constantes.ALTO_PANTALLA / 2) - 200, 450, 400);
@@ -97,9 +96,5 @@ public class VentanaAltaCancion extends JFrame {
             cmbAnyo.addItem(i);
 
         cmbAnyo.setSelectedIndex(cmbAnyo.getItemCount() - 1);
-    }
-
-    public static void main(String[] args) {
-        new VentanaAltaCancion();
     }
 }

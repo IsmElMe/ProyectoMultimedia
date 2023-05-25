@@ -25,7 +25,7 @@ public class VentanaPrincipal extends JFrame {
         lblTitulo = new JLabel("BLOCKBUSTER");
         panel.add(lblTitulo);
         lblTitulo.setFont(Constantes.FUENTE_TITULO);
-        lblTitulo.setBounds(150, 0, 200, 100);
+        lblTitulo.setBounds(150, 0, 250, 100);
         lblTitulo.setForeground(Color.decode("#fcc139"));
 
         btnAltas = new JButton("ALTAS");
