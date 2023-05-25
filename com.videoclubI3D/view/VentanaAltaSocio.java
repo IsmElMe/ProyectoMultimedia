@@ -33,7 +33,7 @@ public class VentanaAltaSocio extends JFrame {
         lblTitulo = new JLabel("ALTA SOCIO");
         panel.add(this.lblTitulo);
         lblTitulo.setFont(Constantes.FUENTE_TITULO);
-        lblTitulo.setBounds(140, 0, 300, 100);
+        lblTitulo.setBounds(125, 0, 300, 100);
         lblTitulo.setForeground(Color.decode("#fcc139"));
 
         lblNif = new JLabel("NIF");

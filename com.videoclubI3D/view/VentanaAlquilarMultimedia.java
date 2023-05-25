@@ -48,7 +48,7 @@ public class VentanaAlquilarMultimedia extends JFrame {
         JLabel lblTituloVentana = new JLabel("ALQUILAR MULTIMEDIA");
         panel.add(lblTituloVentana);
         lblTituloVentana.setFont(Constantes.FUENTE_TITULO);
-        lblTituloVentana.setBounds(60, 0, 300, 100);
+        lblTituloVentana.setBounds(60, 0, 350, 100);
         lblTituloVentana.setForeground(Color.decode("#fcc139"));
 
         JLabel lblNif = new JLabel("NIF");

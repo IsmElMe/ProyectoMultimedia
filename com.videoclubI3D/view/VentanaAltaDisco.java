@@ -58,7 +58,7 @@ public class VentanaAltaDisco extends JFrame {
         lblTituloVentana = new JLabel("ALTA DISCO");
         panel.add(lblTituloVentana);
         lblTituloVentana.setFont(Constantes.FUENTE_TITULO);
-        lblTituloVentana.setBounds(170, 0, 300, 100);
+        lblTituloVentana.setBounds(145, 0, 300, 100);
         lblTituloVentana.setForeground(Color.decode("#fcc139"));
 
 
