@@ -1,13 +1,15 @@
 package view;
 
 import controler.GestionBaseDatos;
-import model.Constantes;
+import controler.Videoclub;
+import model.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.time.LocalDate;
 
 public class VentanaDevolver extends JFrame {
     private JPanel panel;
@@ -94,62 +96,121 @@ public class VentanaDevolver extends JFrame {
     }
 
     private void eventos(){
+
         btnAnalizar.addActionListener(e -> {
-            try {
-                Connection con = GestionBaseDatos.conectarBaseDatos();
-                if (con == null) {
-                    throw new RuntimeException("Fallo al intentar conectar con la base de datos");
-                }else {
-                    Statement st = con.createStatement();
-                    ResultSet rsSocio = st.executeQuery("select * from socio");
-                    ResultSet rsMultimedia = st.executeQuery("select * from multimedias_socio");
-                    while (rsSocio.next()){
-                        String nif = rsSocio.getString("nif");
-                        int num_socio = rsMultimedia.getInt("num_socio");
-                        String titulo = rsMultimedia.getString("titulo");
-                        int num_multimedias = rsMultimedia.getInt("num_multimedias");
-
-                        if (nif.equals(txtNIF.getText())){
-                            listaMultimediaSocio.addItem(titulo);
-                        }
-                    }
-
-                    con.close();
+            String nif = txtNIF.getText();
+            Boolean encontrado = false;
+            for (Socio socio : Videoclub.getSocios()){
+                if (nif.equals(socio.getNIF())){
+                    JOptionPane.showMessageDialog(null, "El NIF introducido es correcto");
+                    socio.getMultimediasAlquiladas().forEach(multimedia -> {
+                        listaMultimediaSocio.addItem(multimedia.getTitulo());
+                    });
+                    encontrado = true;
+                    break;
                 }
-            }catch (Exception e1){
-                e1.printStackTrace();
             }
+            if (!encontrado){
+                JOptionPane.showMessageDialog(null, "El NIF introducido no esta registrado en " +
+                        "ningun socio");
+            }
+
+//            try {
+//                Connection con = GestionBaseDatos.conectarBaseDatos();
+//                if (con == null) {
+//                    throw new RuntimeException("Fallo al intentar conectar con la base de datos");
+//                }else {
+//                    Statement st = con.createStatement();
+//                    ResultSet rsSocio = st.executeQuery("select * from socio");
+//                    ResultSet rsMultimedia = st.executeQuery("select * from multimedias_socio");
+//                    while (rsSocio.next()){
+//                        String nif = rsSocio.getString("nif");
+//                        int num_socio = rsMultimedia.getInt("num_socio");
+//                        String titulo = rsMultimedia.getString("titulo");
+//                        int num_multimedias = rsMultimedia.getInt("num_multimedias");
+//
+//                        if (nif.equals(txtNIF.getText())){
+//                            listaMultimediaSocio.addItem(titulo);
+//                        }
+//                    }
+//
+//                    con.close();
+//                }
+//            }catch (Exception e1){
+//                e1.printStackTrace();
+//            }
         });
 
         btnCobrar.addActionListener(e -> {
-            try {
-                Connection con = GestionBaseDatos.conectarBaseDatos();
-                if (con == null) {
-                    throw new RuntimeException("Fallo al intentar conectar con la base de datos");
-                }else {
-                    Statement st = con.createStatement();
-                    ResultSet rsSocio = st.executeQuery("select * from socio");
-                    ResultSet rsMultimedia = st.executeQuery("select * from multimedias_socio");
-
-                    while (rsSocio.next()){
-                        String nif = rsSocio.getString("nif");
-                        int num_socio = rsMultimedia.getInt("num_socio");
-                        String titulo = rsMultimedia.getString("titulo");
-                        int num_multimedias = rsMultimedia.getInt("num_multimedias");
-
-                        if (titulo.equals(listaMultimediaSocio.getSelectedItem().toString())){
-                            st.executeQuery("delete from multimedias_socio where titulo = '"
-                                    + listaMultimediaSocio.getSelectedItem().toString() + "' and nif = '" + txtNIF.getText()
-                                    + "';");
+            String nif = txtNIF.getText();
+            Boolean encontrado = false;
+            Multimedia multimediaADevolver;
+            for (Socio socio : Videoclub.getSocios()){
+                if (nif.equals(socio.getNIF())){
+                    socio.getMultimediasAlquiladas().forEach(multimedia -> {
+                        if(listaMultimediaSocio.getSelectedItem().equals(multimedia.getTitulo())){
+                            int precio = multimedia.getPrecio();
+                            if (multimedia instanceof Pelicula) {
+                                if (multimedia.getAnio() < 2012)
+                                    precio -= 1;
+                                else if (multimedia.getAnio() == LocalDate.now().getYear()) {
+                                    precio += 1;
+                                }
+                            }
+                            else if (multimedia instanceof Disco) {
+                                if (((Disco) multimedia).getDuracion() < 30)
+                                    precio -= 1;
+                            } else if (multimedia instanceof Videojuego){
+                                if (multimedia.getAnio() < 2010)
+                                    precio -= 1;
+                                else if (multimedia.getAnio() == LocalDate.now().getYear()) {
+                                    precio += 1;
+                                }
+                            }
+                            if (Integer.parseInt(jsDiasAlquiler.getValue().toString()) > Constantes.MAX_DIAS_ALQUILER){
+                                precio += (Integer.parseInt(jsDiasAlquiler.getValue().toString()) - Constantes.MAX_DIAS_ALQUILER) * 2;
+                            }
+                            lblPrecio.setText(precio+"€");
 
                         }
-                    }
-
-                    con.close();
+                    });
+                    encontrado = true;
+                    break;
                 }
-            }catch (Exception e1){
-                e1.printStackTrace();
             }
+            if (!encontrado){
+                JOptionPane.showMessageDialog(null, "El NIF introducido no esta registrado en " +
+                        "ningun socio");
+            }
+
+//            try {
+//                Connection con = GestionBaseDatos.conectarBaseDatos();
+//                if (con == null) {
+//                    throw new RuntimeException("Fallo al intentar conectar con la base de datos");
+//                }else {
+//                    Statement st = con.createStatement();
+//                    ResultSet rsSocio = st.executeQuery("select * from socio");
+//                    ResultSet rsMultimedia = st.executeQuery("select * from multimedias_socio");
+//
+//                    while (rsSocio.next()){
+//                        String nif = rsSocio.getString("nif");
+//                        int num_socio = rsMultimedia.getInt("num_socio");
+//                        String titulo = rsMultimedia.getString("titulo");
+//                        int num_multimedias = rsMultimedia.getInt("num_multimedias");
+//
+//                        if (titulo.equals(listaMultimediaSocio.getSelectedItem().toString())){
+//                            st.executeQuery("delete from multimedias_socio where titulo = '"
+//                                    + listaMultimediaSocio.getSelectedItem().toString() + "' and nif = '" + txtNIF.getText()
+//                                    + "';");
+//
+//                        }
+//                    }
+//
+//                    con.close();
+//                }
+//            }catch (Exception e1){
+//                e1.printStackTrace();
+//            }
         });
     }
 }
