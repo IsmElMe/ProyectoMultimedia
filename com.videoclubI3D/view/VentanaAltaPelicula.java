@@ -89,7 +89,7 @@ public class VentanaAltaPelicula extends JFrame {
         lblTituloVentana = new JLabel("ALTA PELICULA");
         panel.add(lblTituloVentana);
         lblTituloVentana.setFont(Constantes.FUENTE_TITULO);
-        lblTituloVentana.setBounds(120, 0, 300, 100);
+        lblTituloVentana.setBounds(110, 0, 300, 100);
         lblTituloVentana.setForeground(Color.decode("#fcc139"));
 
         lblTitulo = new JLabel("TÍTULO");

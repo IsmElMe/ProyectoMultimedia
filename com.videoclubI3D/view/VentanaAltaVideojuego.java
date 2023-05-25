@@ -48,7 +48,7 @@ public class VentanaAltaVideojuego extends JFrame {
         lblTituloVentana = new JLabel("ALTA VIDEOJUEGO");
         panel.add(lblTituloVentana);
         lblTituloVentana.setFont(Constantes.FUENTE_TITULO);
-        lblTituloVentana.setBounds(120, 0, 300, 100);
+        lblTituloVentana.setBounds(90, 0, 300, 100);
         lblTituloVentana.setForeground(Color.decode("#fcc139"));
 
         lblTitulo = new JLabel("TÍTULO");

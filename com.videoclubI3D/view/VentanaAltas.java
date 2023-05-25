@@ -26,7 +26,7 @@ public class VentanaAltas extends JFrame{
         lblTitulo = new JLabel("ALTAS");
         panel.add(lblTitulo);
         lblTitulo.setFont(Constantes.FUENTE_TITULO);
-        lblTitulo.setBounds(220, 0, 200, 100);
+        lblTitulo.setBounds(210, 0, 200, 100);
         lblTitulo.setForeground(Color.decode("#fcc139"));
 
         btnAltaSocio = new JButton("ALTA SOCIO");
