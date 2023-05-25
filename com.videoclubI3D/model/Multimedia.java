@@ -16,7 +16,6 @@ public abstract class Multimedia {
 		autor = Constantes.AUTOR_DEFECTO;
 		formato = FORMATO_DEFECTO;
 		anio = Constantes.ANIO_DEFETO;
-		precio = Constantes.PRECIO_DEFAULT;
 		numMultimedias++;
 	}
 

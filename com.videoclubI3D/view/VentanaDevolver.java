@@ -101,7 +101,7 @@ public class VentanaDevolver extends JFrame {
             String nif = txtNIF.getText();
             Boolean encontrado = false;
             for (Socio socio : Videoclub.getSocios()){
-                if (nif.equals(socio.getNIF())){
+                if (nif.equalsIgnoreCase(socio.getNIF())){
                     JOptionPane.showMessageDialog(null, "El NIF introducido es correcto");
                     socio.getMultimediasAlquiladas().forEach(multimedia -> {
                         listaMultimediaSocio.addItem(multimedia.getTitulo());
@@ -144,41 +144,26 @@ public class VentanaDevolver extends JFrame {
         btnCobrar.addActionListener(e -> {
             String nif = txtNIF.getText();
             Boolean encontrado = false;
-            Multimedia multimediaADevolver;
+            Multimedia multimediaParaBorrar;
             for (Socio socio : Videoclub.getSocios()){
-                if (nif.equals(socio.getNIF())){
+                if (nif.equalsIgnoreCase(socio.getNIF())){
                     socio.getMultimediasAlquiladas().forEach(multimedia -> {
                         if(listaMultimediaSocio.getSelectedItem().equals(multimedia.getTitulo())){
                             int precio = multimedia.getPrecio();
-                            if (multimedia instanceof Pelicula) {
-                                JOptionPane.showMessageDialog(null, "true");
-                                if (multimedia.getAnio() < 2012) {
-                                    precio -= 1;
-                                }
-                                else if (multimedia.getAnio() == LocalDate.now().getYear()) {
-                                    precio += 1;
-                                }
-                            }
-                            else if (multimedia instanceof Disco) {
-                                JOptionPane.showMessageDialog(null, "true");
-                                if (((Disco) multimedia).getDuracion() < 30)
-                                    precio -= 1;
-                            } else if (multimedia instanceof Videojuego){
-                                JOptionPane.showMessageDialog(null, "true");
-                                if (multimedia.getAnio() < 2010)
-                                    precio -= 1;
-                                else if (multimedia.getAnio() == LocalDate.now().getYear()) {
-                                    precio += 1;
-                                }
-                            }
                             if (Integer.parseInt(jsDiasAlquiler.getValue().toString()) > Constantes.MAX_DIAS_ALQUILER){
                                 JOptionPane.showMessageDialog(null, precio);
                                 precio += (Integer.parseInt(jsDiasAlquiler.getValue().toString()) - Constantes.MAX_DIAS_ALQUILER) * 2;
                             }
                             lblPrecio.setText(precio+"€");
-
                         }
                     });
+                    for(Multimedia multimedia : socio.getMultimediasAlquiladas()){
+                        if (multimedia.getTitulo().equals(listaMultimediaSocio.getSelectedItem())){
+                            socio.getMultimediasAlquiladas().remove(multimedia);
+                            listaMultimediaSocio.removeItem(listaMultimediaSocio.getSelectedItem());
+                            break;
+                        }
+                    }
                     encontrado = true;
                     break;
                 }
