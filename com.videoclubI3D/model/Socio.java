@@ -60,6 +60,10 @@ public class Socio {
 		this.multimediasAlquiladas = multimediasAlquiladas;
 	}
 
+	public void alquilarMultimedia(Multimedia multimedia) {
+		multimediasAlquiladas.add(multimedia);
+	}
+
 	public static boolean comprobarNif(String nif) {
 		int dniNum;
 		String letra;

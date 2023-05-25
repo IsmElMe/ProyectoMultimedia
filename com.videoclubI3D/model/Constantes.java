@@ -1,7 +1,10 @@
 package model;
 
+import java.awt.Font;
+import java.awt.GraphicsEnvironment;
 import java.awt.*;
-
+import java.io.File;
+import java.io.IOException;
 
 public class Constantes {
 	public static final int ANIO_DEFETO = 1980;
@@ -17,7 +20,29 @@ public class Constantes {
 	public static final String COLOR_AZUL = "#1F4489";
 	public static final String COLOR_AMARILLO = "#FCC139";
 	public static final Formato FORMATO_DEFECTO = Formato.DVD;
-	public static final Font FUENTE_TITULO = new Font("Arial", Font.BOLD, 25);
+
+	static Font blockletter = loadFont("fonts/blockletter.ttf", 40);
+
+	private static Font loadFont(String path, float size) {
+		try {
+			Font font = Font.createFont(Font.TRUETYPE_FONT, new File(path));
+			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+			ge.registerFont(font);
+			font = font.deriveFont(size);
+			return font;
+		} catch (IOException | FontFormatException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	public static final Font FUENTE_TITULO = blockletter;
 	public static final Font FUENTE_BOTON = new Font("Boton", Font.BOLD, 15);
 	public static final Font FUENTE_LABEL = new Font("Label", Font.BOLD, 16);
+
+
+
 }
+
+
+
+

@@ -29,7 +29,7 @@ public class VentanaAltaDisco extends JFrame {
         super.setDefaultCloseOperation(HIDE_ON_CLOSE);
         super.setResizable(false);
         panel.setBackground(Color.decode("#1f4489"));
-        super.setBounds(300, 250, 470, 550);
+        super.setBounds((Constantes.ANCHO_PANTALLA / 2) - 235, (Constantes.ALTO_PANTALLA / 2) - 225, 470, 550);
 
         crearLabel();
         crearInput();
@@ -58,7 +58,7 @@ public class VentanaAltaDisco extends JFrame {
         lblTituloVentana = new JLabel("ALTA DISCO");
         panel.add(lblTituloVentana);
         lblTituloVentana.setFont(Constantes.FUENTE_TITULO);
-        lblTituloVentana.setBounds(170, 0, 300, 100);
+        lblTituloVentana.setBounds(145, 0, 300, 100);
         lblTituloVentana.setForeground(Color.decode("#fcc139"));
 
 
@@ -163,9 +163,11 @@ public class VentanaAltaDisco extends JFrame {
         taCancionesDisco.setBorder(BorderFactory.createLineBorder(Color.decode("#fcc139"), 3));
     }
 
+    /*
     public static void main(String[] args) {
         VentanaAltaDisco gui = new VentanaAltaDisco();
         gui.setVisible(true);
         gui.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
+     */
 }
