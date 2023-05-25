@@ -29,7 +29,7 @@ public class VentanaAltaDisco extends JFrame {
         super.setDefaultCloseOperation(HIDE_ON_CLOSE);
         super.setResizable(false);
         panel.setBackground(Color.decode("#1f4489"));
-        super.setBounds(300, 250, 470, 550);
+        super.setBounds((Constantes.ANCHO_PANTALLA / 2) - 235, (Constantes.ALTO_PANTALLA / 2) - 225, 470, 550);
 
         crearLabel();
         crearInput();
