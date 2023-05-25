@@ -11,7 +11,6 @@ public class VentanaListar extends JFrame {
         JPanel panel = new JPanel();
         super.setContentPane(panel);
         super.setLayout(null);
-        super.setVisible(true);
         super.setResizable(false);
         super.setDefaultCloseOperation(HIDE_ON_CLOSE);
         panel.setBackground(Color.decode("#1f4489"));
@@ -23,10 +22,5 @@ public class VentanaListar extends JFrame {
         lblTitulo.setBounds(120, 0, 300, 100);
         lblTitulo.setForeground(Color.decode("#fcc139"));
     }
-
-    public static void main(String[] args) {
-        new VentanaListar();
-    }
-
 }
 
