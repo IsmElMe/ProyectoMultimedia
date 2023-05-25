@@ -151,16 +151,20 @@ public class VentanaDevolver extends JFrame {
                         if(listaMultimediaSocio.getSelectedItem().equals(multimedia.getTitulo())){
                             int precio = multimedia.getPrecio();
                             if (multimedia instanceof Pelicula) {
-                                if (multimedia.getAnio() < 2012)
+                                JOptionPane.showMessageDialog(null, "true");
+                                if (multimedia.getAnio() < 2012) {
                                     precio -= 1;
+                                }
                                 else if (multimedia.getAnio() == LocalDate.now().getYear()) {
                                     precio += 1;
                                 }
                             }
                             else if (multimedia instanceof Disco) {
+                                JOptionPane.showMessageDialog(null, "true");
                                 if (((Disco) multimedia).getDuracion() < 30)
                                     precio -= 1;
                             } else if (multimedia instanceof Videojuego){
+                                JOptionPane.showMessageDialog(null, "true");
                                 if (multimedia.getAnio() < 2010)
                                     precio -= 1;
                                 else if (multimedia.getAnio() == LocalDate.now().getYear()) {
@@ -168,6 +172,7 @@ public class VentanaDevolver extends JFrame {
                                 }
                             }
                             if (Integer.parseInt(jsDiasAlquiler.getValue().toString()) > Constantes.MAX_DIAS_ALQUILER){
+                                JOptionPane.showMessageDialog(null, precio);
                                 precio += (Integer.parseInt(jsDiasAlquiler.getValue().toString()) - Constantes.MAX_DIAS_ALQUILER) * 2;
                             }
                             lblPrecio.setText(precio+"€");
