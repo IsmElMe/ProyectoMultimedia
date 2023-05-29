@@ -52,11 +52,6 @@ public class VentanaAltaCancion extends JFrame {
         lblDuracion.setBounds(50, 135, 100, 50);
         lblDuracion.setForeground(Color.decode(Constantes.COLOR_AMARILLO));
 
-        JLabel lblAnyo = new JLabel("AÑO");
-        panel.add(lblAnyo);
-        lblAnyo.setFont(Constantes.FUENTE_LABEL);
-        lblAnyo.setBounds(250, 135, 100, 50);
-        lblAnyo.setForeground(Color.decode(Constantes.COLOR_AMARILLO));
     }
 
     private void crearInput(JPanel panel, JButton btnGuardar) {
@@ -70,29 +65,14 @@ public class VentanaAltaCancion extends JFrame {
         spnDuracion.setBounds(155, 150, 75, 20);
         spnDuracion.setModel(new SpinnerNumberModel(0.01, 0.01, 60.00, 0.01));
 
-        JComboBox<Integer> cmbAnyo = new JComboBox<>();
-        panel.add(cmbAnyo);
-        cmbAnyo.setEditable(true);
-        cmbAnyo.setBounds(305, 150, 75, 20);
-
-        for (int i = 1940; i <= LocalDate.now().getYear(); i++)
-            cmbAnyo.addItem(i);
-
-        cmbAnyo.setSelectedIndex(cmbAnyo.getItemCount() - 1);
-
         btnGuardar.addActionListener(e -> {
             String titulo = txtTitulo.getText();
             Double duracion = Double.parseDouble(spnDuracion.getValue().toString());
-            int anyo = Integer.parseInt(Objects.requireNonNull(cmbAnyo.getSelectedItem().toString()));
 
             titulo = titulo.trim();
 
             if (titulo.equals(""))
                 JOptionPane.showMessageDialog(null, "EL CAMPO TÍTULO ESTA VACÍO");
-            else if (anyo < 1940)
-                JOptionPane.showMessageDialog(null, "NO SE PUEDEN INTRODUCIR MULTIMEDIAS ANTERIORES A 1940");
-            else if (anyo > LocalDate.now().getYear())
-                JOptionPane.showMessageDialog(null, "EL AÑO DEL MULTIMEDIA ES MAYOR AL AÑO ACTUAL");
             else
                 Videoclub.getCanciones().add(new Cancion(titulo, duracion));
         });
