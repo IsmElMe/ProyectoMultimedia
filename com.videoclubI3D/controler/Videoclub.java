@@ -20,13 +20,15 @@ public class Videoclub {
 
 	private static ArrayList<Socio> socios = new ArrayList<>();
     private static ArrayList<Multimedia> multimedias = new ArrayList<>();
-
+	private static ArrayList<Cancion> canciones = new ArrayList<>();
 	public static ArrayList<Socio> getSocios() {
 		return socios;
 	}
-
 	public static ArrayList<Multimedia> getMultimedias() {
 		return multimedias;
+	}
+	public static ArrayList<Cancion> getCanciones(){
+		return canciones;
 	}
 
 	public static void main(String[] args) {

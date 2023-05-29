@@ -15,6 +15,10 @@ public class Disco extends Multimedia {
         super(titulo, autor, formato, anio);
         setCanciones(canciones);
         totalDuracion(canciones);
+
+        if (duracion < 30){
+            setPrecio(Constantes.PRECIO_DEFAULT - 1);
+        }
     }
 
     public Double getDuracion() {

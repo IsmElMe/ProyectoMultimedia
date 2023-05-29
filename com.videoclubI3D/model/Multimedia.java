@@ -4,6 +4,7 @@ import static model.Constantes.FORMATO_DEFECTO;
 
 public abstract class Multimedia {
 	private static int numMultimedias = 0;
+	private int idMultimedia;
 	private String titulo;
 	private String autor;
 	private Formato formato;
@@ -12,6 +13,7 @@ public abstract class Multimedia {
 	private int precio;
 
 	public Multimedia() {
+		idMultimedia = numMultimedias + 1;
 		titulo = Constantes.TITULO_DEFECTO;
 		autor = Constantes.AUTOR_DEFECTO;
 		formato = FORMATO_DEFECTO;
@@ -64,6 +66,10 @@ public abstract class Multimedia {
 
 	public static int getNumMultimedias() {
 		return numMultimedias;
+	}
+
+	public int getIdMultimedia() {
+		return idMultimedia;
 	}
 
 	public int getPrecio() {
