@@ -73,8 +73,10 @@ public class VentanaAltaCancion extends JFrame {
 
             if (titulo.equals(""))
                 JOptionPane.showMessageDialog(null, "EL CAMPO TÍTULO ESTA VACÍO");
-            else
+            else {
                 Videoclub.getCanciones().add(new Cancion(titulo, duracion));
+                JOptionPane.showMessageDialog(null, "CANCION REGISTRADA CORRECTAMENTE");
+            }
         });
     }
 }
