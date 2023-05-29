@@ -75,5 +75,10 @@ public class VentanaPrincipal extends JFrame {
             if (!Videoclub.ventanaDevolver.isVisible())
                 Videoclub.ventanaDevolver.setVisible(true);
         });
+
+        btnListar.addActionListener(evento -> {
+            if (!Videoclub.ventanaListar.isVisible())
+                Videoclub.ventanaListar.setVisible(true);
+        });
     }
 }

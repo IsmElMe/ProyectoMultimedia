@@ -21,7 +21,11 @@ public class Constantes {
 	public static final String COLOR_AMARILLO = "#FCC139";
 	public static final Formato FORMATO_DEFECTO = Formato.DVD;
 
-	static Font blockletter = loadFont("fonts/blockletter.ttf", 40);
+	private static final Font blockletter = loadFont("fonts/blockletter.ttf", 40);
+
+	public static final Font FUENTE_TITULO = blockletter;
+	public static final Font FUENTE_BOTON = new Font("Boton", Font.BOLD, 15);
+	public static final Font FUENTE_LABEL = new Font("Label", Font.BOLD, 16);
 
 	private static Font loadFont(String path, float size) {
 		try {
@@ -35,12 +39,6 @@ public class Constantes {
 			return null;
 		}
 	}
-	public static final Font FUENTE_TITULO = blockletter;
-	public static final Font FUENTE_BOTON = new Font("Boton", Font.BOLD, 15);
-	public static final Font FUENTE_LABEL = new Font("Label", Font.BOLD, 16);
-
-
-
 }
 
 
