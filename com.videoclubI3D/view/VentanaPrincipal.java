@@ -1,5 +1,6 @@
 package view;
 
+import controler.GestionBaseDatos;
 import controler.Videoclub;
 import model.Constantes;
 
@@ -10,7 +11,7 @@ public class VentanaPrincipal extends JFrame {
     private JPanel panel;
     private JLabel lblTitulo;
     private JButton btnAltas, btnAlquilarMultimedaSocio,
-            btnDevolverMultimedia, btnListar;
+            btnDevolverMultimedia, btnListar, btnGuardarDatos;
 
     public VentanaPrincipal() {
         super("BLOCKBUSTER - INICIO");
@@ -20,7 +21,7 @@ public class VentanaPrincipal extends JFrame {
         super.setResizable(false);
         super.setDefaultCloseOperation(EXIT_ON_CLOSE);
         panel.setBackground(Color.decode("#1f4489"));
-        super.setBounds((Constantes.ANCHO_PANTALLA / 2) - 250, (Constantes.ALTO_PANTALLA / 2) - 185, 500, 370);
+        super.setBounds((Constantes.ANCHO_PANTALLA / 2) - 250, (Constantes.ALTO_PANTALLA / 2) - 185, 500, 400);
 
         lblTitulo = new JLabel("BLOCKBUSTER");
         panel.add(lblTitulo);
@@ -56,6 +57,13 @@ public class VentanaPrincipal extends JFrame {
         btnListar.setForeground(Color.decode("#1f4489"));
         btnListar.setBackground(Color.decode("#fcc139"));
 
+        btnGuardarDatos = new JButton("GUARDAR DATOS");
+        panel.add(btnGuardarDatos);
+        btnGuardarDatos.setFont(Constantes.FUENTE_BOTON);
+        btnGuardarDatos.setBounds(80, 300, 350, 25);
+        btnGuardarDatos.setForeground(Color.decode("#1f4489"));
+        btnGuardarDatos.setBackground(Color.decode("#fcc139"));
+
         eventos();
         super.setVisible(true);
     }
@@ -79,6 +87,9 @@ public class VentanaPrincipal extends JFrame {
         btnListar.addActionListener(evento -> {
             if (!Videoclub.ventanaListar.isVisible())
                 Videoclub.ventanaListar.setVisible(true);
+        });
+        btnGuardarDatos.addActionListener(evento -> {
+            GestionBaseDatos.actualizarTablaPelicula();
         });
     }
 }
