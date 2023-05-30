@@ -90,6 +90,7 @@ public class VentanaPrincipal extends JFrame {
         });
         btnGuardarDatos.addActionListener(evento -> {
             GestionBaseDatos.actualizarTablaPelicula();
+            GestionBaseDatos.actualizarTablaVideojuego();
         });
     }
 }

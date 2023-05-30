@@ -2,6 +2,8 @@ package controler;
 
 import model.Multimedia;
 import model.Pelicula;
+import model.Plataforma;
+import model.Videojuego;
 
 import java.sql.*;
 import java.text.DateFormat;
@@ -47,6 +49,38 @@ public class GestionBaseDatos {
 
                     PreparedStatement ps = con.prepareStatement("insert into pelicula values ("+id_multimedia+", '"+titulo+"', '"+autor+"', '"+
                             formato+"', "+anio+", "+precio+", "+duracion+", '"+actorP+"', '"+actrizP+"');");
+
+                    ps.executeUpdate();
+                }
+            }
+            con.close();
+        } catch (Exception e2) {
+            e2.printStackTrace();
+        }
+
+    }
+
+    public static void actualizarTablaVideojuego() {
+        Connection con = conectarBaseDatos();
+        try {
+            Statement st = con.createStatement();
+            st.executeUpdate("delete from videojuego");
+            for (Multimedia multimedia : Videoclub.getMultimedias()) {
+                if (multimedia instanceof Videojuego) {
+                    int id_multimedia = multimedia.getIdMultimedia();
+                    String titulo = multimedia.getTitulo();
+                    String autor = multimedia.getAutor();
+                    String formato = multimedia.getFormato().toString();
+                    int anio = multimedia.getAnio();
+                    int precio = multimedia.getPrecio();
+                    String plataformas = "";
+                    for (Plataforma plataforma: ((Videojuego)multimedia).getPlataformas()){
+                        plataformas += plataforma.toString()+", ";
+                    }
+
+
+                    PreparedStatement ps = con.prepareStatement("insert into videojuego values ("+id_multimedia+", '"+titulo+"', '"+autor+"', '"+
+                            formato+"', "+anio+", "+precio+", '"+plataformas+"');");
 
                     ps.executeUpdate();
                 }
