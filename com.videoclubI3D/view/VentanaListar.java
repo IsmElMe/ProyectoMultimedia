@@ -21,6 +21,15 @@ public class VentanaListar extends JFrame {
         lblTitulo.setFont(Constantes.FUENTE_TITULO);
         lblTitulo.setBounds(120, 0, 300, 100);
         lblTitulo.setForeground(Color.decode("#fcc139"));
+
+        JButton btnAtras = new JButton("\uD83E\uDC80");
+        panel.add(btnAtras);
+        btnAtras.setFont(Constantes.FUENTE_BOTON);
+        btnAtras.setBounds(10, 10, 65, 30);
+        btnAtras.setFocusPainted(false);
+        btnAtras.setContentAreaFilled(false);
+        btnAtras.setForeground(Color.decode("#fcc139"));
+        btnAtras.setFont(Constantes.FUENTE_BOTON_ATRAS);
     }
 }
 

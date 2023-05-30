@@ -64,6 +64,15 @@ public class VentanaAltas extends JFrame{
         btnAltaCancion.setForeground(Color.decode("#1f4489"));
         btnAltaCancion.setBackground(Color.decode("#fcc139"));
 
+        JButton btnAtras = new JButton("\uD83E\uDC80");
+        panel.add(btnAtras);
+        btnAtras.setFont(Constantes.FUENTE_BOTON);
+        btnAtras.setBounds(10, 10, 65, 30);
+        btnAtras.setFocusPainted(false);
+        btnAtras.setContentAreaFilled(false);
+        btnAtras.setForeground(Color.decode("#fcc139"));
+        btnAtras.setFont(Constantes.FUENTE_BOTON_ATRAS);
+
         eventos();
     }
 

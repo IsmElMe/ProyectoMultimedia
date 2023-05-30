@@ -25,6 +25,8 @@ public class Constantes {
 
 	public static final Font FUENTE_TITULO = blockletter;
 	public static final Font FUENTE_BOTON = new Font("Boton", Font.BOLD, 15);
+
+	public static final Font FUENTE_BOTON_ATRAS = new Font("Atras", Font.BOLD, 25);
 	public static final Font FUENTE_LABEL = new Font("Label", Font.BOLD, 16);
 
 	private static Font loadFont(String path, float size) {

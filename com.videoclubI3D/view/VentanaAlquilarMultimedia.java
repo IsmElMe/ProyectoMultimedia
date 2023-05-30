@@ -33,6 +33,15 @@ public class VentanaAlquilarMultimedia extends JFrame {
         btnAlquilar.setBackground(Color.decode("#fcc139"));
         btnAlquilar.setBounds(160, 300, 120, 25);
 
+        JButton btnAtras = new JButton("\uD83E\uDC80");
+        panel.add(btnAtras);
+        btnAtras.setFont(Constantes.FUENTE_BOTON);
+        btnAtras.setBounds(10, 10, 65, 30);
+        btnAtras.setFocusPainted(false);
+        btnAtras.setContentAreaFilled(false);
+        btnAtras.setForeground(Color.decode("#fcc139"));
+        btnAtras.setFont(Constantes.FUENTE_BOTON_ATRAS);
+
         txtNif = new JTextField();
         panel.add(txtNif);
         txtNif.setBounds(80, 86, 150, 20);

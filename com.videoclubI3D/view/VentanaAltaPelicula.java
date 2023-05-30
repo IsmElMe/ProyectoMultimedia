@@ -81,6 +81,15 @@ public class VentanaAltaPelicula extends JFrame {
         btnGuardar.setBackground(Color.decode("#fcc139"));
         btnGuardar.setBounds(160, 390, 120, 25);
 
+        JButton btnAtras = new JButton("\uD83E\uDC80");
+        panel.add(btnAtras);
+        btnAtras.setFont(Constantes.FUENTE_BOTON);
+        btnAtras.setBounds(10, 10, 65, 30);
+        btnAtras.setFocusPainted(false);
+        btnAtras.setContentAreaFilled(false);
+        btnAtras.setForeground(Color.decode("#fcc139"));
+        btnAtras.setFont(Constantes.FUENTE_BOTON_ATRAS);
+
         crearPelicula();
     }
 

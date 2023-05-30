@@ -31,6 +31,15 @@ public class VentanaAltaCancion extends JFrame {
         btnGuardar.setBackground(Color.decode(Constantes.COLOR_AMARILLO));
         btnGuardar.setBounds((super.getWidth() / 2) - 75, super.getHeight() - 100, 150, 25);
         crearInput(panel,btnGuardar);
+
+        JButton btnAtras = new JButton("\uD83E\uDC80");
+        panel.add(btnAtras);
+        btnAtras.setFont(Constantes.FUENTE_BOTON);
+        btnAtras.setBounds(10, 10, 65, 30);
+        btnAtras.setFocusPainted(false);
+        btnAtras.setContentAreaFilled(false);
+        btnAtras.setForeground(Color.decode("#fcc139"));
+        btnAtras.setFont(Constantes.FUENTE_BOTON_ATRAS);
     }
 
     private void crearLabel(JPanel panel) {
