@@ -11,7 +11,7 @@ public class GestionBaseDatos {
     public static Connection conectarBaseDatos() {
         Connection con = null;
         String url = "jdbc:postgresql://localhost:5432/";
-        String pass = ""; //Cada uno usa su contraseña.
+        String pass = "2711ir783"; //Cada uno usa su contraseña.
         String bd = "Proyecto_Multimedia_BD"; //Hay que poner este nombre a la base de datos para que sea igual en todos.
         String driver = "org.postgresql.Driver";
         String user = "postgres"; //Este es el usuario por defecto.
@@ -32,7 +32,7 @@ public class GestionBaseDatos {
         Connection con = conectarBaseDatos();
         try {
             Statement st = con.createStatement();
-            st.executeQuery("delete from pelicula");
+            st.executeUpdate("delete from pelicula");
             for (Multimedia multimedia : Videoclub.getMultimedias()) {
                 if (multimedia instanceof Pelicula) {
                     int id_multimedia = multimedia.getIdMultimedia();
@@ -45,8 +45,10 @@ public class GestionBaseDatos {
                     String actorP = ((Pelicula) multimedia).getActorPrincipal();
                     String actrizP = ((Pelicula) multimedia).getActrizPrincipal();
 
-                    st.executeQuery("insert into pelicula values ("+id_multimedia+", '"+titulo+"', '"+autor+"', '"+
+                    PreparedStatement ps = con.prepareStatement("insert into pelicula values ("+id_multimedia+", '"+titulo+"', '"+autor+"', '"+
                             formato+"', "+anio+", "+precio+", "+duracion+", '"+actorP+"', '"+actrizP+"');");
+
+                    ps.executeUpdate();
                 }
             }
             con.close();
