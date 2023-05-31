@@ -5,6 +5,7 @@ import model.*;
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class GestionBaseDatos {
@@ -164,6 +165,29 @@ public class GestionBaseDatos {
             con.close();
         } catch (Exception e2) {
             e2.printStackTrace();
+        }
+
+    }
+
+    public static void actualizarTablaSocio() {
+        Connection con = conectarBaseDatos();
+        try {
+            Statement st = con.createStatement();
+            st.executeUpdate("delete from socio");
+            for (Socio socio : Videoclub.getSocios()) {
+                String nif = socio.getNIF();
+                String nombre = socio.getNombre();
+                String poblacion = socio.getPoblacion();
+                LocalDate fechaNac = socio.getFechaNacimiento();
+
+                PreparedStatement ps = con.prepareStatement("insert into socio values ('"+
+                        nif+"', '"+nombre+"', '"+poblacion+"', '"+fechaNac+"');");
+
+                ps.executeUpdate();
+            }
+            con.close();
+        } catch (Exception e3) {
+            e3.printStackTrace();
         }
 
     }

@@ -93,6 +93,7 @@ public class VentanaPrincipal extends JFrame {
             GestionBaseDatos.actualizarTablaVideojuego();
             GestionBaseDatos.actualizarTablaDisco();
             GestionBaseDatos.actualizarTablaCancion();
+            GestionBaseDatos.actualizarTablaSocio();
         });
     }
 }
