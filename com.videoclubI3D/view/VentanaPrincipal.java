@@ -91,6 +91,8 @@ public class VentanaPrincipal extends JFrame {
         btnGuardarDatos.addActionListener(evento -> {
             GestionBaseDatos.actualizarTablaPelicula();
             GestionBaseDatos.actualizarTablaVideojuego();
+            GestionBaseDatos.actualizarTablaDisco();
+            GestionBaseDatos.actualizarTablaCancion();
         });
     }
 }

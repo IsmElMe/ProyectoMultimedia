@@ -5,6 +5,7 @@ import model.*;
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 public class GestionBaseDatos {
     public static Connection conectarBaseDatos() {
@@ -110,6 +111,55 @@ public class GestionBaseDatos {
 
                     ps.executeUpdate();
                 }
+            }
+            con.close();
+        } catch (Exception e2) {
+            e2.printStackTrace();
+        }
+
+    }
+
+    public static void actualizarTablaCancion() {
+        Connection con = conectarBaseDatos();
+        try {
+            Statement st = con.createStatement();
+            st.executeUpdate("delete from cancion");
+            for (Cancion cancion : Videoclub.getCanciones()) {
+                    String nombre = cancion.getNombre();
+                    double duracion = cancion.getDuracion();
+
+
+                    PreparedStatement ps = con.prepareStatement("insert into cancion values ('"+
+                            nombre+"', "+duracion+");");
+
+                    ps.executeUpdate();
+            }
+            con.close();
+        } catch (Exception e2) {
+            e2.printStackTrace();
+        }
+
+    }
+
+    public static void actualizarTablaCancionesDisco() {
+        Connection con = conectarBaseDatos();
+        try {
+            Statement st = con.createStatement();
+            st.executeUpdate("delete from canciones_disco");
+            for (Multimedia multimedia : Videoclub.getMultimedias()) {
+                if (multimedia instanceof Disco) {
+                    int idDisco = multimedia.getIdMultimedia();
+                    ArrayList<Cancion> canciones = ((Disco) multimedia).getCanciones();
+
+                    for (Cancion cancion : canciones){
+                        String nombre_cancion = cancion.getNombre();
+                        PreparedStatement ps = con.prepareStatement("insert into canciones_disco values ("+idDisco+
+                                ", '"+nombre_cancion+"';");
+                        ps.executeUpdate();
+                    }
+                }
+
+
             }
             con.close();
         } catch (Exception e2) {
