@@ -1,9 +1,6 @@
 package controler;
 
-import model.Multimedia;
-import model.Pelicula;
-import model.Plataforma;
-import model.Videojuego;
+import model.*;
 
 import java.sql.*;
 import java.text.DateFormat;
@@ -81,6 +78,35 @@ public class GestionBaseDatos {
 
                     PreparedStatement ps = con.prepareStatement("insert into videojuego values ("+id_multimedia+", '"+titulo+"', '"+autor+"', '"+
                             formato+"', "+anio+", "+precio+", '"+plataformas+"');");
+
+                    ps.executeUpdate();
+                }
+            }
+            con.close();
+        } catch (Exception e2) {
+            e2.printStackTrace();
+        }
+
+    }
+
+    public static void actualizarTablaDisco() {
+        Connection con = conectarBaseDatos();
+        try {
+            Statement st = con.createStatement();
+            st.executeUpdate("delete from disco");
+            for (Multimedia multimedia : Videoclub.getMultimedias()) {
+                if (multimedia instanceof Disco) {
+                    int id_multimedia = multimedia.getIdMultimedia();
+                    String titulo = multimedia.getTitulo();
+                    String autor = multimedia.getAutor();
+                    String formato = multimedia.getFormato().toString();
+                    int anio = multimedia.getAnio();
+                    int precio = multimedia.getPrecio();
+                    double duracion = ((Disco) multimedia).getDuracion();
+
+
+                    PreparedStatement ps = con.prepareStatement("insert into disco values ("+id_multimedia+", '"+titulo+"', '"+autor+"', '"+
+                            formato+"', "+anio+", "+precio+", "+duracion+");");
 
                     ps.executeUpdate();
                 }
