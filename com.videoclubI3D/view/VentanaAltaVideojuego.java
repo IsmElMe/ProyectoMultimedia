@@ -187,9 +187,15 @@ public class VentanaAltaVideojuego extends JFrame {
         btnGuardar.addActionListener(evento -> {
             String titulo = txtTitulo.getText();
             String autor = txtAutor.getText();
-            int anyo = Integer.parseInt(Objects.requireNonNull(cmbAnyo.getSelectedItem()).toString());
+            int anyo = 0;
             Formato formato;
             Plataforma[] plataformas = new Plataforma[Constantes.MAX_PLATAFORMAS];
+
+            try {
+                anyo = Integer.parseInt(Objects.requireNonNull(cmbAnyo.getSelectedItem()).toString());
+            } catch (NumberFormatException error) {
+                JOptionPane.showMessageDialog(null, "EL AÑO NO ES VÁLIDO");
+            }
 
             titulo = titulo.trim();
             autor = autor.trim();

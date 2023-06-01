@@ -128,14 +128,14 @@ public class VentanaAlquilarMultimedia extends JFrame {
                 for (Socio socio : socios)
                     if (socio.getNIF().equals(nifSocio)) {
                         socio.alquilarMultimedia(multimediaSeleccionada);
-                        JOptionPane.showMessageDialog(null, "Se ha alquilado correctamente el multimedia al socio " + nifSocio);
+                        JOptionPane.showMessageDialog(null, "SE HA ALQUILADO CORRECTAMENTE EL MULTIMEDIA AL SOCIO " + nifSocio);
                         socioEncontrado = true;
                     }
 
                 if (!socioEncontrado)
-                    JOptionPane.showMessageDialog(null, "El socio no existe");
+                    JOptionPane.showMessageDialog(null, "EL SOCIO NO EXISTE");
             } else
-                JOptionPane.showMessageDialog(null, "Selecciona un multimedia para alquilar");
+                JOptionPane.showMessageDialog(null, "SELECCIONA UN MULTIMEDIA PARA ALQUILAR");
         });
 
         rdbPelicula.addActionListener(evento -> {
