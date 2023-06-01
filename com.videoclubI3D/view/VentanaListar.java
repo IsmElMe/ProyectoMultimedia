@@ -1,5 +1,6 @@
 package view;
 
+import controler.Videoclub;
 import model.Constantes;
 
 import javax.swing.*;
@@ -30,6 +31,11 @@ public class VentanaListar extends JFrame {
         btnAtras.setContentAreaFilled(false);
         btnAtras.setForeground(Color.decode("#fcc139"));
         btnAtras.setFont(Constantes.FUENTE_BOTON_ATRAS);
+
+        btnAtras.addActionListener(evento -> {
+            Videoclub.cerrarVentanas();
+            Videoclub.ventanaPrincipal.setVisible(true);
+        });
     }
 }
 

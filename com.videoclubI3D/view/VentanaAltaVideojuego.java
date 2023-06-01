@@ -49,6 +49,10 @@ public class VentanaAltaVideojuego extends JFrame {
         btnAtras.setContentAreaFilled(false);
         btnAtras.setForeground(Color.decode("#fcc139"));
         btnAtras.setFont(Constantes.FUENTE_BOTON_ATRAS);
+        btnAtras.addActionListener(evento -> {
+            Videoclub.cerrarVentanas();
+            Videoclub.ventanaAltas.setVisible(true);
+        });
 
         crearVideojuego();
     }
@@ -112,7 +116,7 @@ public class VentanaAltaVideojuego extends JFrame {
     }
 
     private void crearRadioButton() {
-        Rectangle rectangleRadioButton = new Rectangle(50, 230, 150,20);
+        Rectangle rectangleRadioButton = new Rectangle(50, 230, 150, 20);
         grupoRadioButton = new ButtonGroup();
         rdbCd = new JRadioButton("CD");
         rdbDvd = new JRadioButton("DVD");
@@ -151,7 +155,7 @@ public class VentanaAltaVideojuego extends JFrame {
     }
 
     private void crearCheckBox() {
-        Rectangle rectanglePlataforma = new Rectangle(200, 230, 100,20);
+        Rectangle rectanglePlataforma = new Rectangle(200, 230, 100, 20);
         chkPc = new JCheckBox("PC");
         chkSwitch = new JCheckBox("SWITCH");
         chkPs5 = new JCheckBox("PS5");
