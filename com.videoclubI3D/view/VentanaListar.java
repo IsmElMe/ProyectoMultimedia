@@ -8,7 +8,7 @@ import java.awt.*;
 
 public class VentanaListar extends JFrame {
     public VentanaListar() {
-        super("BLOCKBUSTER - ALTAS");
+        super("BLOCKBUSTER - LISTAR");
         JPanel panel = new JPanel();
         super.setContentPane(panel);
         super.setLayout(null);
