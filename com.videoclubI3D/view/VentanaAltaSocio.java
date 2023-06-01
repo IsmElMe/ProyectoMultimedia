@@ -81,6 +81,15 @@ public class VentanaAltaSocio extends JFrame {
         btnGuardar.setBackground(Color.decode("#fcc139"));
         btnGuardar.setBounds(160, 240, 120, 25);
 
+        JButton btnAtras = new JButton("\uD83E\uDC80");
+        panel.add(btnAtras);
+        btnAtras.setFont(Constantes.FUENTE_BOTON);
+        btnAtras.setBounds(10, 10, 65, 30);
+        btnAtras.setFocusPainted(false);
+        btnAtras.setContentAreaFilled(false);
+        btnAtras.setForeground(Color.decode("#fcc139"));
+        btnAtras.setFont(Constantes.FUENTE_BOTON_ATRAS);
+
         crearSocio();
     }
 
@@ -109,13 +118,13 @@ public class VentanaAltaSocio extends JFrame {
             edad = Period.between(fechaNacimiento, LocalDate.now());
 
             if (!Socio.comprobarNif(nif))
-                JOptionPane.showMessageDialog(null, "El NIF no es válido");
+                JOptionPane.showMessageDialog(null, "EL NIF NO ES VÁLIDO");
             else if (nombre.equals(""))
-                JOptionPane.showMessageDialog(null, "El nombre está vacío");
+                JOptionPane.showMessageDialog(null, "EL NOMBRE ESTÁ VACÍO");
             else if (edad.getYears() < 18)
-                JOptionPane.showMessageDialog(null, "Solo pueden darse de alta mayores de edad");
+                JOptionPane.showMessageDialog(null, "SOLO PUEDEN DARSE DE ALTA MAYORES DE EDAD");
             else if (poblacion.equals(""))
-                JOptionPane.showMessageDialog(null, "La población está vacía");
+                JOptionPane.showMessageDialog(null, "lA POBLACIÓN ESTÁ VACÍA");
             else
                 Videoclub.guardarSocio(new Socio(fechaNacimiento, nombre, poblacion, nif));
         });

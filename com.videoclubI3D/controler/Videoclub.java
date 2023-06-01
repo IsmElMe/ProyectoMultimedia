@@ -8,26 +8,29 @@ import java.util.*;
 import javax.swing.*;
 
 public class Videoclub {
+	private static ArrayList<Socio> socios = new ArrayList<>();
+	private static ArrayList<Multimedia> multimedias = new ArrayList<>();
+	private static ArrayList<Cancion> canciones = new ArrayList<>();
+
 	public static final VentanaAltas ventanaAltas = new VentanaAltas();
-    public static final VentanaAltaSocio ventanaAltaSocio = new VentanaAltaSocio();
+	public static final VentanaAltaSocio ventanaAltaSocio = new VentanaAltaSocio();
 	public static final VentanaAltaPelicula ventanaAltaPelicula = new VentanaAltaPelicula();
 	public static final VentanaAltaVideojuego ventanaAltaVideojuego = new VentanaAltaVideojuego();
 	public static final VentanaAltaCancion ventanaAltaCancion = new VentanaAltaCancion();
-    public static final VentanaAltaDisco ventanaAltaDisco = new VentanaAltaDisco();
-    public static final VentanaAlquilarMultimedia ventanaAlquilarMultimedia = new VentanaAlquilarMultimedia();
-    public static final VentanaDevolver ventanaDevolver = new VentanaDevolver();
-    public static final VentanaListar ventanaListar = new VentanaListar();
+	public static final VentanaAltaDisco ventanaAltaDisco = new VentanaAltaDisco();
+	public static final VentanaAlquilarMultimedia ventanaAlquilarMultimedia = new VentanaAlquilarMultimedia();
+	public static final VentanaDevolver ventanaDevolver = new VentanaDevolver();
+	public static final VentanaListar ventanaListar = new VentanaListar();
 
-	private static ArrayList<Socio> socios = new ArrayList<>();
-    private static ArrayList<Multimedia> multimedias = new ArrayList<>();
-	private static ArrayList<Cancion> canciones = new ArrayList<>();
 	public static ArrayList<Socio> getSocios() {
 		return socios;
 	}
+
 	public static ArrayList<Multimedia> getMultimedias() {
 		return multimedias;
 	}
-	public static ArrayList<Cancion> getCanciones(){
+
+	public static ArrayList<Cancion> getCanciones() {
 		return canciones;
 	}
 

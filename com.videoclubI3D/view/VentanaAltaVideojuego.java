@@ -41,6 +41,15 @@ public class VentanaAltaVideojuego extends JFrame {
         btnGuardar.setBackground(Color.decode("#fcc139"));
         btnGuardar.setBounds(160, 340, 120, 25);
 
+        JButton btnAtras = new JButton("\uD83E\uDC80");
+        panel.add(btnAtras);
+        btnAtras.setFont(Constantes.FUENTE_BOTON);
+        btnAtras.setBounds(10, 10, 65, 30);
+        btnAtras.setFocusPainted(false);
+        btnAtras.setContentAreaFilled(false);
+        btnAtras.setForeground(Color.decode("#fcc139"));
+        btnAtras.setFont(Constantes.FUENTE_BOTON_ATRAS);
+
         crearVideojuego();
     }
 
@@ -178,9 +187,15 @@ public class VentanaAltaVideojuego extends JFrame {
         btnGuardar.addActionListener(evento -> {
             String titulo = txtTitulo.getText();
             String autor = txtAutor.getText();
-            int anyo = Integer.parseInt(Objects.requireNonNull(cmbAnyo.getSelectedItem()).toString());
+            int anyo = 0;
             Formato formato;
             Plataforma[] plataformas = new Plataforma[Constantes.MAX_PLATAFORMAS];
+
+            try {
+                anyo = Integer.parseInt(Objects.requireNonNull(cmbAnyo.getSelectedItem()).toString());
+            } catch (NumberFormatException error) {
+                JOptionPane.showMessageDialog(null, "EL AÑO NO ES VÁLIDO");
+            }
 
             titulo = titulo.trim();
             autor = autor.trim();
