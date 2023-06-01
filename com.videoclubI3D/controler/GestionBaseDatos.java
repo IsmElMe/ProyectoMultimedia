@@ -191,4 +191,28 @@ public class GestionBaseDatos {
         }
 
     }
+
+    public static void actualizarTablaMultimediasSocio() {
+        Connection con = conectarBaseDatos();
+        try {
+            Statement st = con.createStatement();
+            st.executeUpdate("delete from multimedias_socio");
+            for (Socio socio : Videoclub.getSocios()) {
+                String nif = socio.getNIF();
+                ArrayList<Multimedia> multimediasAlquiladas = socio.getMultimediasAlquiladas();
+
+                for (Multimedia multimedia: multimediasAlquiladas) {
+                    String titulo = multimedia.getTitulo();
+
+                    PreparedStatement ps = con.prepareStatement("insert into multimedias_socio values ('" +
+                            nif + "', '"+titulo+"');");
+                    ps.executeUpdate();
+                }
+            }
+            con.close();
+        } catch (Exception e3) {
+            e3.printStackTrace();
+        }
+
+    }
 }
