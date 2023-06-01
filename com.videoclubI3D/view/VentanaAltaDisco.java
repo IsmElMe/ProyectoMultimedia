@@ -22,7 +22,7 @@ public class VentanaAltaDisco extends JFrame {
     private JRadioButton rbCd, rbDvd, rbBluray, rbArchivo;
     private JList<String> listCanciones;
     private JScrollPane scrollCanciones;
-    private JButton btnGuardar, btnAnyadir, btnEliminar, btnActualizarCanciones;
+    private JButton btnGuardar, btnAnyadir, btnEliminar, btnActualizarCanciones, btnAtras;
     ArrayList<Cancion> canciones;
 
     public VentanaAltaDisco() {
@@ -57,7 +57,7 @@ public class VentanaAltaDisco extends JFrame {
         btnEliminar.setBackground(Color.decode("#fcc139"));
         btnEliminar.setBounds(40, 370, 100, 25);
 
-        JButton btnAtras = new JButton("\uD83E\uDC80");
+        btnAtras = new JButton("\uD83E\uDC80");
         panel.add(btnAtras);
         btnAtras.setFont(Constantes.FUENTE_BOTON);
         btnAtras.setBounds(10, 10, 65, 30);
@@ -273,6 +273,11 @@ public class VentanaAltaDisco extends JFrame {
                 JOptionPane.showMessageDialog(null, "NO HAY NINGUNA CANCIÓN EN EL DISCO");
             else
                 Videoclub.guardarMultimedia(new Disco(titulo, autor, formato, anyo, canciones));
+        });
+
+        btnAtras.addActionListener(evento -> {
+            Videoclub.cerrarVentanas();
+            Videoclub.ventanaAltas.setVisible(true);
         });
     }
 }

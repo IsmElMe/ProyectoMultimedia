@@ -90,6 +90,11 @@ public class VentanaAltaSocio extends JFrame {
         btnAtras.setForeground(Color.decode("#fcc139"));
         btnAtras.setFont(Constantes.FUENTE_BOTON_ATRAS);
 
+        btnAtras.addActionListener(evento -> {
+            Videoclub.cerrarVentanas();
+            Videoclub.ventanaAltas.setVisible(true);
+        });
+
         crearSocio();
     }
 

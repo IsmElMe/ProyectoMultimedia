@@ -17,7 +17,7 @@ public class VentanaDevolver extends JFrame {
     private JTextField txtNIF;
     private JSpinner jsDiasAlquiler;
     private JComboBox<String> listaMultimediaSocio; //Lista de objetos que tiene que devolver el socio
-    private JButton btnAnalizar, btnCobrar;
+    private JButton btnAnalizar, btnCobrar, btnAtras;
 
     public VentanaDevolver() {
         super("BLOCKBUSTER - DEVOLUCIONES");
@@ -44,7 +44,7 @@ public class VentanaDevolver extends JFrame {
         btnCobrar.setForeground(Color.decode("#1f4489"));
         btnCobrar.setBackground(Color.decode("#fcc139"));
 
-        JButton btnAtras = new JButton("\uD83E\uDC80");
+        btnAtras = new JButton("\uD83E\uDC80");
         panel.add(btnAtras);
         btnAtras.setFont(Constantes.FUENTE_BOTON);
         btnAtras.setBounds(10, 10, 65, 30);
@@ -104,13 +104,13 @@ public class VentanaDevolver extends JFrame {
         txtNIF.setBounds(105, 90, 150, 20);
     }
 
-    private void eventos(){
+    private void eventos() {
 
         btnAnalizar.addActionListener(e -> {
             String nif = txtNIF.getText();
             Boolean encontrado = false;
-            for (Socio socio : Videoclub.getSocios()){
-                if (nif.equalsIgnoreCase(socio.getNIF())){
+            for (Socio socio : Videoclub.getSocios()) {
+                if (nif.equalsIgnoreCase(socio.getNIF())) {
                     JOptionPane.showMessageDialog(null, "El NIF introducido es correcto");
                     socio.getMultimediasAlquiladas().forEach(multimedia -> {
                         listaMultimediaSocio.addItem(multimedia.getTitulo());
@@ -119,7 +119,7 @@ public class VentanaDevolver extends JFrame {
                     break;
                 }
             }
-            if (!encontrado){
+            if (!encontrado) {
                 JOptionPane.showMessageDialog(null, "El NIF introducido no esta registrado en " +
                         "ningun socio");
             }
@@ -152,22 +152,22 @@ public class VentanaDevolver extends JFrame {
 
         btnCobrar.addActionListener(e -> {
             String nif = txtNIF.getText();
-            Boolean encontrado = false;
-            Multimedia multimediaParaBorrar;
-            for (Socio socio : Videoclub.getSocios()){
-                if (nif.equalsIgnoreCase(socio.getNIF())){
+            boolean encontrado = false;
+
+            for (Socio socio : Videoclub.getSocios()) {
+                if (nif.equalsIgnoreCase(socio.getNIF())) {
                     socio.getMultimediasAlquiladas().forEach(multimedia -> {
-                        if(listaMultimediaSocio.getSelectedItem().equals(multimedia.getTitulo())){
+                        if (listaMultimediaSocio.getSelectedItem().equals(multimedia.getTitulo())) {
                             int precio = multimedia.getPrecio();
-                            if (Integer.parseInt(jsDiasAlquiler.getValue().toString()) > Constantes.MAX_DIAS_ALQUILER){
+                            if (Integer.parseInt(jsDiasAlquiler.getValue().toString()) > Constantes.MAX_DIAS_ALQUILER) {
                                 JOptionPane.showMessageDialog(null, precio);
                                 precio += (Integer.parseInt(jsDiasAlquiler.getValue().toString()) - Constantes.MAX_DIAS_ALQUILER) * 2;
                             }
-                            lblPrecio.setText(precio+"€");
+                            lblPrecio.setText(precio + "€");
                         }
                     });
-                    for(Multimedia multimedia : socio.getMultimediasAlquiladas()){
-                        if (multimedia.getTitulo().equals(listaMultimediaSocio.getSelectedItem())){
+                    for (Multimedia multimedia : socio.getMultimediasAlquiladas()) {
+                        if (multimedia.getTitulo().equals(listaMultimediaSocio.getSelectedItem())) {
                             socio.getMultimediasAlquiladas().remove(multimedia);
                             listaMultimediaSocio.removeItem(listaMultimediaSocio.getSelectedItem());
                             break;
@@ -177,7 +177,7 @@ public class VentanaDevolver extends JFrame {
                     break;
                 }
             }
-            if (!encontrado){
+            if (!encontrado) {
                 JOptionPane.showMessageDialog(null, "El NIF introducido no esta registrado en " +
                         "ningun socio");
             }
@@ -210,6 +210,11 @@ public class VentanaDevolver extends JFrame {
 //            }catch (Exception e1){
 //                e1.printStackTrace();
 //            }
+        });
+
+        btnAtras.addActionListener(evento -> {
+            Videoclub.cerrarVentanas();
+            Videoclub.ventanaPrincipal.setVisible(true);
         });
     }
 }

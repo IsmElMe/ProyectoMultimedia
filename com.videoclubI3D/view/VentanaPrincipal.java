@@ -32,7 +32,7 @@ public class VentanaPrincipal extends JFrame {
         btnAltas = new JButton("ALTAS");
         panel.add(btnAltas);
         btnAltas.setFont(Constantes.FUENTE_BOTON);
-        btnAltas.setBounds( 80, 100, 350, 25);
+        btnAltas.setBounds(80, 100, 350, 25);
         btnAltas.setForeground(Color.decode("#1f4489"));
         btnAltas.setBackground(Color.decode("#fcc139"));
 
@@ -65,28 +65,27 @@ public class VentanaPrincipal extends JFrame {
         btnGuardarDatos.setBackground(Color.decode("#fcc139"));
 
         eventos();
-        super.setVisible(true);
     }
 
     private void eventos() {
         btnAltas.addActionListener(evento -> {
-            if (!Videoclub.ventanaAltas.isVisible())
-                Videoclub.ventanaAltas.setVisible(true);
+            Videoclub.cerrarVentanas();
+            Videoclub.ventanaAltas.setVisible(true);
         });
 
         btnAlquilarMultimedaSocio.addActionListener(evento -> {
-            if (!Videoclub.ventanaAlquilarMultimedia.isVisible())
-                Videoclub.ventanaAlquilarMultimedia.setVisible(true);
+            Videoclub.cerrarVentanas();
+            Videoclub.ventanaAlquilarMultimedia.setVisible(true);
         });
 
         btnDevolverMultimedia.addActionListener(evento -> {
-            if (!Videoclub.ventanaDevolver.isVisible())
-                Videoclub.ventanaDevolver.setVisible(true);
+            Videoclub.cerrarVentanas();
+            Videoclub.ventanaDevolver.setVisible(true);
         });
 
         btnListar.addActionListener(evento -> {
-            if (!Videoclub.ventanaListar.isVisible())
-                Videoclub.ventanaListar.setVisible(true);
+            Videoclub.cerrarVentanas();
+            Videoclub.ventanaListar.setVisible(true);
         });
         btnGuardarDatos.addActionListener(evento -> {
             GestionBaseDatos.deleteTablaCancionesDisco();

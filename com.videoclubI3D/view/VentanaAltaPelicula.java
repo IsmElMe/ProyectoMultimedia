@@ -37,7 +37,7 @@ public class VentanaAltaPelicula extends JFrame {
         crearLabel();
         crearInput();
 
-        Rectangle rectangleRadioButton = new Rectangle(100, 290, 140,20);
+        Rectangle rectangleRadioButton = new Rectangle(100, 290, 140, 20);
         grupoRadioButton = new ButtonGroup();
         rdbCd = new JRadioButton("CD");
         rdbDvd = new JRadioButton("DVD");
@@ -89,6 +89,11 @@ public class VentanaAltaPelicula extends JFrame {
         btnAtras.setContentAreaFilled(false);
         btnAtras.setForeground(Color.decode("#fcc139"));
         btnAtras.setFont(Constantes.FUENTE_BOTON_ATRAS);
+
+        btnAtras.addActionListener(evento -> {
+            Videoclub.cerrarVentanas();
+            Videoclub.ventanaAltas.setVisible(true);
+        });
 
         crearPelicula();
     }

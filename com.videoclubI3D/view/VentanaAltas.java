@@ -6,12 +6,12 @@ import model.Constantes;
 import javax.swing.*;
 import java.awt.*;
 
-public class VentanaAltas extends JFrame{
+public class VentanaAltas extends JFrame {
 
     private JPanel panel;
     private JLabel lblTitulo;
     private JButton btnAltaSocio, btnAltaPelicula,
-            btnAltaVideojuego, btnAltaDisco, btnAltaCancion;
+            btnAltaVideojuego, btnAltaDisco, btnAltaCancion, btnAtras;
 
     public VentanaAltas() {
         super("BLOCKBUSTER - ALTAS");
@@ -32,7 +32,7 @@ public class VentanaAltas extends JFrame{
         btnAltaSocio = new JButton("ALTA SOCIO");
         panel.add(btnAltaSocio);
         btnAltaSocio.setFont(Constantes.FUENTE_BOTON);
-        btnAltaSocio.setBounds( 80, 100, 350, 25);
+        btnAltaSocio.setBounds(80, 100, 350, 25);
         btnAltaSocio.setForeground(Color.decode("#1f4489"));
         btnAltaSocio.setBackground(Color.decode("#fcc139"));
 
@@ -64,7 +64,7 @@ public class VentanaAltas extends JFrame{
         btnAltaCancion.setForeground(Color.decode("#1f4489"));
         btnAltaCancion.setBackground(Color.decode("#fcc139"));
 
-        JButton btnAtras = new JButton("\uD83E\uDC80");
+        btnAtras = new JButton("\uD83E\uDC80");
         panel.add(btnAtras);
         btnAtras.setFont(Constantes.FUENTE_BOTON);
         btnAtras.setBounds(10, 10, 65, 30);
@@ -78,28 +78,33 @@ public class VentanaAltas extends JFrame{
 
     private void eventos() {
         btnAltaSocio.addActionListener(evento -> {
-            if (!Videoclub.ventanaAltaSocio.isVisible())
-                Videoclub.ventanaAltaSocio.setVisible(true);
+            Videoclub.cerrarVentanas();
+            Videoclub.ventanaAltaSocio.setVisible(true);
         });
 
         btnAltaPelicula.addActionListener(evento -> {
-            if (!Videoclub.ventanaAltaPelicula.isVisible())
-                Videoclub.ventanaAltaPelicula.setVisible(true);
+            Videoclub.cerrarVentanas();
+            Videoclub.ventanaAltaPelicula.setVisible(true);
         });
 
         btnAltaVideojuego.addActionListener(evento -> {
-            if (!Videoclub.ventanaAltaVideojuego.isVisible())
-                Videoclub.ventanaAltaVideojuego.setVisible(true);
-        });
-
-        btnAltaCancion.addActionListener(evento -> {
-            if (!Videoclub.ventanaAltaCancion.isVisible())
-                Videoclub.ventanaAltaCancion.setVisible(true);
+            Videoclub.cerrarVentanas();
+            Videoclub.ventanaAltaVideojuego.setVisible(true);
         });
 
         btnAltaDisco.addActionListener(evento -> {
-            if (!Videoclub.ventanaAltaDisco.isVisible())
-                Videoclub.ventanaAltaDisco.setVisible(true);
+            Videoclub.cerrarVentanas();
+            Videoclub.ventanaAltaDisco.setVisible(true);
+        });
+
+        btnAltaCancion.addActionListener(evento -> {
+            Videoclub.cerrarVentanas();
+            Videoclub.ventanaAltaCancion.setVisible(true);
+        });
+
+        btnAtras.addActionListener(evento -> {
+            Videoclub.cerrarVentanas();
+            Videoclub.ventanaPrincipal.setVisible(true);
         });
     }
 }

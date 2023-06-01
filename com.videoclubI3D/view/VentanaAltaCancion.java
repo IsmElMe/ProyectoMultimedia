@@ -30,7 +30,7 @@ public class VentanaAltaCancion extends JFrame {
         btnGuardar.setForeground(Color.decode(Constantes.COLOR_AZUL));
         btnGuardar.setBackground(Color.decode(Constantes.COLOR_AMARILLO));
         btnGuardar.setBounds((super.getWidth() / 2) - 75, super.getHeight() - 100, 150, 25);
-        crearInput(panel,btnGuardar);
+        crearInput(panel, btnGuardar);
 
         JButton btnAtras = new JButton("\uD83E\uDC80");
         panel.add(btnAtras);
@@ -40,6 +40,11 @@ public class VentanaAltaCancion extends JFrame {
         btnAtras.setContentAreaFilled(false);
         btnAtras.setForeground(Color.decode("#fcc139"));
         btnAtras.setFont(Constantes.FUENTE_BOTON_ATRAS);
+
+        btnAtras.addActionListener(evento -> {
+            Videoclub.cerrarVentanas();
+            Videoclub.ventanaAltas.setVisible(true);
+        });
     }
 
     private void crearLabel(JPanel panel) {
