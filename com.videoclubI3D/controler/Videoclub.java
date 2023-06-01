@@ -12,6 +12,7 @@ public class Videoclub {
 	private static ArrayList<Multimedia> multimedias = new ArrayList<>();
 	private static ArrayList<Cancion> canciones = new ArrayList<>();
 
+	public static final VentanaPrincipal ventanaPrincipal = new VentanaPrincipal();
 	public static final VentanaAltas ventanaAltas = new VentanaAltas();
 	public static final VentanaAltaSocio ventanaAltaSocio = new VentanaAltaSocio();
 	public static final VentanaAltaPelicula ventanaAltaPelicula = new VentanaAltaPelicula();
@@ -35,7 +36,7 @@ public class Videoclub {
 	}
 
 	public static void main(String[] args) {
-		new VentanaPrincipal();
+		ventanaPrincipal.setVisible(true);
 	}
 
 	public static void guardarSocio(Socio socio) {
@@ -47,6 +48,19 @@ public class Videoclub {
         multimedias.add(multimedia);
         JOptionPane.showMessageDialog(null, "Se ha guardado el multimedia correctamente");
     }
+
+	public static void cerrarVentanas() {
+		ventanaPrincipal.setVisible(false);
+		ventanaAltas.setVisible(false);
+		ventanaAltaSocio.setVisible(false);
+		ventanaAltaPelicula.setVisible(false);
+		ventanaAltaVideojuego.setVisible(false);
+		ventanaAltaDisco.setVisible(false);
+		ventanaAltaCancion.setVisible(false);
+		ventanaAlquilarMultimedia.setVisible(false);
+		ventanaDevolver.setVisible(false);
+		ventanaListar.setVisible(false);
+	}
 
 	public static void altas(Scanner sc, ArrayList<Socio> socios, ArrayList<Multimedia> multimedias) {
 		int opcionAltas;

@@ -33,6 +33,14 @@ public class VentanaAlquilarMultimedia extends JFrame {
         btnAlquilar.setBackground(Color.decode("#fcc139"));
         btnAlquilar.setBounds(160, 300, 120, 25);
 
+        txtNif = new JTextField();
+        panel.add(txtNif);
+        txtNif.setBounds(80, 86, 150, 20);
+
+        cmbMultimedia = new JComboBox<>();
+        panel.add(cmbMultimedia);
+        cmbMultimedia.setBounds(120, 250, 200, 20);
+
         JButton btnAtras = new JButton("\uD83E\uDC80");
         panel.add(btnAtras);
         btnAtras.setFont(Constantes.FUENTE_BOTON);
@@ -42,13 +50,10 @@ public class VentanaAlquilarMultimedia extends JFrame {
         btnAtras.setForeground(Color.decode("#fcc139"));
         btnAtras.setFont(Constantes.FUENTE_BOTON_ATRAS);
 
-        txtNif = new JTextField();
-        panel.add(txtNif);
-        txtNif.setBounds(80, 86, 150, 20);
-
-        cmbMultimedia = new JComboBox<>();
-        panel.add(cmbMultimedia);
-        cmbMultimedia.setBounds(120, 250, 200, 20);
+        btnAtras.addActionListener(evento -> {
+            Videoclub.cerrarVentanas();
+            Videoclub.ventanaPrincipal.setVisible(true);
+        });
 
         alquilarMultimedia();
     }
