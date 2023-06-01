@@ -74,7 +74,9 @@ public class GestionBaseDatos {
                     int precio = multimedia.getPrecio();
                     String plataformas = "";
                     for (Plataforma plataforma: ((Videojuego)multimedia).getPlataformas()){
-                        plataformas += plataforma.toString()+", ";
+                        if (plataforma != null) {
+                            plataformas += plataforma.toString() + ", ";
+                        }
                     }
 
 
@@ -94,8 +96,6 @@ public class GestionBaseDatos {
     public static void actualizarTablaDisco() {
         Connection con = conectarBaseDatos();
         try {
-            Statement st = con.createStatement();
-            st.executeUpdate("delete from disco");
             for (Multimedia multimedia : Videoclub.getMultimedias()) {
                 if (multimedia instanceof Disco) {
                     int id_multimedia = multimedia.getIdMultimedia();
@@ -123,8 +123,6 @@ public class GestionBaseDatos {
     public static void actualizarTablaCancion() {
         Connection con = conectarBaseDatos();
         try {
-            Statement st = con.createStatement();
-            st.executeUpdate("delete from cancion");
             for (Cancion cancion : Videoclub.getCanciones()) {
                     String nombre = cancion.getNombre();
                     double duracion = cancion.getDuracion();
@@ -145,8 +143,6 @@ public class GestionBaseDatos {
     public static void actualizarTablaCancionesDisco() {
         Connection con = conectarBaseDatos();
         try {
-            Statement st = con.createStatement();
-            st.executeUpdate("delete from canciones_disco");
             for (Multimedia multimedia : Videoclub.getMultimedias()) {
                 if (multimedia instanceof Disco) {
                     int idDisco = multimedia.getIdMultimedia();
@@ -172,8 +168,6 @@ public class GestionBaseDatos {
     public static void actualizarTablaSocio() {
         Connection con = conectarBaseDatos();
         try {
-            Statement st = con.createStatement();
-            st.executeUpdate("delete from socio");
             for (Socio socio : Videoclub.getSocios()) {
                 String nif = socio.getNIF();
                 String nombre = socio.getNombre();
@@ -191,12 +185,64 @@ public class GestionBaseDatos {
         }
 
     }
+    public static void deleteTablaCancionesDisco(){
+        Connection con = conectarBaseDatos();
+        try {
+            Statement st = con.createStatement();
+            st.executeUpdate("delete from canciones_disco");
+            con.close();
+        }catch (Exception e3) {
+            e3.printStackTrace();
+        }
+    }
 
-    public static void actualizarTablaMultimediasSocio() {
+    public static void deleteTablaCancion(){
+        Connection con = conectarBaseDatos();
+        try {
+            Statement st = con.createStatement();
+            st.executeUpdate("delete from cancion");
+            con.close();
+        }catch (Exception e3) {
+            e3.printStackTrace();
+        }
+    }
+
+    public static void deleteTablaDisco(){
+        Connection con = conectarBaseDatos();
+        try {
+            Statement st = con.createStatement();
+            st.executeUpdate("delete from disco");
+            con.close();
+        }catch (Exception e3) {
+            e3.printStackTrace();
+        }
+    }
+
+    public static void deleteTablaSocio(){
+        Connection con = conectarBaseDatos();
+        try {
+            Statement st = con.createStatement();
+            st.executeUpdate("delete from socio");
+            con.close();
+        }catch (Exception e3) {
+            e3.printStackTrace();
+        }
+    }
+
+    public static void deleteTablaMultimediasSocio(){
         Connection con = conectarBaseDatos();
         try {
             Statement st = con.createStatement();
             st.executeUpdate("delete from multimedias_socio");
+            con.close();
+        }catch (Exception e3) {
+            e3.printStackTrace();
+        }
+    }
+
+    public static void actualizarTablaMultimediasSocio() {
+        Connection con = conectarBaseDatos();
+        try {
             for (Socio socio : Videoclub.getSocios()) {
                 String nif = socio.getNIF();
                 ArrayList<Multimedia> multimediasAlquiladas = socio.getMultimediasAlquiladas();
