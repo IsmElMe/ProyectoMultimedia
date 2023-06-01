@@ -46,8 +46,8 @@ public class GestionBaseDatos {
                     String actorP = ((Pelicula) multimedia).getActorPrincipal();
                     String actrizP = ((Pelicula) multimedia).getActrizPrincipal();
 
-                    PreparedStatement ps = con.prepareStatement("insert into pelicula values ("+id_multimedia+", '"+titulo+"', '"+autor+"', '"+
-                            formato+"', "+anio+", "+precio+", "+duracion+", '"+actorP+"', '"+actrizP+"');");
+                    PreparedStatement ps = con.prepareStatement("insert into pelicula values (" + id_multimedia + ", '" + titulo + "', '" + autor + "', '" +
+                            formato + "', " + anio + ", " + precio + ", " + duracion + ", '" + actorP + "', '" + actrizP + "');");
 
                     ps.executeUpdate();
                 }
@@ -73,15 +73,15 @@ public class GestionBaseDatos {
                     int anio = multimedia.getAnio();
                     int precio = multimedia.getPrecio();
                     String plataformas = "";
-                    for (Plataforma plataforma: ((Videojuego)multimedia).getPlataformas()){
+                    for (Plataforma plataforma : ((Videojuego) multimedia).getPlataformas()) {
                         if (plataforma != null) {
                             plataformas += plataforma.toString() + ", ";
                         }
                     }
 
 
-                    PreparedStatement ps = con.prepareStatement("insert into videojuego values ("+id_multimedia+", '"+titulo+"', '"+autor+"', '"+
-                            formato+"', "+anio+", "+precio+", '"+plataformas+"');");
+                    PreparedStatement ps = con.prepareStatement("insert into videojuego values (" + id_multimedia + ", '" + titulo + "', '" + autor + "', '" +
+                            formato + "', " + anio + ", " + precio + ", '" + plataformas + "');");
 
                     ps.executeUpdate();
                 }
@@ -107,8 +107,8 @@ public class GestionBaseDatos {
                     double duracion = ((Disco) multimedia).getDuracion();
 
 
-                    PreparedStatement ps = con.prepareStatement("insert into disco values ("+id_multimedia+", '"+titulo+"', '"+autor+"', '"+
-                            formato+"', "+anio+", "+precio+", "+duracion+");");
+                    PreparedStatement ps = con.prepareStatement("insert into disco values (" + id_multimedia + ", '" + titulo + "', '" + autor + "', '" +
+                            formato + "', " + anio + ", " + precio + ", " + duracion + ");");
 
                     ps.executeUpdate();
                 }
@@ -124,14 +124,14 @@ public class GestionBaseDatos {
         Connection con = conectarBaseDatos();
         try {
             for (Cancion cancion : Videoclub.getCanciones()) {
-                    String nombre = cancion.getNombre();
-                    double duracion = cancion.getDuracion();
+                String nombre = cancion.getNombre();
+                double duracion = cancion.getDuracion();
 
 
-                    PreparedStatement ps = con.prepareStatement("insert into cancion values ('"+
-                            nombre+"', "+duracion+");");
+                PreparedStatement ps = con.prepareStatement("insert into cancion values ('" +
+                        nombre + "', " + duracion + ");");
 
-                    ps.executeUpdate();
+                ps.executeUpdate();
             }
             con.close();
         } catch (Exception e2) {
@@ -148,15 +148,13 @@ public class GestionBaseDatos {
                     int idDisco = multimedia.getIdMultimedia();
                     ArrayList<Cancion> canciones = ((Disco) multimedia).getCanciones();
 
-                    for (Cancion cancion : canciones){
+                    for (Cancion cancion : canciones) {
                         String nombre_cancion = cancion.getNombre();
-                        PreparedStatement ps = con.prepareStatement("insert into canciones_disco values ("+idDisco+
-                                ", '"+nombre_cancion+"';");
+                        PreparedStatement ps = con.prepareStatement("insert into canciones_disco values (" + idDisco +
+                                ", '" + nombre_cancion + "');");
                         ps.executeUpdate();
                     }
                 }
-
-
             }
             con.close();
         } catch (Exception e2) {
@@ -174,8 +172,8 @@ public class GestionBaseDatos {
                 String poblacion = socio.getPoblacion();
                 LocalDate fechaNac = socio.getFechaNacimiento();
 
-                PreparedStatement ps = con.prepareStatement("insert into socio values ('"+
-                        nif+"', '"+nombre+"', '"+poblacion+"', '"+fechaNac+"');");
+                PreparedStatement ps = con.prepareStatement("insert into socio values ('" +
+                        nif + "', '" + nombre + "', '" + poblacion + "', '" + fechaNac + "');");
 
                 ps.executeUpdate();
             }
@@ -185,57 +183,58 @@ public class GestionBaseDatos {
         }
 
     }
-    public static void deleteTablaCancionesDisco(){
+
+    public static void deleteTablaCancionesDisco() {
         Connection con = conectarBaseDatos();
         try {
             Statement st = con.createStatement();
             st.executeUpdate("delete from canciones_disco");
             con.close();
-        }catch (Exception e3) {
+        } catch (Exception e3) {
             e3.printStackTrace();
         }
     }
 
-    public static void deleteTablaCancion(){
+    public static void deleteTablaCancion() {
         Connection con = conectarBaseDatos();
         try {
             Statement st = con.createStatement();
             st.executeUpdate("delete from cancion");
             con.close();
-        }catch (Exception e3) {
+        } catch (Exception e3) {
             e3.printStackTrace();
         }
     }
 
-    public static void deleteTablaDisco(){
+    public static void deleteTablaDisco() {
         Connection con = conectarBaseDatos();
         try {
             Statement st = con.createStatement();
             st.executeUpdate("delete from disco");
             con.close();
-        }catch (Exception e3) {
+        } catch (Exception e3) {
             e3.printStackTrace();
         }
     }
 
-    public static void deleteTablaSocio(){
+    public static void deleteTablaSocio() {
         Connection con = conectarBaseDatos();
         try {
             Statement st = con.createStatement();
             st.executeUpdate("delete from socio");
             con.close();
-        }catch (Exception e3) {
+        } catch (Exception e3) {
             e3.printStackTrace();
         }
     }
 
-    public static void deleteTablaMultimediasSocio(){
+    public static void deleteTablaMultimediasSocio() {
         Connection con = conectarBaseDatos();
         try {
             Statement st = con.createStatement();
             st.executeUpdate("delete from multimedias_socio");
             con.close();
-        }catch (Exception e3) {
+        } catch (Exception e3) {
             e3.printStackTrace();
         }
     }
@@ -247,11 +246,11 @@ public class GestionBaseDatos {
                 String nif = socio.getNIF();
                 ArrayList<Multimedia> multimediasAlquiladas = socio.getMultimediasAlquiladas();
 
-                for (Multimedia multimedia: multimediasAlquiladas) {
+                for (Multimedia multimedia : multimediasAlquiladas) {
                     String titulo = multimedia.getTitulo();
 
                     PreparedStatement ps = con.prepareStatement("insert into multimedias_socio values ('" +
-                            nif + "', '"+titulo+"');");
+                            nif + "', '" + titulo + "');");
                     ps.executeUpdate();
                 }
             }
