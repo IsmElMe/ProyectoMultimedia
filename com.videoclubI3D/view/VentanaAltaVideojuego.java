@@ -239,9 +239,21 @@ public class VentanaAltaVideojuego extends JFrame {
                 else {
                     Videoclub.guardarMultimedia(new Videojuego(titulo, autor, formato, anyo, plataformas));
                     JOptionPane.showMessageDialog(null, "Se ha guardado el multimedia correctamente");
+                    limpiarInput();
                 }
             } else
                 JOptionPane.showMessageDialog(null, "EL VIDEOJUEGO NO TIENE NINGUNA PLATAFORMA");
         });
+    }
+
+    private void limpiarInput() {
+        txtTitulo.setText("");
+        txtAutor.setText("");
+        cmbAnyo.setSelectedIndex(cmbAnyo.getItemCount() - 1);
+        rdbCd.setSelected(true);
+        chkPc.setSelected(false);
+        chkSwitch.setSelected(false);
+        chkPs5.setSelected(false);
+        chkXbox.setSelected(false);
     }
 }

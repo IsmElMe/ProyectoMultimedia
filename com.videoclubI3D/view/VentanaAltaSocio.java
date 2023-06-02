@@ -133,7 +133,15 @@ public class VentanaAltaSocio extends JFrame {
             else {
                 Videoclub.guardarSocio(new Socio(fechaNacimiento, nombre, poblacion, nif));
                 JOptionPane.showMessageDialog(null, "Se ha guardado el socio correctamente");
+                limpiarInput();
             }
         });
+    }
+
+    private void limpiarInput() {
+        txtNif.setText("");
+        txtNombre.setText("");
+        calendario.setDate(Date.from(Instant.now()));
+        txtPoblacion.setText("");
     }
 }

@@ -4,7 +4,6 @@ import controler.Videoclub;
 import model.*;
 
 import javax.swing.*;
-import javax.swing.text.*;
 import java.awt.*;
 import java.time.LocalDate;
 import java.util.*;
@@ -16,12 +15,13 @@ public class VentanaAltaDisco extends JFrame {
             lblTituloVentana, lblTitulo, lblAutor,
             lblAnyo, lblFormato, lblCanciones;
     private JTextField txtTitulo, txtAutor;
-    private JComboBox<Integer> cbAnyo;
+    private JComboBox<Integer> cmbAnyo;
     private JComboBox<String> cbCanciones;
     private ButtonGroup bgFormato;
     private JRadioButton rbCd, rbDvd, rbBluray, rbArchivo;
     private JList<String> listCanciones;
     private JScrollPane scrollCanciones;
+    private DefaultListModel<String> modelLista = new DefaultListModel<>();
     private JButton btnGuardar, btnAnyadir, btnEliminar, btnActualizarCanciones, btnAtras;
     ArrayList<Cancion> canciones;
 
@@ -126,15 +126,15 @@ public class VentanaAltaDisco extends JFrame {
         panel.add(txtAutor);
         txtAutor.setBounds(120, 120, 200, 20);
 
-        cbAnyo = new JComboBox<>();
-        panel.add(cbAnyo);
-        cbAnyo.setEditable(true);
-        cbAnyo.setBounds(290, 155, 70, 20);
+        cmbAnyo = new JComboBox<>();
+        panel.add(cmbAnyo);
+        cmbAnyo.setEditable(true);
+        cmbAnyo.setBounds(290, 155, 70, 20);
 
         for (int i = 1940; i <= LocalDate.now().getYear(); i++)
-            cbAnyo.addItem(i);
+            cmbAnyo.addItem(i);
 
-        cbAnyo.setSelectedIndex(cbAnyo.getItemCount() - 1);
+        cmbAnyo.setSelectedIndex(cmbAnyo.getItemCount() - 1);
 
         Rectangle rectangleRadioButton = new Rectangle(110, 180, 140, 20);
         bgFormato = new ButtonGroup();
@@ -186,7 +186,6 @@ public class VentanaAltaDisco extends JFrame {
     }
 
     private void eventos() {
-        DefaultListModel<String> modelLista = new DefaultListModel<>();
         ArrayList<Cancion> cancionesDisponibles = Videoclub.getCanciones();
 
         btnActualizarCanciones.addActionListener(evento -> {
@@ -223,7 +222,7 @@ public class VentanaAltaDisco extends JFrame {
             Formato formato;
 
             try {
-                anyo = Integer.parseInt(Objects.requireNonNull(cbAnyo.getSelectedItem()).toString());
+                anyo = Integer.parseInt(Objects.requireNonNull(cmbAnyo.getSelectedItem()).toString());
             } catch (NumberFormatException error) {
                 JOptionPane.showMessageDialog(null, "EL AÑO NO ES VÁLIDO");
             }
@@ -271,6 +270,7 @@ public class VentanaAltaDisco extends JFrame {
             else {
                 Videoclub.guardarMultimedia(new Disco(titulo, autor, formato, anyo, canciones));
                 JOptionPane.showMessageDialog(null, "Se ha guardado el multimedia correctamente");
+                limpiarInput();
             }
         });
 
@@ -278,5 +278,13 @@ public class VentanaAltaDisco extends JFrame {
             Videoclub.cerrarVentanas();
             Videoclub.ventanaAltas.setVisible(true);
         });
+    }
+
+    private void limpiarInput() {
+        txtTitulo.setText("");
+        txtAutor.setText("");
+        rbCd.setSelected(true);
+        cmbAnyo.setSelectedIndex(cmbAnyo.getItemCount() - 1);
+        modelLista.clear();
     }
 }
