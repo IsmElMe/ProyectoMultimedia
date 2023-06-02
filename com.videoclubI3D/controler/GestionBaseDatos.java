@@ -276,6 +276,7 @@ public class GestionBaseDatos {
         Connection con = conectarBaseDatos();
         try {
             Statement st = con.createStatement();
+            Statement st2 = con.createStatement();
             ResultSet rs = st.executeQuery("select * from pelicula");
             while (rs.next()) {
                 String titulo = rs.getString("titulo");
@@ -289,10 +290,9 @@ public class GestionBaseDatos {
                 Videoclub.guardarMultimedia(new Pelicula(titulo, autor, formato, anio, duracion, actorP, actrizP));
             }
             rs.close();
-
             rs = st.executeQuery("select * from videojuego");
-
             while (rs.next()) {
+                System.out.println("Hola");
                 String tituloV = rs.getString("titulo");
                 String autorV = rs.getString("autor");
                 Formato formatoV = Formato.valueOf(rs.getString("formato"));
@@ -312,15 +312,15 @@ public class GestionBaseDatos {
             }
             rs.close();
 
-            ResultSet rs2 = st.executeQuery("select * from disco");
-            while (rs2.next()) {
-                int idDisco = rs2.getInt("id_multimedia");
-                String tituloD = rs2.getString("titulo");
-                String autorD = rs2.getString("autor");
-                Formato formatoD = Formato.valueOf(rs2.getString("formato"));
-                int anioD = rs2.getInt("anio");
+            rs = st.executeQuery("select * from disco");
+            while (rs.next()) {
+                int idDisco = rs.getInt("id_multimedia");
+                String tituloD = rs.getString("titulo");
+                String autorD = rs.getString("autor");
+                Formato formatoD = Formato.valueOf(rs.getString("formato"));
+                int anioD = rs.getInt("anio");
                 ArrayList<Cancion> canciones = new ArrayList<>();
-                ResultSet rs3 = st.executeQuery("select * from cancion where nombre in (select nombre_cancion from canciones_disco where id_disco = " + idDisco + ")");
+                ResultSet rs3 = st2.executeQuery("select * from cancion where nombre in (select nombre_cancion from canciones_disco where id_disco = " + idDisco + ")");
                 while (rs3.next()) {
                     String nombre = rs3.getString("nombre");
                     int duracionC = rs3.getInt("duracion");
@@ -328,6 +328,7 @@ public class GestionBaseDatos {
                     canciones.add(new Cancion(nombre, duracionC));
                 }
                 Videoclub.guardarMultimedia(new Disco(tituloD, autorD, formatoD, anioD, canciones));
+                rs3.close();
             }
         } catch (Exception e) {
             e.printStackTrace();
