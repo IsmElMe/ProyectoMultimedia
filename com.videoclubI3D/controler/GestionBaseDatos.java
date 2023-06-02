@@ -13,7 +13,7 @@ public class GestionBaseDatos {
     public static Connection conectarBaseDatos() {
         Connection con = null;
         String url = "jdbc:postgresql://localhost:5432/";
-        String pass = ""; //Cada uno usa su contraseña.
+        String pass = "2711ir783"; //Cada uno usa su contraseña.
         String bd = "Proyecto_Multimedia_BD"; //Hay que poner este nombre a la base de datos para que sea igual en todos.
         String driver = "org.postgresql.Driver";
         String user = "postgres"; //Este es el usuario por defecto.
@@ -264,6 +264,7 @@ public class GestionBaseDatos {
 
     public static void cargarDatos() {
         cargarMultimedias();
+        System.out.println("c");
 
     }
 
@@ -283,6 +284,8 @@ public class GestionBaseDatos {
 
                 Videoclub.guardarMultimedia(new Pelicula(titulo, autor, formato, anio, duracion, actorP, actrizP));
             }
+            rs.close();
+
             rs = st.executeQuery("select * from videojuego");
 
             while (rs.next()) {
@@ -291,39 +294,47 @@ public class GestionBaseDatos {
                 Formato formatoV = Formato.valueOf(rs.getString("formato"));
                 int anioV = rs.getInt("anio");
                 String plataformasV = rs.getString("plataformas");
-                plataformasV = plataformasV.trim();
+
                 String[] plataformasV2 = plataformasV.split(",");
                 Plataforma[] plataformas = new Plataforma[4];
                 for (int i = 0; i < plataformasV2.length; i++) {
-
-                    plataformas[i] = Plataforma.valueOf(plataformasV2[i]);
+                    plataformasV2[i] = plataformasV2[i].trim();
+                    if (!plataformasV2[i].equals("")) {
+                        plataformas[i] = Plataforma.valueOf(plataformasV2[i]);
+                    }
                 }
 
                 Videoclub.guardarMultimedia(new Videojuego(tituloV, autorV, formatoV, anioV, plataformas));
             }
+            rs.close();
 
-            rs = st.executeQuery("select * from disco");
-            while (rs.next()) {
-                int idDisco = rs.getInt("id_multimedia");
-                String tituloD = rs.getString("titulo");
-                String autorD = rs.getString("autor");
-                Formato formatoD = Formato.valueOf(rs.getString("formato"));
-                int anioD = rs.getInt("anio");
-                int precioD = rs.getInt("precio");
-                int duracion = rs.getInt("duracion");
+            ResultSet rs2 = st.executeQuery("select * from disco");
+            while (rs2.next()) {
+                int idDisco = rs2.getInt("id_multimedia");
+                String tituloD = rs2.getString("titulo");
+                String autorD = rs2.getString("autor");
+                Formato formatoD = Formato.valueOf(rs2.getString("formato"));
+                int anioD = rs2.getInt("anio");
                 ArrayList<Cancion> canciones = new ArrayList<>();
-                ResultSet rs3 = st.executeQuery("select * from canciones where nombre = (select nombre_disco from canciones_disco where id_disco = " + idDisco + ")");
+                ResultSet rs3 = st.executeQuery("select * from cancion where nombre = (select nombre_cancion from canciones_disco where id_disco = " + idDisco + ")");
                 while (rs3.next()) {
                     String nombre = rs3.getString("nombre");
                     int duracionC = rs3.getInt("duracion");
 
                     canciones.add(new Cancion(nombre, duracionC));
                 }
-                Videoclub.getMultimedias().add(new Disco(tituloD, autorD, formatoD, anioD, canciones));
-                JOptionPane.showMessageDialog(null, "Se han cargado las multimedias de la base de datos.");
+                Videoclub.guardarMultimedia(new Disco(tituloD, autorD, formatoD, anioD, canciones));
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
