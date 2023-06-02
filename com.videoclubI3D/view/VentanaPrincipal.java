@@ -64,6 +64,7 @@ public class VentanaPrincipal extends JFrame {
         btnGuardarDatos.setForeground(Color.decode("#1f4489"));
         btnGuardarDatos.setBackground(Color.decode("#fcc139"));
 
+        GestionBaseDatos.cargarDatos();
         eventos();
     }
 
@@ -100,6 +101,8 @@ public class VentanaPrincipal extends JFrame {
             GestionBaseDatos.actualizarTablaCancionesDisco();
             GestionBaseDatos.actualizarTablaSocio();
             GestionBaseDatos.actualizarTablaMultimediasSocio();
+
+            JOptionPane.showMessageDialog(null, "DATOS SUBIDOS A LA BASE DE DATOS CORRECTAMENTE");
         });
     }
 }

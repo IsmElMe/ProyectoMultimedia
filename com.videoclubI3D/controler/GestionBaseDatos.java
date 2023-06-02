@@ -260,4 +260,67 @@ public class GestionBaseDatos {
         }
 
     }
+
+    public static void cargarDatos() {
+        cargarMultimedias();
+    }
+
+    public static void cargarMultimedias() {
+        Connection con = conectarBaseDatos();
+        try {
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("select * from pelicula");
+            while (rs.next()) {
+                String titulo = rs.getString("titulo");
+                String autor = rs.getString("autor");
+                Formato formato = Formato.valueOf(rs.getString("formato"));
+                int anio = rs.getInt("anio");
+                int duracion = rs.getInt("duracion");
+                String actorP = rs.getString("actor_principal");
+                String actrizP = rs.getString("actriz_principal");
+
+                Videoclub.guardarMultimedia(new Pelicula(titulo, autor, formato, anio, duracion, actorP, actrizP));
+            }
+            rs = st.executeQuery("select * from videojuego");
+
+            while (rs.next()) {
+                String tituloV = rs.getString("titulo");
+                String autorV = rs.getString("autor");
+                Formato formatoV = Formato.valueOf(rs.getString("formato"));
+                int anioV = rs.getInt("anio");
+                String plataformasV = rs.getString("plataformas");
+                plataformasV = plataformasV.trim();
+                String[] plataformasV2 = plataformasV.split(",");
+                Plataforma[] plataformas = new Plataforma[4];
+                for (int i = 0; i < plataformasV2.length; i++) {
+
+                    plataformas[i] = Plataforma.valueOf(plataformasV2[i]);
+                }
+
+                Videoclub.guardarMultimedia(new Videojuego(tituloV, autorV, formatoV, anioV, plataformas));
+            }
+
+            rs = st.executeQuery("select * from disco");
+            while (rs.next()) {
+                int idDisco = rs.getInt("id_multimedia");
+                String tituloD = rs.getString("titulo");
+                String autorD = rs.getString("autor");
+                Formato formatoD = Formato.valueOf(rs.getString("formato"));
+                int anioD = rs.getInt("anio");
+                int precioD = rs.getInt("precio");
+                int duracion = rs.getInt("duracion");
+                ArrayList<Cancion> canciones = new ArrayList<>();
+                ResultSet rs3 = st.executeQuery("select * from canciones where nombre = (select nombre_disco from canciones_disco where id_disco = " + idDisco + ")");
+                while (rs3.next()) {
+                    String nombre = rs3.getString("nombre");
+                    int duracionC = rs3.getInt("duracion");
+
+                    canciones.add(new Cancion(nombre, duracionC));
+                }
+                Videoclub.getMultimedias().add(new Disco(tituloD, autorD, formatoD, anioD, canciones));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
