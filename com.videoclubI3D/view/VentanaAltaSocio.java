@@ -130,8 +130,10 @@ public class VentanaAltaSocio extends JFrame {
                 JOptionPane.showMessageDialog(null, "SOLO PUEDEN DARSE DE ALTA MAYORES DE EDAD");
             else if (poblacion.equals(""))
                 JOptionPane.showMessageDialog(null, "lA POBLACIÓN ESTÁ VACÍA");
-            else
+            else {
                 Videoclub.guardarSocio(new Socio(fechaNacimiento, nombre, poblacion, nif));
+                JOptionPane.showMessageDialog(null, "Se ha guardado el socio correctamente");
+            }
         });
     }
 }

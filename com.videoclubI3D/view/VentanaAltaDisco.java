@@ -268,8 +268,10 @@ public class VentanaAltaDisco extends JFrame {
                 JOptionPane.showMessageDialog(null, "EL AÑO DEL MULTIMEDIA ES MAYOR AL AÑO ACTUAL");
             else if (canciones.isEmpty())
                 JOptionPane.showMessageDialog(null, "NO HAY NINGUNA CANCIÓN EN EL DISCO");
-            else
+            else {
                 Videoclub.guardarMultimedia(new Disco(titulo, autor, formato, anyo, canciones));
+                JOptionPane.showMessageDialog(null, "Se ha guardado el multimedia correctamente");
+            }
         });
 
         btnAtras.addActionListener(evento -> {

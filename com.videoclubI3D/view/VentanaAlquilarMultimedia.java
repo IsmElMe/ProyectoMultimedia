@@ -31,15 +31,15 @@ public class VentanaAlquilarMultimedia extends JFrame {
         btnAlquilar.setFont(Constantes.FUENTE_BOTON);
         btnAlquilar.setForeground(Color.decode("#1f4489"));
         btnAlquilar.setBackground(Color.decode("#fcc139"));
-        btnAlquilar.setBounds(160, 300, 120, 25);
+        btnAlquilar.setBounds(160, 310, 120, 25);
 
         txtNif = new JTextField();
         panel.add(txtNif);
-        txtNif.setBounds(80, 86, 150, 20);
+        txtNif.setBounds(80, 111, 150, 20);
 
         cmbMultimedia = new JComboBox<>();
         panel.add(cmbMultimedia);
-        cmbMultimedia.setBounds(120, 250, 200, 20);
+        cmbMultimedia.setBounds(115, 267, 200, 20);
 
         JButton btnAtras = new JButton("\uD83E\uDC80");
         panel.add(btnAtras);
@@ -62,30 +62,30 @@ public class VentanaAlquilarMultimedia extends JFrame {
         JLabel lblTituloVentana = new JLabel("ALQUILAR MULTIMEDIA");
         panel.add(lblTituloVentana);
         lblTituloVentana.setFont(Constantes.FUENTE_TITULO);
-        lblTituloVentana.setBounds(60, 0, 350, 100);
+        lblTituloVentana.setBounds(60, 15, 350, 100);
         lblTituloVentana.setForeground(Color.decode("#fcc139"));
 
         JLabel lblNif = new JLabel("NIF");
         panel.add(lblNif);
         lblNif.setFont(Constantes.FUENTE_LABEL);
-        lblNif.setBounds(40, 75, 200, 40);
+        lblNif.setBounds(40, 100, 200, 40);
         lblNif.setForeground(Color.decode("#fcc139"));
 
         JLabel lblTipoMultimedia = new JLabel("TIPO DE MULTIMEDIA");
         panel.add(lblTipoMultimedia);
         lblTipoMultimedia.setFont(Constantes.FUENTE_LABEL);
-        lblTipoMultimedia.setBounds(40, 120, 200, 40);
+        lblTipoMultimedia.setBounds(40, 140, 200, 40);
         lblTipoMultimedia.setForeground(Color.decode("#fcc139"));
 
         JLabel lblTitulo = new JLabel("TÍTULO");
         panel.add(lblTitulo);
         lblTitulo.setFont(Constantes.FUENTE_LABEL);
-        lblTitulo.setBounds(40, 240, 100, 40);
+        lblTitulo.setBounds(40, 255, 100, 40);
         lblTitulo.setForeground(Color.decode("#fcc139"));
     }
 
     private void crearRadioButton(JPanel panel) {
-        Rectangle rectangle = new Rectangle(150, 160, 150, 20);
+        Rectangle rectangle = new Rectangle(150, 175, 150, 20);
 
         ButtonGroup buttonGroup = new ButtonGroup();
         rdbPelicula = new JRadioButton("PELÍCULA");
