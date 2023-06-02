@@ -267,6 +267,9 @@ public class GestionBaseDatos {
         cargarMultimedias();
         cargarCanciones();
         cargarSocioConMultimediasAlquiladas();
+        JOptionPane.showMessageDialog(null, "Los datos han sido cargados de forma correcta");
+        JOptionPane.showMessageDialog(null, "Recuerda guardar los datos cada vez que " +
+                "realices un insert.");
     }
 
     public static void cargarMultimedias() {
