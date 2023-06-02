@@ -292,7 +292,6 @@ public class GestionBaseDatos {
             rs.close();
             rs = st.executeQuery("select * from videojuego");
             while (rs.next()) {
-                System.out.println("Hola");
                 String tituloV = rs.getString("titulo");
                 String autorV = rs.getString("autor");
                 Formato formatoV = Formato.valueOf(rs.getString("formato"));
