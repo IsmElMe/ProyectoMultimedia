@@ -266,6 +266,7 @@ public class GestionBaseDatos {
     public static void cargarDatos() {
         cargarMultimedias();
         cargarCanciones();
+        cargarSocioConMultimediasAlquiladas();
     }
 
     public static void cargarMultimedias() {
@@ -316,7 +317,7 @@ public class GestionBaseDatos {
                 Formato formatoD = Formato.valueOf(rs2.getString("formato"));
                 int anioD = rs2.getInt("anio");
                 ArrayList<Cancion> canciones = new ArrayList<>();
-                ResultSet rs3 = st.executeQuery("select * from cancion where nombre = (select nombre_cancion from canciones_disco where id_disco = " + idDisco + ")");
+                ResultSet rs3 = st.executeQuery("select * from cancion where nombre in (select nombre_cancion from canciones_disco where id_disco = " + idDisco + ")");
                 while (rs3.next()) {
                     String nombre = rs3.getString("nombre");
                     int duracionC = rs3.getInt("duracion");
@@ -367,9 +368,9 @@ public class GestionBaseDatos {
                 Date fecha = rs.getDate("fecha_nacimiento");
                 LocalDate fecha2 = LocalDate.of(fecha.getYear(), fecha.getMonth(), fecha.getDay());
 
-                ResultSet rs2 = st.executeQuery("select * from multimedias_socio where nif_socio = "+nif+";");
+                ResultSet rs2 = st.executeQuery("select * from multimedias_socio where nif_socio = '"+nif+"'");
                 ArrayList<Multimedia> multimediaAlquilada = new ArrayList<>();
-                while (rs.next()){
+                while (rs2.next()){
                     String titulo_multimedia = rs2.getString("titulo_multimedia");
 
                     for (Multimedia multimedia : Videoclub.getMultimedias()){
