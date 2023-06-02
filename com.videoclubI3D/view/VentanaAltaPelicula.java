@@ -227,8 +227,10 @@ public class VentanaAltaPelicula extends JFrame {
                 JOptionPane.showMessageDialog(null, "EL CAMPO ACTOR PRINCIPAL ESTA VACÍ0");
             else if (actrizPrincipal.equals(""))
                 JOptionPane.showMessageDialog(null, "EL CAMPO ACTRIZ PRINCIPAL ESTA VACÍ0");
-            else
+            else {
                 Videoclub.guardarMultimedia(new Pelicula(titulo, autor, formato, anyo, duracion, actorPrincipal, actrizPrincipal));
+                JOptionPane.showMessageDialog(null, "Se ha guardado el multimedia correctamente");
+            }
         });
     }
 }

@@ -41,12 +41,10 @@ public class Videoclub {
 
 	public static void guardarSocio(Socio socio) {
 		socios.add(socio);
-		JOptionPane.showMessageDialog(null, "Se ha guardado el socio correctamente");
 	}
 
     public static void guardarMultimedia(Multimedia multimedia) {
         multimedias.add(multimedia);
-        JOptionPane.showMessageDialog(null, "Se ha guardado el multimedia correctamente");
     }
 
 	public static void cerrarVentanas() {

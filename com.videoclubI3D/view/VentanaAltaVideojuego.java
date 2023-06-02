@@ -236,8 +236,10 @@ public class VentanaAltaVideojuego extends JFrame {
                     JOptionPane.showMessageDialog(null, "NO SE PUEDEN INTRODUCIR MULTIMEDIAS ANTERIORES A 1940");
                 else if (anyo > LocalDate.now().getYear())
                     JOptionPane.showMessageDialog(null, "EL AÑO DEL MULTIMEDIA ES MAYOR AL AÑO ACTUAL");
-                else
+                else {
                     Videoclub.guardarMultimedia(new Videojuego(titulo, autor, formato, anyo, plataformas));
+                    JOptionPane.showMessageDialog(null, "Se ha guardado el multimedia correctamente");
+                }
             } else
                 JOptionPane.showMessageDialog(null, "EL VIDEOJUEGO NO TIENE NINGUNA PLATAFORMA");
         });
