@@ -8,6 +8,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class GestionBaseDatos {
     public static Connection conectarBaseDatos() {
@@ -264,8 +265,7 @@ public class GestionBaseDatos {
 
     public static void cargarDatos() {
         cargarMultimedias();
-        System.out.println("c");
-
+        cargarCanciones();
     }
 
     public static void cargarMultimedias() {
@@ -327,7 +327,7 @@ public class GestionBaseDatos {
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             try {
                 if (con != null) {
                     con.close();
@@ -335,6 +335,60 @@ public class GestionBaseDatos {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    public static void cargarCanciones() {
+        Connection con = conectarBaseDatos();
+        try {
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("select * from cancion");
+            while (rs.next()) {
+                String nombre = rs.getString("nombre");
+                int duracion = rs.getInt("duracion");
+
+                Videoclub.getCanciones().add(new Cancion(nombre, duracion));
+            }
+            rs.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void cargarSocioConMultimediasAlquiladas(){
+        Connection con = conectarBaseDatos();
+        try {
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("select * from socio");
+            while (rs.next()) {
+                String nif = rs.getString("nif");
+                String nombre = rs.getString("nombre");
+                String poblacion = rs.getString("poblacion");
+                Date fecha = rs.getDate("fecha_nacimiento");
+                LocalDate fecha2 = LocalDate.of(fecha.getYear(), fecha.getMonth(), fecha.getDay());
+
+                ResultSet rs2 = st.executeQuery("select * from multimedias_socio where nif_socio = "+nif+";");
+                ArrayList<Multimedia> multimediaAlquilada = new ArrayList<>();
+                while (rs.next()){
+                    String titulo_multimedia = rs2.getString("titulo_multimedia");
+
+                    for (Multimedia multimedia : Videoclub.getMultimedias()){
+                        if (multimedia.getTitulo().equals(titulo_multimedia))
+                            multimediaAlquilada.add(multimedia);
+                    }
+                }
+                Videoclub.guardarSocio(new Socio( fecha2, nombre, poblacion, nif));
+                for (Socio socio: Videoclub.getSocios()){
+                    if (socio.getNIF().equals(nif)){
+                        for (Multimedia multimedia: multimediaAlquilada){
+                            socio.alquilarMultimedia(multimedia);
+                        }
+                    }
+                }
+            }
+            rs.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
