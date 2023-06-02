@@ -90,6 +90,11 @@ public class VentanaAltaSocio extends JFrame {
         btnAtras.setForeground(Color.decode("#fcc139"));
         btnAtras.setFont(Constantes.FUENTE_BOTON_ATRAS);
 
+        btnAtras.addActionListener(evento -> {
+            Videoclub.cerrarVentanas();
+            Videoclub.ventanaAltas.setVisible(true);
+        });
+
         crearSocio();
     }
 
@@ -118,13 +123,13 @@ public class VentanaAltaSocio extends JFrame {
             edad = Period.between(fechaNacimiento, LocalDate.now());
 
             if (!Socio.comprobarNif(nif))
-                JOptionPane.showMessageDialog(null, "El NIF no es válido");
+                JOptionPane.showMessageDialog(null, "EL NIF NO ES VÁLIDO");
             else if (nombre.equals(""))
-                JOptionPane.showMessageDialog(null, "El nombre está vacío");
+                JOptionPane.showMessageDialog(null, "EL NOMBRE ESTÁ VACÍO");
             else if (edad.getYears() < 18)
-                JOptionPane.showMessageDialog(null, "Solo pueden darse de alta mayores de edad");
+                JOptionPane.showMessageDialog(null, "SOLO PUEDEN DARSE DE ALTA MAYORES DE EDAD");
             else if (poblacion.equals(""))
-                JOptionPane.showMessageDialog(null, "La población está vacía");
+                JOptionPane.showMessageDialog(null, "lA POBLACIÓN ESTÁ VACÍA");
             else
                 Videoclub.guardarSocio(new Socio(fechaNacimiento, nombre, poblacion, nif));
         });

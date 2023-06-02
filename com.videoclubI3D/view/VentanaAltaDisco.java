@@ -1,27 +1,31 @@
 package view;
 
-import model.Constantes;
+import controler.Videoclub;
+import model.*;
 
 import javax.swing.*;
+import javax.swing.text.*;
 import java.awt.*;
 import java.time.LocalDate;
+import java.util.*;
 
 public class VentanaAltaDisco extends JFrame {
 
     private JPanel panel;
     private JLabel
             lblTituloVentana, lblTitulo, lblAutor,
-            lblDuracion, lblAnyo, lblFormato,
-            lblCanciones;
-    private JTextField
-            txtTitulo, txtAutor;
-    private JComboBox<Integer> cbAnyo, cbCanciones;
+            lblAnyo, lblFormato, lblCanciones;
+    private JTextField txtTitulo, txtAutor;
+    private JComboBox<Integer> cbAnyo;
+    private JComboBox<String> cbCanciones;
     private ButtonGroup bgFormato;
     private JRadioButton rbCd, rbDvd, rbBluray, rbArchivo;
-    private JTextArea taCancionesDisco;
-    private JButton btnGuardar, btnAnyadir, btnEliminar;
+    private JList<String> listCanciones;
+    private JScrollPane scrollCanciones;
+    private JButton btnGuardar, btnAnyadir, btnEliminar, btnActualizarCanciones, btnAtras;
+    ArrayList<Cancion> canciones;
 
-    public VentanaAltaDisco(){
+    public VentanaAltaDisco() {
         super("BLOCKBUSTER - ALTA DISCO");
         panel = new JPanel();
         super.setContentPane(panel);
@@ -34,6 +38,7 @@ public class VentanaAltaDisco extends JFrame {
         crearLabel();
         crearInput();
 
+        canciones = new ArrayList<>();
         btnGuardar = new JButton("GUARDAR");
         panel.add(btnGuardar);
         btnGuardar.setForeground(Color.decode("#1f4489"));
@@ -52,7 +57,7 @@ public class VentanaAltaDisco extends JFrame {
         btnEliminar.setBackground(Color.decode("#fcc139"));
         btnEliminar.setBounds(40, 370, 100, 25);
 
-        JButton btnAtras = new JButton("\uD83E\uDC80");
+        btnAtras = new JButton("\uD83E\uDC80");
         panel.add(btnAtras);
         btnAtras.setFont(Constantes.FUENTE_BOTON);
         btnAtras.setBounds(10, 10, 65, 30);
@@ -60,9 +65,17 @@ public class VentanaAltaDisco extends JFrame {
         btnAtras.setContentAreaFilled(false);
         btnAtras.setForeground(Color.decode("#fcc139"));
         btnAtras.setFont(Constantes.FUENTE_BOTON_ATRAS);
+
+        btnActualizarCanciones = new JButton("ACTUALIZAR");
+        panel.add(btnActualizarCanciones);
+        btnActualizarCanciones.setForeground(Color.decode(Constantes.COLOR_AZUL));
+        btnActualizarCanciones.setBackground(Color.decode(Constantes.COLOR_AMARILLO));
+        btnActualizarCanciones.setBounds(315, 280, 110, 20);
+
+        eventos();
     }
 
-    public void crearLabel(){
+    public void crearLabel() {
 
         lblTituloVentana = new JLabel("ALTA DISCO");
         panel.add(lblTituloVentana);
@@ -123,7 +136,7 @@ public class VentanaAltaDisco extends JFrame {
 
         cbAnyo.setSelectedIndex(cbAnyo.getItemCount() - 1);
 
-        Rectangle rectangleRadioButton = new Rectangle(110, 180, 140,20);
+        Rectangle rectangleRadioButton = new Rectangle(110, 180, 140, 20);
         bgFormato = new ButtonGroup();
         rbCd = new JRadioButton("CD");
         rbDvd = new JRadioButton("DVD");
@@ -165,18 +178,106 @@ public class VentanaAltaDisco extends JFrame {
         cbCanciones.setEditable(true);
         cbCanciones.setBounds(150, 280, 150, 20);
 
-        taCancionesDisco = new JTextArea();
-        panel.add(taCancionesDisco);
-        taCancionesDisco.setEditable(false);
-        taCancionesDisco.setBounds(170, 320, 250, 100);
-        taCancionesDisco.setBorder(BorderFactory.createLineBorder(Color.decode("#fcc139"), 3));
+        listCanciones = new JList<>();
+        scrollCanciones = new JScrollPane(listCanciones);
+        panel.add(scrollCanciones);
+        scrollCanciones.setBounds(170, 320, 250, 100);
+        scrollCanciones.setBorder(BorderFactory.createLineBorder(Color.decode("#fcc139"), 3));
     }
 
-    /*
-    public static void main(String[] args) {
-        VentanaAltaDisco gui = new VentanaAltaDisco();
-        gui.setVisible(true);
-        gui.setDefaultCloseOperation(EXIT_ON_CLOSE);
+    private void eventos() {
+        DefaultListModel<String> modelLista = new DefaultListModel<>();
+        ArrayList<Cancion> cancionesDisponibles = Videoclub.getCanciones();
+
+        btnActualizarCanciones.addActionListener(evento -> {
+            cbCanciones.removeAllItems();
+
+            for (Cancion cancion : cancionesDisponibles)
+                cbCanciones.addItem(cancion.getNombre());
+        });
+
+        btnAnyadir.addActionListener(evento -> {
+            try {
+                String cancion = Objects.requireNonNull(cbCanciones.getSelectedItem()).toString();
+                modelLista.addElement(cancion);
+                listCanciones.setModel(modelLista);
+            } catch (NullPointerException error) {
+                JOptionPane.showMessageDialog(null, "Selecciona una canción para añadir");
+            }
+        });
+
+        btnEliminar.addActionListener(evento -> {
+            try {
+                int cancion = listCanciones.getSelectedIndex();
+                modelLista.remove(cancion);
+                listCanciones.setModel(modelLista);
+            } catch (IndexOutOfBoundsException error) {
+                JOptionPane.showMessageDialog(null, "No hay ninguna canción seleccionada");
+            }
+        });
+
+        btnGuardar.addActionListener(evento -> {
+            String titulo = txtTitulo.getText();
+            String autor = txtAutor.getText();
+            int anyo = 0;
+            Formato formato;
+
+            try {
+                anyo = Integer.parseInt(Objects.requireNonNull(cbAnyo.getSelectedItem()).toString());
+            } catch (NumberFormatException error) {
+                JOptionPane.showMessageDialog(null, "EL AÑO NO ES VÁLIDO");
+            }
+
+            titulo = titulo.trim();
+            autor = autor.trim();
+
+            if (rbCd.isSelected())
+                formato = Formato.CD;
+            else if (rbDvd.isSelected())
+                formato = Formato.DVD;
+            else if (rbBluray.isSelected())
+                formato = Formato.BLU_RAY;
+            else
+                formato = Formato.ARCHIVO;
+
+            Component viewportView = scrollCanciones.getViewport().getView();
+            ArrayList<String> nombreCanciones = new ArrayList<>();
+            canciones.clear();
+
+            if (viewportView instanceof JList) {
+                JList<?> list = (JList<?>) viewportView;
+                ListModel<?> model = list.getModel();
+
+                for (int i = 0; i < model.getSize(); i++) {
+                    nombreCanciones.add(model.getElementAt(i).toString());
+                }
+
+                for (Cancion cancion : cancionesDisponibles)
+                    for (String nombreCancion : nombreCanciones)
+                        if (cancion.getNombre().equals(nombreCancion))
+                            canciones.add(cancion);
+
+                for (Cancion cancion : canciones)
+                    System.out.println(cancion);
+            }
+
+            if (titulo.equals(""))
+                JOptionPane.showMessageDialog(null, "EL TÍTULO ESTÁ VACÍO");
+            else if (autor.equals(""))
+                JOptionPane.showMessageDialog(null, "EL AUTOR ESTÁ VACÍO");
+            else if (anyo < 1940)
+                JOptionPane.showMessageDialog(null, "NO SE PUEDEN INTRODUCIR MULTIMEDIAS ANTERIORES A 1940");
+            else if (anyo > LocalDate.now().getYear())
+                JOptionPane.showMessageDialog(null, "EL AÑO DEL MULTIMEDIA ES MAYOR AL AÑO ACTUAL");
+            else if (canciones.isEmpty())
+                JOptionPane.showMessageDialog(null, "NO HAY NINGUNA CANCIÓN EN EL DISCO");
+            else
+                Videoclub.guardarMultimedia(new Disco(titulo, autor, formato, anyo, canciones));
+        });
+
+        btnAtras.addActionListener(evento -> {
+            Videoclub.cerrarVentanas();
+            Videoclub.ventanaAltas.setVisible(true);
+        });
     }
-     */
 }

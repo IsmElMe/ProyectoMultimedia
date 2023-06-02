@@ -33,6 +33,14 @@ public class VentanaAlquilarMultimedia extends JFrame {
         btnAlquilar.setBackground(Color.decode("#fcc139"));
         btnAlquilar.setBounds(160, 300, 120, 25);
 
+        txtNif = new JTextField();
+        panel.add(txtNif);
+        txtNif.setBounds(80, 86, 150, 20);
+
+        cmbMultimedia = new JComboBox<>();
+        panel.add(cmbMultimedia);
+        cmbMultimedia.setBounds(120, 250, 200, 20);
+
         JButton btnAtras = new JButton("\uD83E\uDC80");
         panel.add(btnAtras);
         btnAtras.setFont(Constantes.FUENTE_BOTON);
@@ -42,13 +50,10 @@ public class VentanaAlquilarMultimedia extends JFrame {
         btnAtras.setForeground(Color.decode("#fcc139"));
         btnAtras.setFont(Constantes.FUENTE_BOTON_ATRAS);
 
-        txtNif = new JTextField();
-        panel.add(txtNif);
-        txtNif.setBounds(80, 86, 150, 20);
-
-        cmbMultimedia = new JComboBox<>();
-        panel.add(cmbMultimedia);
-        cmbMultimedia.setBounds(120, 250, 200, 20);
+        btnAtras.addActionListener(evento -> {
+            Videoclub.cerrarVentanas();
+            Videoclub.ventanaPrincipal.setVisible(true);
+        });
 
         alquilarMultimedia();
     }
@@ -128,14 +133,14 @@ public class VentanaAlquilarMultimedia extends JFrame {
                 for (Socio socio : socios)
                     if (socio.getNIF().equals(nifSocio)) {
                         socio.alquilarMultimedia(multimediaSeleccionada);
-                        JOptionPane.showMessageDialog(null, "Se ha alquilado correctamente el multimedia al socio " + nifSocio);
+                        JOptionPane.showMessageDialog(null, "SE HA ALQUILADO CORRECTAMENTE EL MULTIMEDIA AL SOCIO " + nifSocio);
                         socioEncontrado = true;
                     }
 
                 if (!socioEncontrado)
-                    JOptionPane.showMessageDialog(null, "El socio no existe");
+                    JOptionPane.showMessageDialog(null, "EL SOCIO NO EXISTE");
             } else
-                JOptionPane.showMessageDialog(null, "Selecciona un multimedia para alquilar");
+                JOptionPane.showMessageDialog(null, "SELECCIONA UN MULTIMEDIA PARA ALQUILAR");
         });
 
         rdbPelicula.addActionListener(evento -> {
