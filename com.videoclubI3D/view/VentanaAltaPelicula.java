@@ -230,7 +230,18 @@ public class VentanaAltaPelicula extends JFrame {
             else {
                 Videoclub.guardarMultimedia(new Pelicula(titulo, autor, formato, anyo, duracion, actorPrincipal, actrizPrincipal));
                 JOptionPane.showMessageDialog(null, "Se ha guardado el multimedia correctamente");
+                limpiarInput();
             }
         });
+    }
+
+    private void limpiarInput() {
+        txtTitulo.setText("");
+        txtAutor.setText("");
+        spnDuracion.setValue(60);
+        cmbAnyo.setSelectedIndex(cmbAnyo.getItemCount() - 1);
+        txtActorPrincipal.setText("");
+        txtActrizPrincipal.setText("");
+        rdbCd.setSelected(true);
     }
 }

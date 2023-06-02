@@ -135,6 +135,7 @@ public class VentanaAlquilarMultimedia extends JFrame {
                         socio.alquilarMultimedia(multimediaSeleccionada);
                         JOptionPane.showMessageDialog(null, "SE HA ALQUILADO CORRECTAMENTE EL MULTIMEDIA AL SOCIO " + nifSocio);
                         socioEncontrado = true;
+                        limpiarInput();
                     }
 
                 if (!socioEncontrado)
@@ -166,5 +167,13 @@ public class VentanaAlquilarMultimedia extends JFrame {
             for (Multimedia multimedia : multimedias)
                 cmbMultimedia.addItem(multimedia.getTitulo());
         });
+    }
+
+    private void limpiarInput() {
+        txtNif.setText("");
+        rdbPelicula.setSelected(false);
+        rdbVideojuego.setSelected(false);
+        rdbDisco.setSelected(false);
+        cmbMultimedia.removeAllItems();
     }
 }
