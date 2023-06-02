@@ -22,6 +22,8 @@ public class Videoclub {
 	public static final VentanaAlquilarMultimedia ventanaAlquilarMultimedia = new VentanaAlquilarMultimedia();
 	public static final VentanaDevolver ventanaDevolver = new VentanaDevolver();
 	public static final VentanaListar ventanaListar = new VentanaListar();
+	public static final VentanaSeleccionarDisco ventanaSeleccionarDisco = new VentanaSeleccionarDisco();
+	public static Disco discoSeleccionado = null;
 
 	public static ArrayList<Socio> getSocios() {
 		return socios;
@@ -60,6 +62,7 @@ public class Videoclub {
 		ventanaAlquilarMultimedia.setVisible(false);
 		ventanaDevolver.setVisible(false);
 		ventanaListar.setVisible(false);
+		ventanaSeleccionarDisco.setVisible(false);
 	}
 
 	public static void altas(Scanner sc, ArrayList<Socio> socios, ArrayList<Multimedia> multimedias) {

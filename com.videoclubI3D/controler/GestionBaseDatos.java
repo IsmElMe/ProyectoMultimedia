@@ -258,6 +258,53 @@ public class GestionBaseDatos {
         } catch (Exception e3) {
             e3.printStackTrace();
         }
+    }
 
+    public static ArrayList<Multimedia> peliculasOrdenadasPorTitulo() {
+        ArrayList<Multimedia> peliculasOrdenadas = new ArrayList<>();
+        Connection con = conectarBaseDatos();
+
+        try {
+            Statement query = con.createStatement();
+            ResultSet resultSet = query.executeQuery("SELECT * FROM pelicula ORDER BY titulo");
+
+            while (resultSet.next()) {
+                int id_pelicula = resultSet.getInt("id_multimedia");
+
+                for (Multimedia multimedia : Videoclub.sacarPeliculas())
+                    if (id_pelicula == multimedia.getIdMultimedia())
+                        peliculasOrdenadas.add(multimedia);
+            }
+
+            con.close();
+        } catch (SQLException error) {
+            error.printStackTrace();
+        }
+
+        return peliculasOrdenadas;
+    }
+
+    public static ArrayList<Multimedia> videojuegosOrdenadosPorAnyo() {
+        ArrayList<Multimedia> videojuegosOrdenados = new ArrayList<>();
+        Connection con = conectarBaseDatos();
+
+        try {
+            Statement query = con.createStatement();
+            ResultSet resultSet = query.executeQuery("SELECT * FROM videojuego ORDER BY anio DESC");
+
+            while (resultSet.next()) {
+                int id_videojuego = resultSet.getInt("id_multimedia");
+
+                for (Multimedia multimedia : Videoclub.sacarVideojuegos())
+                    if (id_videojuego == multimedia.getIdMultimedia())
+                        videojuegosOrdenados.add(multimedia);
+            }
+
+            con.close();
+        } catch (SQLException error) {
+            error.printStackTrace();
+        }
+
+        return videojuegosOrdenados;
     }
 }

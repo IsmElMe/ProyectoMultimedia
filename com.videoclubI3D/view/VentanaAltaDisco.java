@@ -256,9 +256,6 @@ public class VentanaAltaDisco extends JFrame {
                     for (String nombreCancion : nombreCanciones)
                         if (cancion.getNombre().equals(nombreCancion))
                             canciones.add(cancion);
-
-                for (Cancion cancion : canciones)
-                    System.out.println(cancion);
             }
 
             if (titulo.equals(""))
