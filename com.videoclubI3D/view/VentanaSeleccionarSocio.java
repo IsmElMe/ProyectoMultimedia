@@ -6,13 +6,13 @@ import model.*;
 import javax.swing.*;
 import java.awt.*;
 
-public class VentanaSeleccionarDisco extends JDialog {
+public class VentanaSeleccionarSocio extends JDialog {
     private static JButton btnAceptar, btnCancelar;
-    private static JList<String> listaDisco;
-    private static JScrollPane scrollDisco;
+    private static JList<String> listaSocio;
+    private static JScrollPane scrollSocio;
 
-    public VentanaSeleccionarDisco() {
-        super.setTitle("BLOCKBUSTER - SELECCIONAR DISCO");
+    public VentanaSeleccionarSocio() {
+        super.setTitle("BLOCKBUSTER - SELECCIONAR SOCIO");
         super.setModal(true);
         JPanel panel = new JPanel();
         super.setContentPane(panel);
@@ -22,16 +22,16 @@ public class VentanaSeleccionarDisco extends JDialog {
         panel.setBackground(Color.decode(Constantes.COLOR_AZUL));
         super.setBounds((Constantes.ANCHO_PANTALLA / 2) - 200, (Constantes.ALTO_PANTALLA / 2) - 200, 400, 400);
 
-        JLabel lblTitulo = new JLabel("SELECCIONA UN DISCO");
+        JLabel lblTitulo = new JLabel("SELECCIONA UN SOCIO");
         panel.add(lblTitulo);
         lblTitulo.setFont(Constantes.FUENTE_LABEL);
         lblTitulo.setForeground(Color.decode(Constantes.COLOR_AMARILLO));
         lblTitulo.setBounds((super.getWidth() / 2) - 100, 20, 200, 30);
 
-        listaDisco = new JList<>();
-        scrollDisco = new JScrollPane(listaDisco);
-        panel.add(scrollDisco);
-        scrollDisco.setBounds(20, 60, 350, 200);
+        listaSocio = new JList<>();
+        scrollSocio = new JScrollPane(listaSocio);
+        panel.add(scrollSocio);
+        scrollSocio.setBounds(20, 60, 350, 200);
 
         btnCancelar = new JButton("CANCELAR");
         panel.add(btnCancelar);
@@ -48,31 +48,35 @@ public class VentanaSeleccionarDisco extends JDialog {
         btnAceptar.setBounds(220, 300, 150, 30);
 
         btnCancelar.addActionListener(evento -> {
-            Videoclub.setDiscoSeleccionado(null);
+            Videoclub.setSocioSeleccionado(null);
             this.setVisible(false);
         });
 
         btnAceptar.addActionListener(evento -> {
-            Videoclub.setDiscoSeleccionado(discoSeleccionado());
+            Videoclub.setSocioSeleccionado(socioSeleccionado());
             this.setVisible(false);
         });
     }
 
     public static void actualizarLista() {
         DefaultListModel<String> modelList = new DefaultListModel<>();
+        StringBuilder nifYNombre = new StringBuilder();
 
-        for (Multimedia multimedia : Videoclub.sacarDiscos())
-            modelList.addElement(multimedia.getTitulo());
+        for (Socio socio : Videoclub.getSocios()) {
+            nifYNombre.append(socio.getNIF()).append(" - ").append(socio.getNombre());
+            modelList.addElement(nifYNombre.toString());
+            nifYNombre.delete(0, nifYNombre.length());
+        }
 
-        listaDisco.setModel(modelList);
+        listaSocio.setModel(modelList);
     }
 
-    private static Disco discoSeleccionado() {
-        String discoSeleccionado = listaDisco.getSelectedValue();
+    private static Socio socioSeleccionado() {
+        String socioSeleccionado = listaSocio.getSelectedValue().split("-")[0].trim();
 
-        for (Multimedia disco : Videoclub.sacarDiscos())
-            if (disco.getTitulo().equals(discoSeleccionado))
-                return (Disco) disco;
+        for (Socio socio : Videoclub.getSocios())
+            if (socio.getNIF().equals(socioSeleccionado))
+                return socio;
 
         return null;
     }

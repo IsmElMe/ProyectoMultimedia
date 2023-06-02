@@ -8,16 +8,13 @@ import model.Multimedia;
 
 import javax.swing.*;
 import java.awt.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 
 public class VentanaListar extends JFrame {
     private JButton btnAtras, btnListarMultimedias, btnListarPeliculasPorTitulo,
             btnListarCancionesDiscoPorDuracion, btnListarVideojuegosPorAnyo,
             btnAlquilerActualSocio, btnSociosRecargosPendientes;
-    private JList<String> list;
+    private JList<String> lista;
     private JScrollPane scrollListado;
 
     public VentanaListar() {
@@ -36,8 +33,8 @@ public class VentanaListar extends JFrame {
         lblTitulo.setBounds((super.getWidth() / 2) - 150, 0, 300, 100);
         lblTitulo.setForeground(Color.decode("#fcc139"));
 
-        list = new JList<>();
-        scrollListado = new JScrollPane(list);
+        lista = new JList<>();
+        scrollListado = new JScrollPane(lista);
         panel.add(scrollListado);
         scrollListado.setBounds(25, 250, 725, 300);
 
@@ -113,7 +110,7 @@ public class VentanaListar extends JFrame {
             for (Multimedia multimedia : multimedias)
                 modelLista.addElement(multimedia.toString());
 
-            list.setModel(modelLista);
+            lista.setModel(modelLista);
         });
 
         btnListarPeliculasPorTitulo.addActionListener(evento -> {
@@ -123,7 +120,7 @@ public class VentanaListar extends JFrame {
             for (Multimedia multimedia : peliculasOrdenadas)
                 modelLista.addElement(multimedia.toString());
 
-            list.setModel(modelLista);
+            lista.setModel(modelLista);
         });
 
         btnListarVideojuegosPorAnyo.addActionListener(evento -> {
@@ -133,7 +130,7 @@ public class VentanaListar extends JFrame {
             for (Multimedia multimedia : videojuegosOrdenados)
                 modelLista.addElement(multimedia.toString());
 
-            list.setModel(modelLista);
+            lista.setModel(modelLista);
         });
 
         btnListarCancionesDiscoPorDuracion.addActionListener(evento -> {
@@ -141,14 +138,29 @@ public class VentanaListar extends JFrame {
             Videoclub.ventanaSeleccionarDisco.setVisible(true);
             modelLista.clear();
 
-            if (Videoclub.discoSeleccionado != null) {
-                ArrayList<Cancion> canciones = Videoclub.discoSeleccionado.getCanciones();
-                Collections.sort(canciones, (cancion1, cancion2) -> Double.compare(cancion2.getDuracion(), cancion1.getDuracion()));
+            if (Videoclub.getDiscoSeleccionado() != null) {
+                ArrayList<Cancion> canciones = Videoclub.getDiscoSeleccionado().getCanciones();
+                canciones.sort((cancion1, cancion2) -> Double.compare(cancion2.getDuracion(), cancion1.getDuracion()));
 
                 for (Cancion cancion : canciones)
                     modelLista.addElement(cancion.toString());
 
-                list.setModel(modelLista);
+                lista.setModel(modelLista);
+            }
+        });
+
+        btnAlquilerActualSocio.addActionListener(evento -> {
+            VentanaSeleccionarSocio.actualizarLista();
+            Videoclub.ventanaSeleccionarSocio.setVisible(true);
+            modelLista.clear();
+
+            if (Videoclub.getSocioSeleccionado() != null) {
+                ArrayList<Multimedia> multimediasAlquiladas = Videoclub.getSocioSeleccionado().getMultimediasAlquiladas();
+
+                for (Multimedia multimedia : multimediasAlquiladas)
+                    modelLista.addElement(multimedia.toString());
+
+                lista.setModel(modelLista);
             }
         });
     }

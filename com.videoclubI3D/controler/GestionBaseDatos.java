@@ -4,8 +4,6 @@ import model.*;
 
 import javax.swing.*;
 import java.sql.*;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -81,7 +79,6 @@ public class GestionBaseDatos {
                         }
                     }
 
-
                     PreparedStatement ps = con.prepareStatement("insert into videojuego values (" + id_multimedia + ", '" + titulo + "', '" + autor + "', '" +
                             formato + "', " + anio + ", " + precio + ", '" + plataformas + "');");
 
@@ -108,7 +105,6 @@ public class GestionBaseDatos {
                     int precio = multimedia.getPrecio();
                     double duracion = ((Disco) multimedia).getDuracion();
 
-
                     PreparedStatement ps = con.prepareStatement("insert into disco values (" + id_multimedia + ", '" + titulo + "', '" + autor + "', '" +
                             formato + "', " + anio + ", " + precio + ", " + duracion + ");");
 
@@ -128,7 +124,6 @@ public class GestionBaseDatos {
             for (Cancion cancion : Videoclub.getCanciones()) {
                 String nombre = cancion.getNombre();
                 double duracion = cancion.getDuracion();
-
 
                 PreparedStatement ps = con.prepareStatement("insert into cancion values ('" +
                         nombre + "', " + duracion + ");");
@@ -406,7 +401,7 @@ public class GestionBaseDatos {
         }
     }
 
-    public static void cargarSocioConMultimediasAlquiladas(){
+    public static void cargarSocioConMultimediasAlquiladas() {
         Connection con = conectarBaseDatos();
         try {
             Statement st = con.createStatement();
@@ -418,20 +413,20 @@ public class GestionBaseDatos {
                 Date fecha = rs.getDate("fecha_nacimiento");
                 LocalDate fecha2 = LocalDate.of(fecha.getYear(), fecha.getMonth(), fecha.getDay());
 
-                ResultSet rs2 = st.executeQuery("select * from multimedias_socio where nif_socio = '"+nif+"'");
+                ResultSet rs2 = st.executeQuery("select * from multimedias_socio where nif_socio = '" + nif + "'");
                 ArrayList<Multimedia> multimediaAlquilada = new ArrayList<>();
-                while (rs2.next()){
+                while (rs2.next()) {
                     String titulo_multimedia = rs2.getString("titulo_multimedia");
 
-                    for (Multimedia multimedia : Videoclub.getMultimedias()){
+                    for (Multimedia multimedia : Videoclub.getMultimedias()) {
                         if (multimedia.getTitulo().equals(titulo_multimedia))
                             multimediaAlquilada.add(multimedia);
                     }
                 }
-                Videoclub.guardarSocio(new Socio( fecha2, nombre, poblacion, nif));
-                for (Socio socio: Videoclub.getSocios()){
-                    if (socio.getNIF().equals(nif)){
-                        for (Multimedia multimedia: multimediaAlquilada){
+                Videoclub.guardarSocio(new Socio(fecha2, nombre, poblacion, nif));
+                for (Socio socio : Videoclub.getSocios()) {
+                    if (socio.getNIF().equals(nif)) {
+                        for (Multimedia multimedia : multimediaAlquilada) {
                             socio.alquilarMultimedia(multimedia);
                         }
                     }
