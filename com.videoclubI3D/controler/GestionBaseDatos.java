@@ -2,6 +2,7 @@ package controler;
 
 import model.*;
 
+import javax.swing.*;
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -263,6 +264,7 @@ public class GestionBaseDatos {
 
     public static void cargarDatos() {
         cargarMultimedias();
+
     }
 
     public static void cargarMultimedias() {
@@ -318,6 +320,7 @@ public class GestionBaseDatos {
                     canciones.add(new Cancion(nombre, duracionC));
                 }
                 Videoclub.getMultimedias().add(new Disco(tituloD, autorD, formatoD, anioD, canciones));
+                JOptionPane.showMessageDialog(null, "Se han cargado las multimedias de la base de datos.");
             }
         } catch (Exception e) {
             e.printStackTrace();
