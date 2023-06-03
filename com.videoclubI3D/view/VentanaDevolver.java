@@ -123,31 +123,6 @@ public class VentanaDevolver extends JFrame {
                 JOptionPane.showMessageDialog(null, "El NIF introducido no esta registrado en " +
                         "ningun socio");
             }
-
-//            try {
-//                Connection con = GestionBaseDatos.conectarBaseDatos();
-//                if (con == null) {
-//                    throw new RuntimeException("Fallo al intentar conectar con la base de datos");
-//                }else {
-//                    Statement st = con.createStatement();
-//                    ResultSet rsSocio = st.executeQuery("select * from socio");
-//                    ResultSet rsMultimedia = st.executeQuery("select * from multimedias_socio");
-//                    while (rsSocio.next()){
-//                        String nif = rsSocio.getString("nif");
-//                        int num_socio = rsMultimedia.getInt("num_socio");
-//                        String titulo = rsMultimedia.getString("titulo");
-//                        int num_multimedias = rsMultimedia.getInt("num_multimedias");
-//
-//                        if (nif.equals(txtNIF.getText())){
-//                            listaMultimediaSocio.addItem(titulo);
-//                        }
-//                    }
-//
-//                    con.close();
-//                }
-//            }catch (Exception e1){
-//                e1.printStackTrace();
-//            }
         });
 
         btnCobrar.addActionListener(e -> {
@@ -181,35 +156,6 @@ public class VentanaDevolver extends JFrame {
                 JOptionPane.showMessageDialog(null, "El NIF introducido no esta registrado en " +
                         "ningun socio");
             }
-
-//            try {
-//                Connection con = GestionBaseDatos.conectarBaseDatos();
-//                if (con == null) {
-//                    throw new RuntimeException("Fallo al intentar conectar con la base de datos");
-//                }else {
-//                    Statement st = con.createStatement();
-//                    ResultSet rsSocio = st.executeQuery("select * from socio");
-//                    ResultSet rsMultimedia = st.executeQuery("select * from multimedias_socio");
-//
-//                    while (rsSocio.next()){
-//                        String nif = rsSocio.getString("nif");
-//                        int num_socio = rsMultimedia.getInt("num_socio");
-//                        String titulo = rsMultimedia.getString("titulo");
-//                        int num_multimedias = rsMultimedia.getInt("num_multimedias");
-//
-//                        if (titulo.equals(listaMultimediaSocio.getSelectedItem().toString())){
-//                            st.executeQuery("delete from multimedias_socio where titulo = '"
-//                                    + listaMultimediaSocio.getSelectedItem().toString() + "' and nif = '" + txtNIF.getText()
-//                                    + "';");
-//
-//                        }
-//                    }
-//
-//                    con.close();
-//                }
-//            }catch (Exception e1){
-//                e1.printStackTrace();
-//            }
         });
 
         btnAtras.addActionListener(evento -> {
