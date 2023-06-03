@@ -12,7 +12,7 @@ public class GestionBaseDatos {
     public static Connection conectarBaseDatos() {
         Connection con = null;
         String url = "jdbc:postgresql://localhost:5432/";
-        String pass = "123456"; //Cada uno usa su contraseña.
+        String pass = ""; //Cada uno usa su contraseña.
         String bd = "Proyecto_Multimedia_BD"; //Hay que poner este nombre a la base de datos para que sea igual en todos.
         String driver = "org.postgresql.Driver";
         String user = "postgres"; //Este es el usuario por defecto.
@@ -405,6 +405,7 @@ public class GestionBaseDatos {
         Connection con = conectarBaseDatos();
         try {
             Statement st = con.createStatement();
+            Statement st2 = con.createStatement();
             ResultSet rs = st.executeQuery("select * from socio");
             while (rs.next()) {
                 String nif = rs.getString("nif");
@@ -413,7 +414,7 @@ public class GestionBaseDatos {
                 Date fecha = rs.getDate("fecha_nacimiento");
                 LocalDate fecha2 = LocalDate.of(fecha.getYear(), fecha.getMonth(), fecha.getDay());
 
-                ResultSet rs2 = st.executeQuery("select * from multimedias_socio where nif_socio = '" + nif + "'");
+                ResultSet rs2 = st2.executeQuery("select * from multimedias_socio where nif_socio = '" + nif + "'");
                 ArrayList<Multimedia> multimediaAlquilada = new ArrayList<>();
                 while (rs2.next()) {
                     String titulo_multimedia = rs2.getString("titulo_multimedia");
