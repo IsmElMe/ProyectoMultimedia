@@ -23,7 +23,7 @@ public class VentanaListar extends JFrame {
         super.setContentPane(panel);
         super.setLayout(null);
         super.setResizable(false);
-        super.setDefaultCloseOperation(HIDE_ON_CLOSE);
+        super.setDefaultCloseOperation(EXIT_ON_CLOSE);
         panel.setBackground(Color.decode("#1f4489"));
         super.setBounds((Constantes.ANCHO_PANTALLA / 2) - 400, (Constantes.ALTO_PANTALLA / 2) - 300, 800, 600);
 
@@ -37,6 +37,7 @@ public class VentanaListar extends JFrame {
         scrollListado = new JScrollPane(lista);
         panel.add(scrollListado);
         scrollListado.setBounds(25, 250, 725, 300);
+        scrollListado.setBorder(BorderFactory.createLineBorder(Color.decode("#fcc139"), 3));
 
         crearBotones(panel);
         eventos();
