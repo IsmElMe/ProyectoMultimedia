@@ -305,6 +305,30 @@ public class GestionBaseDatos {
         return videojuegosOrdenados;
     }
 
+    public static ArrayList<Cancion> cancionesOrdenadasPorTitulo() {
+        ArrayList<Cancion> cancionesOrdenadas = new ArrayList<>();
+        Connection con = conectarBaseDatos();
+
+        try {
+            Statement query = con.createStatement();
+            ResultSet resultSet = query.executeQuery("SELECT * FROM cancion ORDER BY nombre");
+
+            while (resultSet.next()) {
+                String titulo = resultSet.getString("nombre");
+
+                for (Cancion cancion : Videoclub.getCanciones())
+                    if (titulo.equals(cancion.getNombre()))
+                        cancionesOrdenadas.add(cancion);
+            }
+
+            con.close();
+        } catch (SQLException error) {
+            error.printStackTrace();
+        }
+
+        return cancionesOrdenadas;
+    }
+
     public static void cargarDatos() {
         cargarMultimedias();
         cargarCanciones();
