@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class VentanaListar extends JFrame {
     private JButton btnAtras, btnListarMultimedias, btnListarPeliculasPorTitulo,
             btnListarCancionesDiscoPorDuracion, btnListarVideojuegosPorAnyo,
-            btnAlquilerActualSocio, btnSociosRecargosPendientes;
+            btnAlquilerActualSocio, btnListarCancionesPorTitulo;
     private JList<String> lista;
     private JScrollPane scrollListado;
 
@@ -23,7 +23,7 @@ public class VentanaListar extends JFrame {
         super.setContentPane(panel);
         super.setLayout(null);
         super.setResizable(false);
-        super.setDefaultCloseOperation(HIDE_ON_CLOSE);
+        super.setDefaultCloseOperation(EXIT_ON_CLOSE);
         panel.setBackground(Color.decode("#1f4489"));
         super.setBounds((Constantes.ANCHO_PANTALLA / 2) - 400, (Constantes.ALTO_PANTALLA / 2) - 300, 800, 600);
 
@@ -37,6 +37,7 @@ public class VentanaListar extends JFrame {
         scrollListado = new JScrollPane(lista);
         panel.add(scrollListado);
         scrollListado.setBounds(25, 250, 725, 300);
+        scrollListado.setBorder(BorderFactory.createLineBorder(Color.decode("#fcc139"), 3));
 
         crearBotones(panel);
         eventos();
@@ -87,12 +88,12 @@ public class VentanaListar extends JFrame {
         btnAlquilerActualSocio.setBackground(Color.decode(Constantes.COLOR_AMARILLO));
         btnAlquilerActualSocio.setBounds(25, 200, 350, 30);
 
-        btnSociosRecargosPendientes = new JButton("SOCIOS CON RECARGOS PENDIENTES");
-        panel.add(btnSociosRecargosPendientes);
-        btnSociosRecargosPendientes.setFont(Constantes.FUENTE_BOTON);
-        btnSociosRecargosPendientes.setForeground(Color.decode(Constantes.COLOR_AZUL));
-        btnSociosRecargosPendientes.setBackground(Color.decode(Constantes.COLOR_AMARILLO));
-        btnSociosRecargosPendientes.setBounds(400, 200, 350, 30);
+        btnListarCancionesPorTitulo = new JButton("CANCIONES ORDENADAS POR TÍTULO");
+        panel.add(btnListarCancionesPorTitulo);
+        btnListarCancionesPorTitulo.setFont(Constantes.FUENTE_BOTON);
+        btnListarCancionesPorTitulo.setForeground(Color.decode(Constantes.COLOR_AZUL));
+        btnListarCancionesPorTitulo.setBackground(Color.decode(Constantes.COLOR_AMARILLO));
+        btnListarCancionesPorTitulo.setBounds(400, 200, 350, 30);
     }
 
     private void eventos() {
@@ -162,6 +163,16 @@ public class VentanaListar extends JFrame {
 
                 lista.setModel(modelLista);
             }
+        });
+
+        btnListarCancionesPorTitulo.addActionListener(evento -> {
+            ArrayList<Cancion> cancionesOrdenadas = GestionBaseDatos.cancionesOrdenadasPorTitulo();
+            modelLista.clear();
+
+            for (Cancion cancion : cancionesOrdenadas)
+                modelLista.addElement(cancion.toString());
+
+            lista.setModel(modelLista);
         });
     }
 }

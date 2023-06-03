@@ -26,7 +26,7 @@ public class VentanaAltaSocio extends JFrame {
         super.setContentPane(this.panel);
         super.setLayout(null);
         super.setResizable(false);
-        super.setDefaultCloseOperation(HIDE_ON_CLOSE);
+        super.setDefaultCloseOperation(EXIT_ON_CLOSE);
         panel.setBackground(Color.decode("#1f4489"));
         super.setBounds((Constantes.ANCHO_PANTALLA / 2) - 215, (Constantes.ALTO_PANTALLA / 2) - 165, 430, 330);
 

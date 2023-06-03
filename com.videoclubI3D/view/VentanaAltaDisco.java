@@ -30,7 +30,7 @@ public class VentanaAltaDisco extends JFrame {
         panel = new JPanel();
         super.setContentPane(panel);
         super.setLayout(null);
-        super.setDefaultCloseOperation(HIDE_ON_CLOSE);
+        super.setDefaultCloseOperation(EXIT_ON_CLOSE);
         super.setResizable(false);
         panel.setBackground(Color.decode("#1f4489"));
         super.setBounds((Constantes.ANCHO_PANTALLA / 2) - 235, (Constantes.ALTO_PANTALLA / 2) - 225, 470, 550);
