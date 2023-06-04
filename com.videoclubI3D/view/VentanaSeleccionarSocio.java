@@ -32,6 +32,7 @@ public class VentanaSeleccionarSocio extends JDialog {
         scrollSocio = new JScrollPane(listaSocio);
         panel.add(scrollSocio);
         scrollSocio.setBounds(20, 60, 350, 200);
+        scrollSocio.setBorder(BorderFactory.createLineBorder(Color.decode("#fcc139"), 3));
 
         btnCancelar = new JButton("CANCELAR");
         panel.add(btnCancelar);

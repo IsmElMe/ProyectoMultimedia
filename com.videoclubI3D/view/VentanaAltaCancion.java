@@ -20,7 +20,7 @@ public class VentanaAltaCancion extends JFrame {
         JPanel panel = new JPanel();
         super.setContentPane(panel);
         super.setLayout(null);
-        super.setDefaultCloseOperation(HIDE_ON_CLOSE);
+        super.setDefaultCloseOperation(EXIT_ON_CLOSE);
         super.setResizable(false);
         super.setBounds((Constantes.ANCHO_PANTALLA / 2) - 225, (Constantes.ALTO_PANTALLA / 2) - 200, 450, 300);
         panel.setBackground(Color.decode(Constantes.COLOR_AZUL));

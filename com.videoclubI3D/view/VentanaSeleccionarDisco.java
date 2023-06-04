@@ -32,6 +32,7 @@ public class VentanaSeleccionarDisco extends JDialog {
         scrollDisco = new JScrollPane(listaDisco);
         panel.add(scrollDisco);
         scrollDisco.setBounds(20, 60, 350, 200);
+        scrollDisco.setBorder(BorderFactory.createLineBorder(Color.decode("#fcc139"), 3));
 
         btnCancelar = new JButton("CANCELAR");
         panel.add(btnCancelar);
