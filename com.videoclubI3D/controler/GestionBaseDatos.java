@@ -12,7 +12,7 @@ public class GestionBaseDatos {
     public static Connection conectarBaseDatos() {
         Connection con = null;
         String url = "jdbc:postgresql://localhost:5432/";
-        String pass = "123456"; //Cada uno usa su contraseña.
+        String pass = "2711ir783"; //Cada uno usa su contraseña.
         String bd = "Proyecto_Multimedia_BD"; //Hay que poner este nombre a la base de datos para que sea igual en todos.
         String driver = "org.postgresql.Driver";
         String user = "postgres"; //Este es el usuario por defecto.
@@ -436,7 +436,12 @@ public class GestionBaseDatos {
                 String nombre = rs.getString("nombre");
                 String poblacion = rs.getString("poblacion");
                 Date fecha = rs.getDate("fecha_nacimiento");
-                LocalDate fecha2 = LocalDate.of(fecha.getYear(), fecha.getMonth(), fecha.getDay());
+                String[] fechaS = fecha.toString().split("-");
+                int anyo, mes, dia;
+                anyo = Integer.parseInt(fechaS[0]);
+                mes = Integer.parseInt(fechaS[1]);
+                dia = Integer.parseInt(fechaS[2]);
+                LocalDate fecha2 = LocalDate.of(anyo, mes, dia);
 
                 ResultSet rs2 = st2.executeQuery("select * from multimedias_socio where nif_socio = '" + nif + "'");
                 ArrayList<Multimedia> multimediaAlquilada = new ArrayList<>();

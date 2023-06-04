@@ -135,7 +135,7 @@ public class VentanaDevolver extends JFrame {
                         if (listaMultimediaSocio.getSelectedItem().equals(multimedia.getTitulo())) {
                             int precio = multimedia.getPrecio();
                             if (Integer.parseInt(jsDiasAlquiler.getValue().toString()) > Constantes.MAX_DIAS_ALQUILER) {
-                                JOptionPane.showMessageDialog(null, precio);
+//                                JOptionPane.showMessageDialog(null, precio);
                                 precio += (Integer.parseInt(jsDiasAlquiler.getValue().toString()) - Constantes.MAX_DIAS_ALQUILER) * 2;
                             }
                             lblPrecio.setText(precio + "€");
